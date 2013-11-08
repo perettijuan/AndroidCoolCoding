@@ -12,7 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.jpp.animations.Animations;
 import com.jpp.animations.R;
+import com.jpp.animations.ui.fragment.SimpleScaleAnimationFragment;
 import com.jpp.animations.ui.fragment.SliderMenuFragment;
 
 public class HomeActivity extends ActionBarActivity implements ISldierMenuSelectionListener {
@@ -118,6 +120,21 @@ public class HomeActivity extends ActionBarActivity implements ISldierMenuSelect
         } else {
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onAimationSelected(Animations anim) {
+        switch (anim) {
+        case SIMPLAE_SCALE:
+            SimpleScaleAnimationFragment fr = SimpleScaleAnimationFragment.newInstance();
+            getSupportFragmentManager().beginTransaction().add(R.id.content_frame, fr).commit();
+            break;
+
+        default:
+            break;
+        }
+        mDrawerLayout.closeDrawers();
+    
     }
 
 }

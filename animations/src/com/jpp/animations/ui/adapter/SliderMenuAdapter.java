@@ -3,6 +3,9 @@ package com.jpp.animations.ui.adapter;
 import java.util.HashMap;
 import java.util.List;
 
+import com.jpp.animations.AnimationGroups;
+import com.jpp.animations.Animations;
+
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -15,11 +18,11 @@ public class SliderMenuAdapter extends BaseExpandableListAdapter {
 
 
     private Context mContext;
-    private List<String> mHeaderData;
-    private HashMap<String, List<String>> mGroupData;
+    private List<AnimationGroups> mHeaderData;
+    private HashMap<AnimationGroups, List<Animations>> mGroupData;
 
-    public SliderMenuAdapter(Context context, List<String> headerData,
-            HashMap<String, List<String>> groupdata) {
+    public SliderMenuAdapter(Context context, List<AnimationGroups> headerData,
+            HashMap<AnimationGroups, List<Animations>> groupdata) {
         mContext = context;
         mHeaderData = headerData;
         mGroupData = groupdata;
@@ -38,7 +41,7 @@ public class SliderMenuAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition,
             boolean isLastChild, View convertView, ViewGroup parent) {
-        final String childText = (String) getChild(groupPosition, childPosition);
+        final String childText = ((Animations) getChild(groupPosition, childPosition)).getName();
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(android.R.layout.simple_list_item_1, null);
@@ -71,7 +74,7 @@ public class SliderMenuAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        String headerTitle = (String) getGroup(groupPosition);
+        String headerTitle = ((AnimationGroups) getGroup(groupPosition)).getName();
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(android.R.layout.simple_expandable_list_item_1, null);
