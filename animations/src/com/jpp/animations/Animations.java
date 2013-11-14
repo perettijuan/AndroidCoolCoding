@@ -7,7 +7,12 @@ public enum Animations {
     SCALE("Scale", R.anim.scale),
     ALPHA("Alpha", R.anim.alpha),
     ROTATE("Rotate", R.anim.rotate),
-    TRANSLATE("Translate", R.anim.translate);
+    TRANSLATE("Translate", R.anim.translate),
+    COMBINATED_ANIMATIONS("Combinated animations", R.anim.combinated_animations), 
+    SEQUENCE_ANIMATIONS("Sequence of animations" , R.anim.sequence_animations),
+    ACCELERATE_INTERPOLATOR("Accelerate interpolator" , R.anim.accelerate_interpolator),
+    DECELERATE_INTERPOLATOR("Decelerate Interpolator", R.anim.decelerate_interpolator),
+    ACCELERATE_DECELERATE_INTERPOLATOR("Accelerate decelerate interpolator" , R.anim.acceletare_decelerate_interpolator);
 
 
     private String mName;
