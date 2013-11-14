@@ -46,8 +46,11 @@ public class SliderMenuFragment extends Fragment {
 
         List<AnimationGroups> headers = Arrays.asList(AnimationGroups.values());
         HashMap<AnimationGroups, List<Animations>> items = new HashMap<AnimationGroups, List<Animations>>();
-        List<Animations> simpleAnimations = Arrays.asList(AnimationGroups.SIMPLE_ANIMATIONS.getAnimations());
-        items.put(headers.get(0), simpleAnimations);
+        for (int i = 0; i < headers.size(); i++) {
+            AnimationGroups group = headers.get(i);
+            List<Animations> simpleAnimations = Arrays.asList(group.getAnimations());
+            items.put(group, simpleAnimations);
+        }
 
         View fView = inflater.inflate(R.layout.slider_menu_fragment, container, false);
         lvDrawerMenu = (ExpandableListView) fView.findViewById(R.id.lv_drawer_menu);
@@ -59,7 +62,8 @@ public class SliderMenuFragment extends Fragment {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 Animations child = (Animations) mAdapter.getChild(groupPosition, childPosition);
-                mListener.onAimationSelected(child);
+                AnimationGroups group = (AnimationGroups) mAdapter.getGroup(groupPosition);
+                mListener.onAimationSelected(group, child);
                 return true;
             }
         });

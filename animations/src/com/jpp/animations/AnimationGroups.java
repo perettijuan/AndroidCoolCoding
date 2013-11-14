@@ -2,7 +2,9 @@ package com.jpp.animations;
 
 public enum AnimationGroups {
 
-    SIMPLE_ANIMATIONS("Simple Animations", new Animations[] { Animations.SIMPLAE_SCALE });
+    SIMPLE_ANIMATIONS("Simple Animations", new Animations[] { Animations.SIMPLE_SCALE }),
+    CUSTOM_ANIMATIONS("Custom Animations", new Animations[] { Animations.LINEAR_INTERPOLATOR }),
+    ANIMATION_TYPES("Animation Types", new Animations[] { Animations.ALPHA, Animations.ROTATE, Animations.SCALE, Animations.TRANSLATE });
 
 
     private String mName;

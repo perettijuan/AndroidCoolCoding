@@ -12,8 +12,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.jpp.animations.AnimationGroups;
 import com.jpp.animations.Animations;
 import com.jpp.animations.R;
+import com.jpp.animations.ui.fragment.AnimationTypesFragment;
+import com.jpp.animations.ui.fragment.CustomAnimationsFragment;
 import com.jpp.animations.ui.fragment.SimpleScaleAnimationFragment;
 import com.jpp.animations.ui.fragment.SliderMenuFragment;
 
@@ -123,13 +126,19 @@ public class HomeActivity extends ActionBarActivity implements ISldierMenuSelect
     }
 
     @Override
-    public void onAimationSelected(Animations anim) {
-        switch (anim) {
-        case SIMPLAE_SCALE:
+    public void onAimationSelected(AnimationGroups group, Animations anim) {
+        switch (group) {
+        case SIMPLE_ANIMATIONS:
             SimpleScaleAnimationFragment fr = SimpleScaleAnimationFragment.newInstance();
-            getSupportFragmentManager().beginTransaction().add(R.id.content_frame, fr).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fr).commit();
             break;
-
+        case CUSTOM_ANIMATIONS:
+            CustomAnimationsFragment fr1 = CustomAnimationsFragment.newInstance(anim);
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fr1).commit();
+            break;   
+        case ANIMATION_TYPES:
+            AnimationTypesFragment fr2 = AnimationTypesFragment.newInstance(anim);
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fr2).commit();
         default:
             break;
         }
