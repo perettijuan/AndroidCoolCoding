@@ -12,7 +12,10 @@ public enum Animations {
     SEQUENCE_ANIMATIONS("Sequence of animations" , R.anim.sequence_animations),
     ACCELERATE_INTERPOLATOR("Accelerate interpolator" , R.anim.accelerate_interpolator),
     DECELERATE_INTERPOLATOR("Decelerate Interpolator", R.anim.decelerate_interpolator),
-    ACCELERATE_DECELERATE_INTERPOLATOR("Accelerate decelerate interpolator" , R.anim.acceletare_decelerate_interpolator);
+    ACCELERATE_DECELERATE_INTERPOLATOR("Accelerate decelerate interpolator" , R.anim.acceletare_decelerate_interpolator),
+    ANTICIPATE_INTERPOLATOR("Anticipate interpolator" , R.anim.anticipate_interpolator),
+    OVERSHOOT_INTERPOLATOR("Overshoot interpolator" , R.anim.overshoot_interpolator),
+    ANTICIPATE_OVERSHOOT_INTERPOLATOR("Anticipate Overshoot interpolator" , R.anim.anticipate_overshoot_interpolator);
 
 
     private String mName;
