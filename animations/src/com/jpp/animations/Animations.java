@@ -15,7 +15,9 @@ public enum Animations {
     ACCELERATE_DECELERATE_INTERPOLATOR("Accelerate decelerate interpolator" , R.anim.acceletare_decelerate_interpolator),
     ANTICIPATE_INTERPOLATOR("Anticipate interpolator" , R.anim.anticipate_interpolator),
     OVERSHOOT_INTERPOLATOR("Overshoot interpolator" , R.anim.overshoot_interpolator),
-    ANTICIPATE_OVERSHOOT_INTERPOLATOR("Anticipate Overshoot interpolator" , R.anim.anticipate_overshoot_interpolator);
+    ANTICIPATE_OVERSHOOT_INTERPOLATOR("Anticipate Overshoot interpolator" , R.anim.anticipate_overshoot_interpolator),
+    PROGRAMMED_TRANSLATE("Programmed Translate"),
+    PROGRAMMED_ANIMATION_SET("Programmed Animation Set");
 
 
     private String mName;

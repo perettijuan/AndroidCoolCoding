@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -17,6 +18,8 @@ import com.jpp.animations.Animations;
 import com.jpp.animations.R;
 import com.jpp.animations.ui.fragment.AnimationTypesFragment;
 import com.jpp.animations.ui.fragment.CustomAnimationsFragment;
+import com.jpp.animations.ui.fragment.ProgrammedSetAnimationFragment;
+import com.jpp.animations.ui.fragment.ProgrammedTranslateAnimationFragment;
 import com.jpp.animations.ui.fragment.SimpleScaleAnimationFragment;
 import com.jpp.animations.ui.fragment.SliderMenuFragment;
 
@@ -127,23 +130,31 @@ public class HomeActivity extends ActionBarActivity implements ISldierMenuSelect
 
     @Override
     public void onAimationSelected(AnimationGroups group, Animations anim) {
+        Fragment fr = null;
         switch (group) {
         case SIMPLE_ANIMATIONS:
-            SimpleScaleAnimationFragment fr = SimpleScaleAnimationFragment.newInstance();
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fr).commit();
+            fr = SimpleScaleAnimationFragment.newInstance();
             break;
         case CUSTOM_ANIMATIONS:
-            CustomAnimationsFragment fr1 = CustomAnimationsFragment.newInstance(anim);
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fr1).commit();
-            break;   
+            fr = CustomAnimationsFragment.newInstance(anim);
+            break;
         case ANIMATION_TYPES:
-            AnimationTypesFragment fr2 = AnimationTypesFragment.newInstance(anim);
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fr2).commit();
+            fr = AnimationTypesFragment.newInstance(anim);
+        case PROGRAMMED_ANIMATIONS:
+            switch (anim) {
+            case PROGRAMMED_TRANSLATE:
+                fr = ProgrammedTranslateAnimationFragment.newInstance(anim);
+                break;
+            case PROGRAMMED_ANIMATION_SET:
+                fr = ProgrammedSetAnimationFragment.newInstance(anim);
+            }
+            break;
         default:
             break;
         }
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fr).commit();
         mDrawerLayout.closeDrawers();
-    
+
     }
 
 }
