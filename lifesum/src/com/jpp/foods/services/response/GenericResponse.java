@@ -1,4 +1,4 @@
-package com.jpp.foods.services.responses;
+package com.jpp.foods.services.response;
 
 import com.google.gson.annotations.SerializedName;
 

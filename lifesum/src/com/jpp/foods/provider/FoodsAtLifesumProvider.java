@@ -14,7 +14,7 @@ import com.jpp.foods.model.Food;
 import com.jpp.foods.services.HttpManager;
 import com.jpp.foods.services.HttpManager.RequestTypes;
 import com.jpp.foods.services.ServiceException;
-import com.jpp.foods.services.responses.FoodsResponse;
+import com.jpp.foods.services.response.FoodsResponse;
 
 /**
  * Content provider used to access the data model in the application. <br>
