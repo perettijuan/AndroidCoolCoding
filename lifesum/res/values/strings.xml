@@ -1,5 +1,9 @@
 <resources>
 
     <string name="app_name">Foods At Lifesum</string>
+    
+    <!-- Exceptions -->
+    <string name="error_general">General application failure</string>
+    <string name="error_unsupported">Unsupported Operation</string>
 
 </resources>
