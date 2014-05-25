@@ -2,6 +2,7 @@ package com.jpp.foods.ui.fragment;
 
 import com.jpp.foods.R;
 import com.jpp.foods.provider.FoodsAtLifesumContract;
+import com.jpp.foods.ui.adapter.RemoteFoodsAdapter;
 
 import android.app.Fragment;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -12,6 +13,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 
 /**
  * Fragment used to present the Foods contained in the server to the user.
@@ -26,7 +29,11 @@ public class FoodsFragment extends Fragment implements LoaderCallbacks<Cursor> {
     public static final String TAG = FoodsFragment.class.getName();
 
     private static final int LOAD_REMOTE_FOODS = 1;
-    
+
+    private ProgressBar pgLoadingFoods;
+    private ListView lvRemoteFoods;
+    private RemoteFoodsAdapter mAdapter;
+
     /**
      * Default class constructor
      */
@@ -47,6 +54,8 @@ public class FoodsFragment extends Fragment implements LoaderCallbacks<Cursor> {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View fView = inflater.inflate(R.layout.foods_fragment, container, false);
+        pgLoadingFoods = (ProgressBar) fView.findViewById(R.id.pg_loading_foods);
+        lvRemoteFoods = (ListView) fView.findViewById(R.id.lv_remote_foods);
         return fView;
     }
 
@@ -58,13 +67,23 @@ public class FoodsFragment extends Fragment implements LoaderCallbacks<Cursor> {
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        pgLoadingFoods.setVisibility(View.VISIBLE);
+        lvRemoteFoods.setVisibility(View.GONE);
         return new CursorLoader(getActivity(), FoodsAtLifesumContract.Foods.REMOTE_CONTENT_URI, null, null, null,
                 FoodsAtLifesumContract.Foods.DEFAULT_SORT);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-       System.out.println(data);
+        if (mAdapter == null) {
+            mAdapter = new RemoteFoodsAdapter(getActivity().getApplicationContext(), data, 0);
+            lvRemoteFoods.setAdapter(mAdapter);
+        } else {
+            mAdapter.changeCursor(data);
+        }
+        
+        pgLoadingFoods.setVisibility(View.GONE);
+        lvRemoteFoods.setVisibility(View.VISIBLE);
     }
 
     @Override
