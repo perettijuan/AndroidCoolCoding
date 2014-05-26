@@ -69,6 +69,9 @@ public final class FoodsAtLifesumContract {
         String SUGAR = "sugar";
         String CHOLESTEROL = "cholesterol";
         String POTASSIUM = "potassium";
+        String FIBER = "fiber";
+        String FAT = "fat";
+        String PROTEIN = "protein";
     }
 
     /**
@@ -86,7 +89,7 @@ public final class FoodsAtLifesumContract {
 
         public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.lifesumfoods.foods";
         public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.lifesumfoods.foods";
-        
+
         public static final String QUERY_SEARCH = "query";
 
         /** Default "ORDER BY" clause. */

@@ -143,8 +143,7 @@ public class FoodsAtLifesumProvider extends ContentProvider {
         FoodsCursor cursor = new FoodsCursor();
         List<Food> foods = foodResponse.getResponseAsList();
         for (Food current : foods) {
-            cursor.newRow(current.getTitle(), current.getServerId(), current.getCategory(), current.getCategoryId(), current.getCarbohydrates(),
-                    current.getCalories(), current.getCholesterol(), current.getPotasium(), current.getSodium(), current.getSugar());
+            cursor.newRow(current);
         }
         return cursor;
     }

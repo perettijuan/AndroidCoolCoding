@@ -1,5 +1,7 @@
 package com.jpp.foods.provider;
 
+import com.jpp.foods.model.Food;
+
 import android.database.MatrixCursor;
 
 /**
@@ -14,7 +16,8 @@ class FoodsCursor extends MatrixCursor {
     private static final String[] COLUMNS = { FoodsAtLifesumContract.Foods.TITLE, FoodsAtLifesumContract.Foods.SERVER_ID,
             FoodsAtLifesumContract.Foods.CATEGORY, FoodsAtLifesumContract.Foods.CATEGORY_ID, FoodsAtLifesumContract.Foods.CARBOHYDRATES,
             FoodsAtLifesumContract.Foods.CALORIES, FoodsAtLifesumContract.Foods.CHOLESTEROL, FoodsAtLifesumContract.Foods.POTASSIUM,
-            FoodsAtLifesumContract.Foods.SODIUM, FoodsAtLifesumContract.Foods.SUGAR, FoodsAtLifesumContract.Foods._ID };
+            FoodsAtLifesumContract.Foods.SODIUM, FoodsAtLifesumContract.Foods.SUGAR, FoodsAtLifesumContract.Foods.FIBER,
+            FoodsAtLifesumContract.Foods.FAT, FoodsAtLifesumContract.Foods.PROTEIN, FoodsAtLifesumContract.Foods._ID };
 
     private int mId;
 
@@ -23,10 +26,11 @@ class FoodsCursor extends MatrixCursor {
         mId = 0;
     }
 
-    public void newRow(String title, double serverId, String category, int categoryId, float carbohydrates, float calories, float cholesterol,
-            float potassium, float sodium, float sugar) {
+    public void newRow(Food food) {
         mId++;
-        addRow(new Object[] { title, serverId, category, categoryId, carbohydrates, calories, cholesterol, potassium, sodium, sugar, mId });
+        addRow(new Object[] { food.getTitle(), food.getServerId(), food.getCategory(), food.getCategoryId(), food.getCarbohydrates(),
+                food.getCalories(), food.getCholesterol(), food.getPotasium(), food.getSodium(), food.getSugar(), food.getFiber(), food.getFat(),
+                food.getProtein(), mId });
     }
 
 }

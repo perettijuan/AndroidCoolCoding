@@ -41,6 +41,39 @@ public class Food {
     @SerializedName("potassium")
     private float mPotasium;
 
+    @SerializedName("fiber")
+    private long mFiber;
+
+    @SerializedName("fat")
+    private long mFat;
+
+    @SerializedName("protein")
+    private float mProtein;
+
+    public long getFat() {
+        return mFat;
+    }
+
+    public void setFat(long mFat) {
+        this.mFat = mFat;
+    }
+
+    public float getProtein() {
+        return mProtein;
+    }
+
+    public void setProtein(float mProtein) {
+        this.mProtein = mProtein;
+    }
+
+    public long getFiber() {
+        return mFiber;
+    }
+
+    public void setFiber(long mFiber) {
+        this.mFiber = mFiber;
+    }
+
     public int getCategoryId() {
         return mCategoryId;
     }
