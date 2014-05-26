@@ -1,12 +1,13 @@
 package com.jpp.foods.provider;
 
 import java.util.List;
-import android.annotation.SuppressLint;
+
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
+
 import com.jpp.foods.Constants;
 import com.jpp.foods.Logger;
 import com.jpp.foods.model.Food;
@@ -22,7 +23,6 @@ import com.jpp.foods.services.response.FoodsResponse;
  * @author Juan P. Peretti (peretti.juan@gmail.com)
  * 
  */
-@SuppressLint("DefaultLocale")
 public class FoodsAtLifesumProvider extends ContentProvider {
 
 
@@ -48,8 +48,6 @@ public class FoodsAtLifesumProvider extends ContentProvider {
 
     // a builder to build the HttpManager instances.
     private HttpManager.Builder mHttpManagerBuilder;
-
-    private FoodsResponse mFoodResponse;
 
     /**
      * Builds the {@link UriMatcher} matching the tables defined in the contract
@@ -109,6 +107,9 @@ public class FoodsAtLifesumProvider extends ContentProvider {
             }
             break;
         }
+
+        // Used to notify if any changes occurs in relation to this URI.
+        cursor.setNotificationUri(getContext().getContentResolver(), uri);
         return cursor;
     }
 
@@ -135,26 +136,38 @@ public class FoodsAtLifesumProvider extends ContentProvider {
      * @throws ServiceException
      *             - if something goes wrong when accessing the server
      */
-    @SuppressLint("DefaultLocale")
     private Cursor retrieveFoodsFromSeverApi(String query) throws ServiceException {
-        HttpManager manager = mHttpManagerBuilder.build(RequestTypes.GET, Constants.API_URL, Constants.ACCESS_TOKEN);
-        if (mFoodResponse == null) {
-            mFoodResponse = manager.execute(FoodsResponse.class);
-        }
+        String url = buildApiUrl(query);
+        HttpManager manager = mHttpManagerBuilder.build(RequestTypes.GET, url, Constants.ACCESS_TOKEN);
+        FoodsResponse foodResponse = manager.execute(FoodsResponse.class);
         FoodsCursor cursor = new FoodsCursor();
-        List<Food> foods = mFoodResponse.getResponseAsList();
+        List<Food> foods = foodResponse.getResponseAsList();
         for (Food current : foods) {
-            boolean add = false;
-            if (query != null) {
-                add = current.getTitle().toLowerCase().contains(query.toLowerCase());
-            }
-
-            if (add) {
-                cursor.newRow(current.getTitle(), current.getServerId(), current.getCategory(), current.getCategoryId(), current.getCarbohydrates(),
-                        current.getCalories(), current.getCholesterol(), current.getPotasium(), current.getSodium(), current.getSugar());
-            }
+            cursor.newRow(current.getTitle(), current.getServerId(), current.getCategory(), current.getCategoryId(), current.getCarbohydrates(),
+                    current.getCalories(), current.getCholesterol(), current.getPotasium(), current.getSodium(), current.getSugar());
         }
         return cursor;
+    }
+
+    /**
+     * Creates the API URL for the given query
+     * 
+     * @param query
+     *            - the query string to append in the request (the food name to
+     *            search for)
+     * @return - the URL (As a String) with the query search parameter appended.
+     */
+    private static String buildApiUrl(String query) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(Constants.API_URL);
+        sb.append(Constants.QUERY_TYPE);
+        sb.append(Constants.EQUALS);
+        sb.append(Constants.FOOD_TYPE);
+        sb.append(Constants.AMPERSAND);
+        sb.append(Constants.QUERY_SEARCH);
+        sb.append(Constants.EQUALS);
+        sb.append(query);
+        return sb.toString();
     }
 
 }

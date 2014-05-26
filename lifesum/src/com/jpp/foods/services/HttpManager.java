@@ -22,8 +22,6 @@ import com.jpp.foods.Logger;
 public class HttpManager {
 
 
-    private String JSON = "{\"meta\": {\"code\": 200},\"response\": {\"list\": [{\"categoryid\": 40,\"fiber\": 0,\"headimage\": \"\",\"pcsingram\": 0,\"brand\": \"\",\"unsaturatedfat\": 0,\"fat\": 0,\"servingcategory\": 0,\"typeofmeasurement\": 0,\"protein\": 0,\"defaultserving\": 0,\"mlingram\": 0,\"id\": 12283049,\"saturatedfat\": 0,\"category\": \"Carbonated\",\"verified\": false,\"title\": \"Cola\",\"pcstext\": \"\",\"sodium\": 5,\"carbohydrates\": 10.9,\"showonlysametype\": 0,\"calories\": 41,\"serving_version\": 1,\"sugar\": 4,\"measurementid\": 1,\"cholesterol\": 0,\"gramsperserving\": 0,\"showmeasurement\": 0,\"potassium\": 1},{\"categoryid\": 40,\"fiber\": 0,\"headimage\": \"\",\"pcsingram\": 0,\"brand\": \"Coca Cola Co\",\"unsaturatedfat\": 0,\"fat\": 0,\"servingcategory\": 0,\"typeofmeasurement\": 1,\"protein\": 0,\"defaultserving\": 0,\"mlingram\": 1,\"id\": 7497239,\"saturatedfat\": 0,\"category\": \"Carbonated\",\"verified\": false,\"title\": \"Coca Cola\",\"pcstext\": \"\",\"sodium\": 0,\"carbohydrates\": 11,\"showonlysametype\": 0,\"calories\": 44,\"serving_version\": 1,\"sugar\": 11,\"measurementid\": 3,\"cholesterol\": 0,\"gramsperserving\": 0,\"showmeasurement\": 1,\"potassium\": 0}]}}";
-
     /**
      * Builder class for this {@link HttpManager}
      * 
@@ -185,123 +183,122 @@ public class HttpManager {
      */
     public <T> T execute(Class<T> clazz) throws ServiceException {
 
-//        InputStream input = null;
-//        T returnValue = null;
-//
-//        int response = ApiMessageEnum.ERROR_GENERAL_CODE;
-//
-//        try {
-//            mUrlValue = new URL(mUrl);
-//
-//            if (Constants.FOR_TESTING) {
-//                String value = mUrlValue.toString();
-//                Logger.debug("Hitting url --> " + value, this);
-//            }
-//
-//            if (mConnection == null) {
-//                mConnection = (HttpsURLConnection) mUrlValue.openConnection();
-//            }
-//
-//            // TODO review this values
-//            mConnection.setReadTimeout(CONNECTION_READ_TIMOUT);
-//            mConnection.setConnectTimeout(CONNECTION_TIMEOUT);
-//
-//            mConnection.setRequestProperty(AUTHORIZATION_TAG, mAccessToken);
-//
-//            // set the request type (POST, GET, etc.)
-//            mConnection.setRequestMethod(mRequestType.getType());
-//
-//            switch (mRequestType) {
-//            case GET:
-//                // set the connection to input
-//                mConnection.setRequestProperty(CONTENT_ACCEPT_TAG,
-//                        CONTENT_TYPE_JSON);
-//                break;
-//            case POST:
-//                // set the connection to output
-//                mConnection.setDoOutput(true);
-//                if (mBody != null) {
-//                    mConnection.setRequestProperty(CONTENT_TYPE_TAG,
-//                            CONTENT_TYPE_JSON);
-//                } else {
-//                    mConnection.setRequestProperty(CONTENT_LENGTH,
-//                            CONTENT_LENGTH_ZERO);
-//                }
-//                break;
-//            case PUT:
-//                // set the connection to output
-//                mConnection.setDoOutput(true);
-//                mConnection.setRequestProperty(CONTENT_TYPE_TAG,
-//                        CONTENT_TYPE_JSON);
-//                break;
-//
-//            default:
-//                throw new ServiceException(ApiMessageEnum.UNSUPORTED_OPERATION);
-//            }
-//
-//            // connect to the end-point
-//            mConnection.connect();
-//
-//            // execute the post if needed
-//            if (mBody != null) {
-//                OutputStream output = mConnection.getOutputStream();
-//                String postBody = JsonParser.INSTANCE.format(mBody);
-//
-//                Logger.error("Printing JSON --> " + postBody);
-//
-//                output.write(postBody.getBytes());
-//                output.close();
-//            }
-//
-//            response = mConnection.getResponseCode();
-//
-//            // String responseMessage = mConnection.getResponseMessage();
-//            boolean successfull = ApiMessageEnum.isSuccessResponse(response);
-//
-//            if (!successfull) {
-//                throw new ServiceException(ApiMessageEnum.ERROR_GENERAL);
-//            }
-//
-//            Logger.debug("Response after connection ===> " + response, this);
-//
-//            input = mConnection.getInputStream();
-//            String contentAsString = readContents(input);
-//
-//            if (contentAsString != null && clazz != null) {
-//
-//                Logger.debug("Result after connect ======> " + contentAsString,
-//                        this);
-//
-//                returnValue = mParser.parse(contentAsString, clazz);
-//            }
-//
-//        } catch (MalformedURLException e) {
-//            if (Constants.FOR_TESTING) {
-//                e.printStackTrace();
-//            }
-//            throw new ServiceException(ApiMessageEnum.ERROR_GENERAL);
-//        } catch (IOException e) {
-//            if (Constants.FOR_TESTING) {
-//                e.printStackTrace();
-//            }
-//            throw new ServiceException(ApiMessageEnum.ERROR_GENERAL);
-//        } catch (Exception e) {
-//            if (Constants.FOR_TESTING) {
-//                e.printStackTrace();
-//            }
-//            throw new ServiceException(ApiMessageEnum.ERROR_GENERAL);
-//        } finally {
-//            if (input != null) {
-//                try {
-//                    input.close();
-//                } catch (IOException e) {
-//                    throw new ServiceException(
-//                            ApiMessageEnum.ERROR_OPERATION_FAIL);
-//                }
-//            }
-//        }
-//        return returnValue;
-        return  mParser.parse(JSON, clazz);
+        InputStream input = null;
+        T returnValue = null;
+
+        int response = ApiMessageEnum.ERROR_GENERAL_CODE;
+
+        try {
+            mUrlValue = new URL(mUrl);
+
+            if (Constants.FOR_TESTING) {
+                String value = mUrlValue.toString();
+                Logger.debug("Hitting url --> " + value, this);
+            }
+
+            if (mConnection == null) {
+                mConnection = (HttpsURLConnection) mUrlValue.openConnection();
+            }
+
+            // TODO review this values
+            mConnection.setReadTimeout(CONNECTION_READ_TIMOUT);
+            mConnection.setConnectTimeout(CONNECTION_TIMEOUT);
+
+            mConnection.setRequestProperty(AUTHORIZATION_TAG, mAccessToken);
+
+            // set the request type (POST, GET, etc.)
+            mConnection.setRequestMethod(mRequestType.getType());
+
+            switch (mRequestType) {
+            case GET:
+                // set the connection to input
+                mConnection.setRequestProperty(CONTENT_ACCEPT_TAG,
+                        CONTENT_TYPE_JSON);
+                break;
+            case POST:
+                // set the connection to output
+                mConnection.setDoOutput(true);
+                if (mBody != null) {
+                    mConnection.setRequestProperty(CONTENT_TYPE_TAG,
+                            CONTENT_TYPE_JSON);
+                } else {
+                    mConnection.setRequestProperty(CONTENT_LENGTH,
+                            CONTENT_LENGTH_ZERO);
+                }
+                break;
+            case PUT:
+                // set the connection to output
+                mConnection.setDoOutput(true);
+                mConnection.setRequestProperty(CONTENT_TYPE_TAG,
+                        CONTENT_TYPE_JSON);
+                break;
+
+            default:
+                throw new ServiceException(ApiMessageEnum.UNSUPORTED_OPERATION);
+            }
+
+            // connect to the end-point
+            mConnection.connect();
+
+            // execute the post if needed
+            if (mBody != null) {
+                OutputStream output = mConnection.getOutputStream();
+                String postBody = JsonParser.INSTANCE.format(mBody);
+
+                Logger.error("Printing JSON --> " + postBody);
+
+                output.write(postBody.getBytes());
+                output.close();
+            }
+
+            response = mConnection.getResponseCode();
+
+            // String responseMessage = mConnection.getResponseMessage();
+            boolean successfull = ApiMessageEnum.isSuccessResponse(response);
+
+            if (!successfull) {
+                throw new ServiceException(ApiMessageEnum.ERROR_GENERAL);
+            }
+
+            Logger.debug("Response after connection ===> " + response, this);
+
+            input = mConnection.getInputStream();
+            String contentAsString = readContents(input);
+
+            if (contentAsString != null && clazz != null) {
+
+                Logger.debug("Result after connect ======> " + contentAsString,
+                        this);
+
+                returnValue = mParser.parse(contentAsString, clazz);
+            }
+
+        } catch (MalformedURLException e) {
+            if (Constants.FOR_TESTING) {
+                e.printStackTrace();
+            }
+            throw new ServiceException(ApiMessageEnum.ERROR_GENERAL);
+        } catch (IOException e) {
+            if (Constants.FOR_TESTING) {
+                e.printStackTrace();
+            }
+            throw new ServiceException(ApiMessageEnum.ERROR_GENERAL);
+        } catch (Exception e) {
+            if (Constants.FOR_TESTING) {
+                e.printStackTrace();
+            }
+            throw new ServiceException(ApiMessageEnum.ERROR_GENERAL);
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    throw new ServiceException(
+                            ApiMessageEnum.ERROR_OPERATION_FAIL);
+                }
+            }
+        }
+        return returnValue;
     }
 
     /**
