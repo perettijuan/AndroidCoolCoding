@@ -81,6 +81,7 @@ public class HomeScreen extends Activity implements SearchView.OnQueryTextListen
 
         searchItem.setOnActionExpandListener(this);
         mSearchView.setOnQueryTextListener(this);
+        mSearchView.setQueryHint(getString(R.string.search_hint));
     }
 
     @Override

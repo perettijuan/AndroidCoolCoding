@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 /**
  * Fragment used to present the Foods contained in the server to the user.
@@ -32,6 +33,7 @@ public class FoodsFragment extends Fragment implements LoaderCallbacks<Cursor> {
 
     private ProgressBar pgLoadingFoods;
     private ListView lvRemoteFoods;
+    private TextView txtNoMatch;
     private RemoteFoodsAdapter mAdapter;
 
     private String mQuery;
@@ -55,7 +57,7 @@ public class FoodsFragment extends Fragment implements LoaderCallbacks<Cursor> {
 
     public void setFoodToSearch(String foodTitle) {
         mQuery = foodTitle;
-        if(isVisible()) {
+        if (isVisible()) {
             getLoaderManager().restartLoader(LOAD_REMOTE_FOODS, null, this);
         }
     }
@@ -65,6 +67,7 @@ public class FoodsFragment extends Fragment implements LoaderCallbacks<Cursor> {
         View fView = inflater.inflate(R.layout.foods_fragment, container, false);
         pgLoadingFoods = (ProgressBar) fView.findViewById(R.id.pg_loading_foods);
         lvRemoteFoods = (ListView) fView.findViewById(R.id.lv_remote_foods);
+        txtNoMatch = (TextView) fView.findViewById(R.id.txt_no_match);
         return fView;
     }
 
@@ -78,6 +81,7 @@ public class FoodsFragment extends Fragment implements LoaderCallbacks<Cursor> {
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         pgLoadingFoods.setVisibility(View.VISIBLE);
         lvRemoteFoods.setVisibility(View.GONE);
+        txtNoMatch.setVisibility(View.GONE);
         return new CursorLoader(getActivity(), FoodsAtLifesumContract.Foods.REMOTE_CONTENT_URI, null, FoodsAtLifesumContract.Foods.QUERY_SEARCH,
                 new String[] { mQuery },
                 FoodsAtLifesumContract.Foods.DEFAULT_SORT);
@@ -91,9 +95,14 @@ public class FoodsFragment extends Fragment implements LoaderCallbacks<Cursor> {
         } else {
             mAdapter.changeCursor(data);
         }
-
         pgLoadingFoods.setVisibility(View.GONE);
-        lvRemoteFoods.setVisibility(View.VISIBLE);
+        if (mAdapter.getCount() > 0) {            
+            lvRemoteFoods.setVisibility(View.VISIBLE);
+            txtNoMatch.setVisibility(View.GONE);
+        } else {            
+            lvRemoteFoods.setVisibility(View.GONE);
+            txtNoMatch.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

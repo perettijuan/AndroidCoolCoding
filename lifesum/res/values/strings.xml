@@ -1,7 +1,6 @@
 <resources>
 
-    <string name="app_name">Foods At Lifesum</string>
-    <string name="home_screen_name">home</string>
+    <string name="app_name">Foods At Lifesum</string>    
     
     <!-- Exceptions -->
     <string name="error_general">General application failure</string>
@@ -10,5 +9,6 @@
     <!-- Search -->
     <string name="search_title">Type a food name</string>
     <string name="search_hint">Type a food name</string>
+    <string name="search_no_match">No food founded with the given title</string>
 
 </resources>

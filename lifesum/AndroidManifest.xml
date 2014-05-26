@@ -14,8 +14,7 @@
         android:icon="@drawable/ic_launcher"
         android:theme="@android:style/Theme.Holo.Light" >
         <activity
-            android:name=".ui.HomeScreen"
-            android:label="@string/home_screen_name" >
+            android:name=".ui.HomeScreen" >
 
             <!-- Intent filter for main Activity -->
             <intent-filter>
