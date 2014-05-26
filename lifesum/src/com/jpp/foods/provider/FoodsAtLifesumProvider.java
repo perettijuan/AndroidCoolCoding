@@ -138,7 +138,9 @@ public class FoodsAtLifesumProvider extends ContentProvider {
     @SuppressLint("DefaultLocale")
     private Cursor retrieveFoodsFromSeverApi(String query) throws ServiceException {
         HttpManager manager = mHttpManagerBuilder.build(RequestTypes.GET, Constants.API_URL, Constants.ACCESS_TOKEN);
-        mFoodResponse = manager.execute(FoodsResponse.class);
+        if (mFoodResponse == null) {
+            mFoodResponse = manager.execute(FoodsResponse.class);
+        }
         FoodsCursor cursor = new FoodsCursor();
         List<Food> foods = mFoodResponse.getResponseAsList();
         for (Food current : foods) {
