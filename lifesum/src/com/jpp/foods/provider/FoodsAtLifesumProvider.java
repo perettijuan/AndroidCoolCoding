@@ -1,13 +1,12 @@
 package com.jpp.foods.provider;
 
 import java.util.List;
-
+import android.annotation.SuppressLint;
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
-
 import com.jpp.foods.Constants;
 import com.jpp.foods.Logger;
 import com.jpp.foods.model.Food;
@@ -23,6 +22,7 @@ import com.jpp.foods.services.response.FoodsResponse;
  * @author Juan P. Peretti (peretti.juan@gmail.com)
  * 
  */
+@SuppressLint("DefaultLocale")
 public class FoodsAtLifesumProvider extends ContentProvider {
 
 
@@ -48,6 +48,8 @@ public class FoodsAtLifesumProvider extends ContentProvider {
 
     // a builder to build the HttpManager instances.
     private HttpManager.Builder mHttpManagerBuilder;
+
+    private FoodsResponse mFoodResponse;
 
     /**
      * Builds the {@link UriMatcher} matching the tables defined in the contract
@@ -101,7 +103,7 @@ public class FoodsAtLifesumProvider extends ContentProvider {
         switch (match) {
         case REMOTE_FOODS:
             try {
-                cursor = retrieveFoodsFromSeverApi();
+                cursor = retrieveFoodsFromSeverApi(selectionArgs[0]);
             } catch (ServiceException e) {
                 Logger.error(e.getMessage(), TAG);
             }
@@ -133,14 +135,22 @@ public class FoodsAtLifesumProvider extends ContentProvider {
      * @throws ServiceException
      *             - if something goes wrong when accessing the server
      */
-    private Cursor retrieveFoodsFromSeverApi() throws ServiceException {
+    @SuppressLint("DefaultLocale")
+    private Cursor retrieveFoodsFromSeverApi(String query) throws ServiceException {
         HttpManager manager = mHttpManagerBuilder.build(RequestTypes.GET, Constants.API_URL, Constants.ACCESS_TOKEN);
-        FoodsResponse response = manager.execute(FoodsResponse.class);
+        mFoodResponse = manager.execute(FoodsResponse.class);
         FoodsCursor cursor = new FoodsCursor();
-        List<Food> foods = response.getResponseAsList();
+        List<Food> foods = mFoodResponse.getResponseAsList();
         for (Food current : foods) {
-            cursor.newRow(current.getTitle(), current.getServerId(), current.getCategory(), current.getCategoryId(), current.getCarbohydrates(),
-                    current.getCalories(), current.getCholesterol(), current.getPotasium(), current.getSodium(), current.getSugar());
+            boolean add = false;
+            if (query != null) {
+                add = current.getTitle().toLowerCase().contains(query.toLowerCase());
+            }
+
+            if (add) {
+                cursor.newRow(current.getTitle(), current.getServerId(), current.getCategory(), current.getCategoryId(), current.getCarbohydrates(),
+                        current.getCalories(), current.getCholesterol(), current.getPotasium(), current.getSodium(), current.getSugar());
+            }
         }
         return cursor;
     }

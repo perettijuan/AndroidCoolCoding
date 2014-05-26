@@ -34,6 +34,8 @@ public class FoodsFragment extends Fragment implements LoaderCallbacks<Cursor> {
     private ListView lvRemoteFoods;
     private RemoteFoodsAdapter mAdapter;
 
+    private String mQuery;
+
     /**
      * Default class constructor
      */
@@ -49,6 +51,13 @@ public class FoodsFragment extends Fragment implements LoaderCallbacks<Cursor> {
     public static FoodsFragment newInstance() {
         FoodsFragment instance = new FoodsFragment();
         return instance;
+    }
+
+    public void setFoodToSearch(String foodTitle) {
+        mQuery = foodTitle;
+        if(isVisible()) {
+            getLoaderManager().restartLoader(LOAD_REMOTE_FOODS, null, this);
+        }
     }
 
     @Override
@@ -69,7 +78,8 @@ public class FoodsFragment extends Fragment implements LoaderCallbacks<Cursor> {
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         pgLoadingFoods.setVisibility(View.VISIBLE);
         lvRemoteFoods.setVisibility(View.GONE);
-        return new CursorLoader(getActivity(), FoodsAtLifesumContract.Foods.REMOTE_CONTENT_URI, null, null, null,
+        return new CursorLoader(getActivity(), FoodsAtLifesumContract.Foods.REMOTE_CONTENT_URI, null, FoodsAtLifesumContract.Foods.QUERY_SEARCH,
+                new String[] { mQuery },
                 FoodsAtLifesumContract.Foods.DEFAULT_SORT);
     }
 
@@ -81,7 +91,7 @@ public class FoodsFragment extends Fragment implements LoaderCallbacks<Cursor> {
         } else {
             mAdapter.changeCursor(data);
         }
-        
+
         pgLoadingFoods.setVisibility(View.GONE);
         lvRemoteFoods.setVisibility(View.VISIBLE);
     }

@@ -86,6 +86,8 @@ public final class FoodsAtLifesumContract {
 
         public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.lifesumfoods.foods";
         public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.lifesumfoods.foods";
+        
+        public static final String QUERY_SEARCH = "query";
 
         /** Default "ORDER BY" clause. */
         public static final String DEFAULT_SORT = BaseColumns._ID + " ASC";
