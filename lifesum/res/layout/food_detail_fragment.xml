@@ -58,10 +58,12 @@
     <TableLayout
         android:id="@+id/tbl_food_properties"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_food_category"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/txt_food_detail_category"
         android:padding="5dp"
-        android:visibility="gone" >
+        android:visibility="gone" 
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal">
     </TableLayout>
 
     <ProgressBar

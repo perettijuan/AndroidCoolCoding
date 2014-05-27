@@ -12,6 +12,7 @@ public class Constants {
     public static final boolean FOR_TESTING = true;
     public static final String APP_LOG_TAG = "FoodsAtLifesum";
     public static final String SLASH = "-";
+    public static final String EMPTY_STRING = "";
 
     public static final char AMPERSAND = '&';
     public static final char EQUALS = '=';

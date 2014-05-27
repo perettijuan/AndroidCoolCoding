@@ -28,7 +28,7 @@ public class FoodDetailsAdapter extends FragmentStatePagerAdapter {
          * since the cursor that contains the data is a FoodsCursor, the
          * position matches with the id used to identify a row.
          */
-        return FoodDetailsFragment.newInstance(position);
+        return FoodDetailsFragment.newInstance(position, mCount - 1);
     }
 
     @Override

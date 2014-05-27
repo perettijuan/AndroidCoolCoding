@@ -38,6 +38,7 @@ public class HomeScreen extends Activity implements SearchView.OnQueryTextListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen);
+        getActionBar().setTitle(R.string.app_name);
     }
 
     @Override
