@@ -49,6 +49,8 @@ public class FoodsAtLifesumProvider extends ContentProvider {
     // a builder to build the HttpManager instances.
     private HttpManager.Builder mHttpManagerBuilder;
 
+    private FoodsResponse mFoodResponse;
+
     /**
      * Builds the {@link UriMatcher} matching the tables defined in the contract
      * with an integer that helps to the identification of the proper tables.
@@ -106,10 +108,15 @@ public class FoodsAtLifesumProvider extends ContentProvider {
                 Logger.error(e.getMessage(), TAG);
             }
             break;
+        case REMOTE_FOODS_ID:
+            cursor = getSingleFoodFromCursor(FoodsAtLifesumContract.Foods.getFeedDetailId(uri));
+            break;
         }
 
         // Used to notify if any changes occurs in relation to this URI.
-        cursor.setNotificationUri(getContext().getContentResolver(), uri);
+        if (cursor != null) {
+            cursor.setNotificationUri(getContext().getContentResolver(), uri);
+        }
         return cursor;
     }
 
@@ -139,11 +146,35 @@ public class FoodsAtLifesumProvider extends ContentProvider {
     private Cursor retrieveFoodsFromSeverApi(String query) throws ServiceException {
         String url = buildApiUrl(query);
         HttpManager manager = mHttpManagerBuilder.build(RequestTypes.GET, url, Constants.ACCESS_TOKEN);
-        FoodsResponse foodResponse = manager.execute(FoodsResponse.class);
+        mFoodResponse = manager.execute(FoodsResponse.class);
         FoodsCursor cursor = new FoodsCursor();
-        List<Food> foods = foodResponse.getResponseAsList();
-        for (Food current : foods) {
-            cursor.newRow(current);
+        if (mFoodResponse != null) {
+            List<Food> foods = mFoodResponse.getResponseAsList();
+            for (Food current : foods) {
+                cursor.newRow(current);
+            }
+        }
+        return cursor;
+    }
+
+    /**
+     * Loads a single food object's values into a Cursor.
+     * 
+     * @param position
+     * @return
+     */
+    private Cursor getSingleFoodFromCursor(String position) {
+        int pos = -1;
+        try {
+            pos = Integer.parseInt(position);
+        } catch (NumberFormatException ex) {
+
+        }
+        List<Food> foods = mFoodResponse.getResponseAsList();
+        FoodsCursor cursor = new FoodsCursor();
+        if (pos != -1 && pos < foods.size()) {
+            Food food = foods.get(pos);
+            cursor.newRow(food);
         }
         return cursor;
     }

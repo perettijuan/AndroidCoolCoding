@@ -13,8 +13,9 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:theme="@android:style/Theme.Holo.Light" >
-        <activity
-            android:name=".ui.HomeScreen" >
+
+        <!-- Activity declaration -->
+        <activity android:name=".ui.HomeScreen" >
 
             <!-- Intent filter for main Activity -->
             <intent-filter>
@@ -23,11 +24,16 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".ui.FoodDetailsScreen" >
+        </activity>
+        <!-- End Activity declaration -->
+        
+        <!-- Provider declaration -->
         <provider
             android:name="com.jpp.foods.provider.FoodsAtLifesumProvider"
             android:authorities="com.jpp.foods.provider" >
         </provider>
+        <!-- End Provider declaration -->
     </application>
 
 </manifest>

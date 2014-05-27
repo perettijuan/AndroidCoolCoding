@@ -107,5 +107,9 @@ public final class FoodsAtLifesumContract {
         public static String getFeedDetailId(Uri uri) {
             return uri.getPathSegments().get(1);
         }
+
+        public static Uri buildRemoteFeedDetailsUri(String foodId) {
+            return REMOTE_CONTENT_URI.buildUpon().appendPath(foodId).build();
+        }
     }
 }

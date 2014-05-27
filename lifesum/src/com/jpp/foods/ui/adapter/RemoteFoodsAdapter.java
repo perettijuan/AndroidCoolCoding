@@ -37,7 +37,7 @@ public class RemoteFoodsAdapter extends CursorAdapter {
         TextView txtFoodTitle = (TextView) view.findViewById(R.id.txt_food_title);
         TextView txtFoodCategory = (TextView) view.findViewById(R.id.txt_food_category);
         String title = cursor.getString(cursor.getColumnIndex(FoodsAtLifesumContract.Foods.TITLE));
-        String category = cursor.getString(cursor.getColumnIndex(FoodsAtLifesumContract.Foods.CATEGORY));
+        String category = cursor.getString(cursor.getColumnIndex(FoodsAtLifesumContract.Foods.CATEGORY));        
         txtFoodTitle.setText(title);
         txtFoodCategory.setText(category);
     }

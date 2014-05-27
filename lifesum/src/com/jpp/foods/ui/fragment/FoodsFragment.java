@@ -2,17 +2,21 @@ package com.jpp.foods.ui.fragment;
 
 import com.jpp.foods.R;
 import com.jpp.foods.provider.FoodsAtLifesumContract;
+import com.jpp.foods.ui.FoodDetailsScreen;
 import com.jpp.foods.ui.adapter.RemoteFoodsAdapter;
 
 import android.app.Fragment;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -23,7 +27,7 @@ import android.widget.TextView;
  * @author Juan P. Peretti (peretti.juan@gmail.com)
  * 
  */
-public class FoodsFragment extends Fragment implements LoaderCallbacks<Cursor> {
+public class FoodsFragment extends Fragment implements LoaderCallbacks<Cursor>, OnItemClickListener {
 
 
     // tag used to identify the fragment
@@ -68,6 +72,7 @@ public class FoodsFragment extends Fragment implements LoaderCallbacks<Cursor> {
         pgLoadingFoods = (ProgressBar) fView.findViewById(R.id.pg_loading_foods);
         lvRemoteFoods = (ListView) fView.findViewById(R.id.lv_remote_foods);
         txtNoMatch = (TextView) fView.findViewById(R.id.txt_no_match);
+        lvRemoteFoods.setOnItemClickListener(this);
         return fView;
     }
 
@@ -96,10 +101,10 @@ public class FoodsFragment extends Fragment implements LoaderCallbacks<Cursor> {
             mAdapter.changeCursor(data);
         }
         pgLoadingFoods.setVisibility(View.GONE);
-        if (mAdapter.getCount() > 0) {            
+        if (mAdapter.getCount() > 0) {
             lvRemoteFoods.setVisibility(View.VISIBLE);
             txtNoMatch.setVisibility(View.GONE);
-        } else {            
+        } else {
             lvRemoteFoods.setVisibility(View.GONE);
             txtNoMatch.setVisibility(View.VISIBLE);
         }
@@ -109,6 +114,15 @@ public class FoodsFragment extends Fragment implements LoaderCallbacks<Cursor> {
     public void onLoaderReset(Loader<Cursor> loader) {
         // TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        int count = mAdapter.getCount();
+        Intent intent = new Intent(getActivity(), FoodDetailsScreen.class);
+        intent.putExtra(FoodDetailsScreen.ITEMS_COUNT_PARAM, count);
+        intent.putExtra(FoodDetailsScreen.ITEM_POSITION_PARAM, position);
+        startActivity(intent);
     }
 
 }

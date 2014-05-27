@@ -12,7 +12,7 @@ public class Food {
 
 
     @SerializedName("categoryid")
-    private int mCategoryId;
+    private double mCategoryId;
 
     @SerializedName("id")
     private double mServerId;
@@ -24,49 +24,50 @@ public class Food {
     private String mTitle;
 
     @SerializedName("sodium")
-    private float mSodium;
+    private double mSodium;
 
     @SerializedName("carbohydrates")
-    private float mCarbohydrates;
+    private double mCarbohydrates;
 
     @SerializedName("calories")
-    private float mCalories;
+    private double mCalories;
 
     @SerializedName("sugar")
-    private float mSugar;
+    private double mSugar;
 
     @SerializedName("cholesterol")
-    private float mCholesterol;
+    private double mCholesterol;
 
     @SerializedName("potassium")
-    private float mPotasium;
+    private double mPotasium;
 
     @SerializedName("fiber")
-    private long mFiber;
+    private double mFiber;
 
     @SerializedName("fat")
-    private long mFat;
+    private double mFat;
 
     @SerializedName("protein")
-    private float mProtein;
-
-    public long getFat() {
+    private double mProtein;
+    
+    
+    public double getFat() {
         return mFat;
     }
 
-    public void setFat(long mFat) {
+    public void setFat(double mFat) {
         this.mFat = mFat;
     }
 
-    public float getProtein() {
+    public double getProtein() {
         return mProtein;
     }
 
-    public void setProtein(float mProtein) {
+    public void setProtein(double mProtein) {
         this.mProtein = mProtein;
     }
 
-    public long getFiber() {
+    public double getFiber() {
         return mFiber;
     }
 
@@ -74,7 +75,7 @@ public class Food {
         this.mFiber = mFiber;
     }
 
-    public int getCategoryId() {
+    public double getCategoryId() {
         return mCategoryId;
     }
 
@@ -106,51 +107,51 @@ public class Food {
         this.mTitle = mTitle;
     }
 
-    public float getSodium() {
+    public double getSodium() {
         return mSodium;
     }
 
-    public void setSodium(float mSodium) {
+    public void setSodium(double mSodium) {
         this.mSodium = mSodium;
     }
 
-    public float getCarbohydrates() {
+    public double getCarbohydrates() {
         return mCarbohydrates;
     }
 
-    public void setCarbohydrates(float mCarbohydrates) {
+    public void setCarbohydrates(double mCarbohydrates) {
         this.mCarbohydrates = mCarbohydrates;
     }
 
-    public float getCalories() {
+    public double getCalories() {
         return mCalories;
     }
 
-    public void setCalories(float mCalories) {
+    public void setCalories(double mCalories) {
         this.mCalories = mCalories;
     }
 
-    public float getSugar() {
+    public double getSugar() {
         return mSugar;
     }
 
-    public void setSugar(float mSugar) {
+    public void setSugar(double mSugar) {
         this.mSugar = mSugar;
     }
 
-    public float getCholesterol() {
+    public double getCholesterol() {
         return mCholesterol;
     }
 
-    public void setCholesterol(float mCholesterol) {
+    public void setCholesterol(double mCholesterol) {
         this.mCholesterol = mCholesterol;
     }
 
-    public float getPotasium() {
+    public double getPotasium() {
         return mPotasium;
     }
 
-    public void setPotasium(float mPotasium) {
+    public void setPotasium(double mPotasium) {
         this.mPotasium = mPotasium;
     }
 
