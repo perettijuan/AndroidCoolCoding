@@ -6,11 +6,14 @@ import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
 import com.jpp.foods.Constants;
 import com.jpp.foods.Logger;
 import com.jpp.foods.model.Food;
+import com.jpp.foods.provider.FoodsAtLifesumContract.Foods;
+import com.jpp.foods.provider.FoodsAtLifesumContract.Tables;
 import com.jpp.foods.services.HttpManager;
 import com.jpp.foods.services.HttpManager.RequestTypes;
 import com.jpp.foods.services.ServiceException;
@@ -49,6 +52,8 @@ public class FoodsAtLifesumProvider extends ContentProvider {
     // a builder to build the HttpManager instances.
     private HttpManager.Builder mHttpManagerBuilder;
 
+    private FoodsAtLifesumDatabaseHelper mDatabaseHelper;
+
     private FoodsResponse mFoodResponse;
 
     /**
@@ -76,7 +81,10 @@ public class FoodsAtLifesumProvider extends ContentProvider {
         if (mHttpManagerBuilder == null) {
             mHttpManagerBuilder = new HttpManager.Builder();
         }
-        return ((mHttpManagerBuilder == null) ? false : true);
+        if (mDatabaseHelper == null) {
+            mDatabaseHelper = new FoodsAtLifesumDatabaseHelper(getContext());
+        }
+        return ((mDatabaseHelper == null) ? false : true);
     }
 
     /** {@inheritDoc} */
@@ -122,7 +130,17 @@ public class FoodsAtLifesumProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        throw new UnsupportedOperationException("Unknown uri: " + uri);
+        final SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
+        final int match = mUriMatcher.match(uri);
+        switch (match) {
+        case FOODS:
+            db.insertOrThrow(Tables.FOODS, null, values);
+            getContext().getContentResolver().notifyChange(uri, null);
+            return Foods.buildFeedDetailsUri(values.getAsString(Foods._ID));
+
+        default:
+            throw new UnsupportedOperationException("Unknown uri: " + uri);
+        }
     }
 
     @Override
