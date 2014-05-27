@@ -145,12 +145,12 @@ public class FoodsAtLifesumProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        throw new UnsupportedOperationException("Unknown uri: " + uri);
+        throw new UnsupportedOperationException("Uri: " + uri);
     }
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        throw new UnsupportedOperationException("Unknown uri: " + uri);
+        throw new UnsupportedOperationException("Uri: " + uri);
     }
 
     /**

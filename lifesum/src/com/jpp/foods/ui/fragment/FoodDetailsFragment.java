@@ -97,7 +97,7 @@ public class FoodDetailsFragment extends Fragment implements LoaderCallbacks<Cur
             txtFoodCategory.setText(category);
             double carbohydrates = data.getDouble(data.getColumnIndex(FoodsAtLifesumContract.Foods.CARBOHYDRATES));
             populatePropertiesTable(R.string.carbohydrates, carbohydrates);
-            double calories = data.getDouble(data.getColumnIndex(FoodsAtLifesumContract.Foods.CALORIES));           
+            double calories = data.getDouble(data.getColumnIndex(FoodsAtLifesumContract.Foods.CALORIES));
             populatePropertiesTable(R.string.calories, calories);
             double cholesterol = data.getDouble(data.getColumnIndex(FoodsAtLifesumContract.Foods.CHOLESTEROL));
             populatePropertiesTable(R.string.cholesterol, cholesterol);
@@ -139,8 +139,7 @@ public class FoodDetailsFragment extends Fragment implements LoaderCallbacks<Cur
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        // TODO Auto-generated method stub
-
+        // Do nothing in purpose.
     }
 
     private void hideViews(View... v) {

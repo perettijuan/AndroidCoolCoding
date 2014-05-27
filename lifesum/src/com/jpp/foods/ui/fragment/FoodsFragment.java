@@ -112,8 +112,9 @@ public class FoodsFragment extends Fragment implements LoaderCallbacks<Cursor>, 
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        // TODO Auto-generated method stub
-
+        if (mAdapter != null) {
+            mAdapter.changeCursor(null);
+        }
     }
 
     @Override

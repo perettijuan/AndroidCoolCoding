@@ -46,7 +46,7 @@ public class FoodsAtLifesumDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        // In blank on purpose
     }
 
 }
