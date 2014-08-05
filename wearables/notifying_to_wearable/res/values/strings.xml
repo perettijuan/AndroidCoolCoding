@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="app_name">Wearable Application</string>
+    <string name="launch_simple_notification">Launch Notification</string>
+    <string name="launch_notification_with_action_buttons">Launch notification with action button</string>
+    <string name="launch_notification_only_wearable_action">Launch notification with only wearable action</string>
+    <string name="launch_notification_with_big_view">Launch notification with Big view</string>
+    <string name="launch_notificationwith_hint_hide">Launch notification with Hint hide</string>
+
+</resources>
