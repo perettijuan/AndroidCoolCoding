@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="app_name">AndroidSyncServiceLibrary</string>
+    <string name="error_general">General application failure</string>
+    
+    <!-- Errors -->
+    <string name="bad_parameters">Bad parameters</string>
+
+</resources>
