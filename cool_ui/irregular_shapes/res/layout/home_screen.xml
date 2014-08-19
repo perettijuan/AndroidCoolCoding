@@ -5,9 +5,33 @@
     android:orientation="vertical" >
 
     <Button
-        android:id="@+id/btn_bitmap_shader"
+        android:id="@+id/btn_rounded_corners"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Using Bitmap Shader" />
+        android:text="Corner image" />
+
+    <Button
+        android:id="@+id/btn_chat_bubble"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chat Bubble" />
+    
+    <Button
+        android:id="@+id/btn_draw_oval"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Draw Oval" />
+    
+    <Button
+        android:id="@+id/btn_draw_oval_rotated"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Draw Oval Rotated" />
+    
+     <Button
+        android:id="@+id/btn_draw_heart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Heart" />
 
 </LinearLayout>
