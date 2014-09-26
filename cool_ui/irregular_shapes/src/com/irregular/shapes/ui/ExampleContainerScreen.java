@@ -34,7 +34,7 @@ public class ExampleContainerScreen extends Activity {
     }
 
     private void processImageUsingTechnique(Shape technique) {
-        Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.betty);
+        Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.boy);
         Bitmap processed = null;
         switch (technique) {
         case ROUNDED_CORNERS:
