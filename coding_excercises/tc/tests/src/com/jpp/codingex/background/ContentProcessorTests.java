@@ -131,4 +131,28 @@ public class ContentProcessorTests {
             assertTrue(e instanceof IllegalArgumentException);
         }
     }
+
+    @Test
+    public void countWordMobile() {
+        String content = "<p> A mobile application is an application that can be installed in a mobile cell phone</p>";
+        int wordCount = ContentProcessor.findWordRepetition(content, " ", "mobile");
+        assertEquals(2, wordCount);
+    }
+
+    @Test
+    public void countWordMobileNotExisting() {
+        String content = "<p> Hello world from the moon </p>";
+        int wordCount = ContentProcessor.findWordRepetition(content, " ", "mobile");
+        assertEquals(0, wordCount);
+    }
+
+    @Test
+    public void countWordWithNullContent() {
+        try {
+            String content = null;
+            ContentProcessor.findWordRepetition(content, " ", "mobile");
+        } catch (Exception e) {
+            assertTrue(e instanceof IllegalArgumentException);
+        }
+    }
 }
