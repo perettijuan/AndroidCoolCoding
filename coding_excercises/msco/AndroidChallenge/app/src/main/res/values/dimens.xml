@@ -11,5 +11,6 @@
 
     <dimen name="card_view_min_height">90dp</dimen>
     <dimen name="card_view_corner_radius">4dp</dimen>
-    <dimen name="card_view_corner_margin">6dp</dimen>
+    <dimen name="card_view_corner_margin">4dp</dimen>
+    <dimen name="card_view_padding">6dp</dimen>
 </resources>

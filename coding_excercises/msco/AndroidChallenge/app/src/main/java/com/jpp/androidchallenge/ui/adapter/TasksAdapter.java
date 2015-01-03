@@ -35,8 +35,10 @@ public class TasksAdapter extends CursorRecyclerViewAdapter<TasksAdapter.TasksVi
     public void onBindViewHolder(TasksViewHolder viewHolder, Cursor cursor) {
         Task itemTask = Task.fromCursor(cursor);
         TaskColor color = itemTask.getTaskColor();
-        viewHolder.cardView.setCardBackgroundColor(mContext.getResources().getColor(color.getBackgroundColor()));
-        viewHolder.txtTask.setTextColor(mContext.getResources().getColor(color.getTextColor()));
+        if(color != TaskColor.NONE) {
+            viewHolder.cardView.setCardBackgroundColor(mContext.getResources().getColor(color.getBackgroundColor()));
+            viewHolder.txtTask.setTextColor(mContext.getResources().getColor(color.getTextColor()));
+        }
         viewHolder.txtTask.setText(itemTask.getTask());
     }
 

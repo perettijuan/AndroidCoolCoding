@@ -101,7 +101,8 @@ public class AddTaskDialogFragment extends DialogFragment implements View.OnClic
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (count > 0) {
+                int countChar = etNewTask.getText().length();
+                if (countChar > 0) {
                     txtSubmitnewTask.setEnabled(true);
                 } else {
                     txtSubmitnewTask.setEnabled(false);

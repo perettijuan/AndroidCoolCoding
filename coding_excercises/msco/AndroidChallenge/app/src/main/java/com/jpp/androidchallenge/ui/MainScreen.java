@@ -60,8 +60,9 @@ public class MainScreen extends ActionBarActivity {
         if (fr == null) {
             fr = TasksFragment.newInstance();
         }
+
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.main_fragment_container, fr, TasksFragment.TAG);
+        transaction.replace(R.id.main_fragment_container, fr, TasksFragment.TAG);
         transaction.commit();
     }
 

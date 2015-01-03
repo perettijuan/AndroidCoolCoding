@@ -49,13 +49,6 @@ public class TasksFragment extends Fragment implements LoaderManager.LoaderCallb
 
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setRetainInstance(true);
-    }
-
-
-    @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View fView = inflater.inflate(R.layout.tasks_fragment, container, false);
         rvTasks = (RecyclerView) fView.findViewById(R.id.rv_tasks);

@@ -9,17 +9,17 @@
     <color name="app_primary_dark">#B2DFDB</color>
 
     <color name="red_background">#F44336</color>
-    <color name="red_text">#FFEBEE</color>
+    <color name="red_text">#B71C1C</color>
 
     <color name="orange_background">#FF9800</color>
-    <color name="orange_text">#FFF3E0</color>
+    <color name="orange_text">#E65100</color>
 
     <color name="green_background">#4CAF50</color>
-    <color name="green_text">#E8F5E9</color>
+    <color name="green_text">#1B5E20</color>
 
     <color name="blue_background">#2196F3</color>
-    <color name="blue_text">#E3F2FD</color>
+    <color name="blue_text">#0D47A1</color>
 
     <color name="purple_background">#9C27B0</color>
-    <color name="purple_text">#F3E5F5</color>
+    <color name="purple_text">#4A148C</color>
 </resources>
