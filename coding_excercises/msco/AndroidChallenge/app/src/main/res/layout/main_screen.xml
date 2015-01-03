@@ -4,6 +4,8 @@
     android:background="@color/app_secondary">
 
 
+    <!-- Toolbar used to show text with background color instead of normal ActionBar.
+         This follows the new design guidelines from Material Design.-->
     <include
         layout="@layout/toolbar"
         android:id="@+id/main_toolbar" />

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle"
+    android:padding="@dimen/add_task_corner">
+
+    <solid android:color="@android:color/white" />
+    <corners
+        android:bottomRightRadius="@dimen/add_task_corner"
+        android:bottomLeftRadius="@dimen/add_task_corner"
+        android:topLeftRadius="@dimen/add_task_corner"
+        android:topRightRadius="@dimen/add_task_corner" />
+</shape>
