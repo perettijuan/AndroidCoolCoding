@@ -1,6 +1,8 @@
 package com.jpp.androidchallenge.ui;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -9,6 +11,7 @@ import android.view.View;
 import com.jpp.androidchallenge.R;
 import com.jpp.androidchallenge.ui.extention.FloatingActionButton;
 import com.jpp.androidchallenge.ui.fragment.AddTaskDialogFragment;
+import com.jpp.androidchallenge.ui.fragment.TasksFragment;
 
 
 /**
@@ -28,7 +31,7 @@ public class MainScreen extends ActionBarActivity {
 
         addBtnAddTask();
 
-
+        addTasksFragment();
     }
 
 
@@ -50,6 +53,16 @@ public class MainScreen extends ActionBarActivity {
                 dialog.show(getSupportFragmentManager(), AddTaskDialogFragment.TAG);
             }
         });
+    }
+
+    private void addTasksFragment() {
+        Fragment fr = getSupportFragmentManager().findFragmentByTag(TasksFragment.TAG);
+        if (fr == null) {
+            fr = TasksFragment.newInstance();
+        }
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.main_fragment_container, fr, TasksFragment.TAG);
+        transaction.commit();
     }
 
 

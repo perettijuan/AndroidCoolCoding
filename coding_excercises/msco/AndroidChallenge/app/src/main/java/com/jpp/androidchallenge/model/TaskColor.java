@@ -54,4 +54,36 @@ public enum TaskColor {
     public int getIdentifier() {
         return mIdentifier;
     }
+
+
+    /**
+     * Retrieves a TaskColor from the given identifier.
+     *
+     * @param identifier
+     * @return
+     */
+    public static TaskColor getFromIdentifier(int identifier) {
+        TaskColor color = null;
+        switch (identifier) {
+            case 1:
+                color = RED;
+                break;
+            case 2:
+                color = ORANGE;
+                break;
+            case 3:
+                color = GREEN;
+                break;
+            case 4:
+                color = BLUE;
+                break;
+            case 5:
+                color = PURPLE;
+                break;
+            default:
+                color = NONE;
+                break;
+        }
+        return color;
+    }
 }

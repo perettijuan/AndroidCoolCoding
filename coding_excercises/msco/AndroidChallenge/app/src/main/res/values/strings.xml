@@ -16,4 +16,6 @@
     <string name="new_task_hint">Task:</string>
 
 
+    <string name="empty_tasks">You don\'t have any tasks saved. Start adding&#8230;</string>
+
 </resources>

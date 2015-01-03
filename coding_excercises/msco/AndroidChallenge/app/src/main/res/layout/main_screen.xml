@@ -1,8 +1,10 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_parent_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_secondary">
-
+    android:orientation="vertical"
+    android:background="@color/app_secondary"
+    android:fitsSystemWindows="true">
 
     <!-- Toolbar used to show text with background color instead of normal ActionBar.
          This follows the new design guidelines from Material Design.-->
@@ -10,4 +12,10 @@
         layout="@layout/toolbar"
         android:id="@+id/main_toolbar" />
 
-</RelativeLayout>
+
+    <!-- Main layout -->
+    <FrameLayout
+        android:id="@+id/main_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

@@ -148,7 +148,6 @@ public class AddTaskDialogFragment extends DialogFragment implements View.OnClic
                     values.put(AndroidChallengeContract.Tasks.TASK_COLOR_IDENTIFIER, client.mTaskColorIdentifier);
                     values.put(AndroidChallengeContract.Tasks.TASK_DEFINITION, client.mTaskText);
                     resolver.insert(AndroidChallengeContract.Tasks.CONTENT_URI, values);
-                    resolver.notifyChange(AndroidChallengeContract.Tasks.CONTENT_URI, null);
                 }
             }
             return client;

@@ -41,6 +41,8 @@ public class AndroidChallengeContract {
 
         public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.androidchallenge.tasks";
 
+        public static final String DEFAULT_SORT = _ID;
+
         public static String getTaskId(Uri uri) {
             return uri.getPathSegments().get(1);
         }
