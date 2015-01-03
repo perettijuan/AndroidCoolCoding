@@ -171,13 +171,14 @@ public abstract class SyncService extends Service {
         // Extract any extra data that comes in the Intent
         Bundle extras = intent.getExtras();
 
-        if (resultReceiver != null) {
+        
             /*
              * Notify the beginning of the work and send any information to the
              * listener.
              */
             extras = prepareForExecution(extras);
-            resultReceiver.send(SyncStatus.STATUS_RUNNING.getValue(), extras);
+            if (resultReceiver != null) {
+            resultReceiver.send(SyncStatus.STATUS_RUNNING.getValue(), extras);}
 
             try {
                 Executor executor = getExecutor(serviceRequest);
@@ -195,7 +196,11 @@ public abstract class SyncService extends Service {
             } catch (ServiceException e) {
                 if (resultReceiver != null) {
 
+                	if(extras == null) {
+                		extras = new Bundle();
+                	}
                     extras.putSerializable(SyncConstants.EXTRA_SERVICE_EXCEPTION, e);
+                    extras.putParcelable(SyncConstants.EXTRA_SERVICE_REQUEST_ID, serviceRequest);
                     resultReceiver.send(SyncStatus.STATUS_ERROR.getValue(), extras);
                     resultReceiver = null;
                 }
@@ -211,7 +216,7 @@ public abstract class SyncService extends Service {
                 resultReceiver = null;
             }
             unregisterReceiver();
-        }
+ 
     }
 
     private void registerReceiver() {

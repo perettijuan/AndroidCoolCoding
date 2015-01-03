@@ -1,6 +1,6 @@
 package com.jpp.codingex.background;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -154,5 +154,52 @@ public class ContentProcessorTests {
         } catch (Exception e) {
             assertTrue(e instanceof IllegalArgumentException);
         }
+    }
+    
+    
+    @Test
+    public void areTheSamePhoneNumber() {
+        String original = "+543517041908";
+        String toCompare = "+5493517041908";
+        boolean equals = ContentProcessor.isTheSamePhoneNumber(original, toCompare);
+        assertTrue(equals);
+    }
+    
+    
+    
+    @Test
+    public void areTheSamePhoneNumber2() {
+        String original = "+543517041908767";
+        String toCompare = "+5493517041908";
+        boolean equals = ContentProcessor.isTheSamePhoneNumber(original, toCompare);
+        assertFalse(equals);
+    }
+    
+    
+    
+    @Test
+    public void areTheSamePhoneNumber3() {
+        String original = "+543517048751";
+        String toCompare = "+5493517041908";
+        boolean equals = ContentProcessor.isTheSamePhoneNumber(original, toCompare);
+        assertFalse(equals);
+    }
+    
+    
+    @Test
+    public void areTheSamePhoneNumber4() {
+        String original = "+543517041908";
+        String toCompare = "+5493517041516";
+        boolean equals = ContentProcessor.isTheSamePhoneNumber(original, toCompare);
+        assertFalse(equals);
+    }
+    
+    
+    @Test
+    public void areTheSamePhoneNumber5() {
+        String original = "+543517041908";
+        String toCompare = "+5493517041908112";
+        boolean equals = ContentProcessor.isTheSamePhoneNumber(original, toCompare);
+        assertTrue(equals);
     }
 }

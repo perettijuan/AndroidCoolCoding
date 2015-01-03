@@ -16,7 +16,7 @@ import com.sync.service.library.SyncStatus;
  * An abstract fragment that defines common behavior for all fragments that will
  * execute some sync action with the back-end via {@link SyncService}.
  * 
- * @author Juan P. Peretti 
+ * @author Juan P. Peretti
  * 
  */
 public abstract class SyncFragment extends Fragment implements AsyncReceiver {
@@ -29,7 +29,8 @@ public abstract class SyncFragment extends Fragment implements AsyncReceiver {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if (savedInstanceState != null && savedInstanceState.getParcelable(KEY_RECEIVER) != null) {
+		if (savedInstanceState != null
+				&& savedInstanceState.getParcelable(KEY_RECEIVER) != null) {
 			try {
 				mReceiver = savedInstanceState.getParcelable(KEY_RECEIVER);
 			} catch (Exception e) {
@@ -44,7 +45,11 @@ public abstract class SyncFragment extends Fragment implements AsyncReceiver {
 	@SuppressWarnings("incomplete-switch")
 	@Override
 	public void onReceiveResult(SyncStatus status, Bundle resultData) {
-		IServiceRequest request = (IServiceRequest) resultData.getSerializable(SyncConstants.EXTRA_SERVICE_REQUEST_ID);
+		IServiceRequest request = null;
+		if (resultData != null) {
+			request = resultData
+					.getParcelable(SyncConstants.EXTRA_SERVICE_REQUEST_ID);
+		}
 		switch (status) {
 		case STATUS_RUNNING:
 			onPublishProgress(request);
@@ -53,7 +58,8 @@ public abstract class SyncFragment extends Fragment implements AsyncReceiver {
 			onPublishResults(request, resultData);
 			break;
 		case STATUS_ERROR:
-			ServiceException ex = (ServiceException) resultData.getSerializable(SyncConstants.EXTRA_SERVICE_EXCEPTION);
+			ServiceException ex = (ServiceException) resultData
+					.getSerializable(SyncConstants.EXTRA_SERVICE_EXCEPTION);
 			onPublishError(request, ex);
 			break;
 		}
@@ -86,7 +92,9 @@ public abstract class SyncFragment extends Fragment implements AsyncReceiver {
 	protected void stopServiceExecution() {
 		// force stop the SyncService if running
 		Intent broadcastIntent = new Intent(SyncService.INTENT_ACTION);
-		LocalBroadcastManager.getInstance(getActivity().getApplicationContext()).sendBroadcast(broadcastIntent);
+		LocalBroadcastManager
+				.getInstance(getActivity().getApplicationContext())
+				.sendBroadcast(broadcastIntent);
 	}
 
 	/**
@@ -114,7 +122,8 @@ public abstract class SyncFragment extends Fragment implements AsyncReceiver {
 	 * @param resultData
 	 *            - a map containing any extra data retrieved from the back-end.
 	 */
-	protected abstract void onPublishResults(IServiceRequest request, Bundle resultData);
+	protected abstract void onPublishResults(IServiceRequest request,
+			Bundle resultData);
 
 	/**
 	 * Called to publish some error that occurred while syncing. If a sub-class
@@ -128,6 +137,7 @@ public abstract class SyncFragment extends Fragment implements AsyncReceiver {
 	 *            - the {@link ServiceException} that contains the message to
 	 *            shown.
 	 */
-	protected abstract void onPublishError(IServiceRequest request, ServiceException ex);
+	protected abstract void onPublishError(IServiceRequest request,
+			ServiceException ex);
 
 }

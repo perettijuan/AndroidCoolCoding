@@ -141,5 +141,25 @@ class ContentProcessor {
         }
         return wordCount;
     }
+    
+    
+    static boolean isTheSamePhoneNumber(String originalNumber, String numberToCompare) {
+        char[] original = originalNumber.toCharArray();
+        char[] compare = numberToCompare.toCharArray();
+        char[] created = new char[original.length];
+        int j = 0;
+        for(int i = 0; i < compare.length; i++) {
+            if(j < original.length) {
+                char c = compare[i];
+                char o = original[j];
+                if(c == o) {
+                    created[j] = c;
+                    j++;
+                }
+            }           
+        }
+        String createdString = new String(created);
+        return originalNumber.equals(createdString);
+    }
 
 }
