@@ -46,13 +46,11 @@ public class TasksAdapter extends CursorRecyclerViewAdapter<TasksAdapter.TasksVi
     public static class TasksViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView txtTask;
-       // private final View cardViewBackfround;
         private CardView cardView;
 
         public TasksViewHolder(View itemLayoutView) {
             super(itemLayoutView);
             txtTask = (TextView) itemLayoutView.findViewById(R.id.txt_task);
-            //cardViewBackfround =  itemLayoutView.findViewById(R.id.card_view_background);
             cardView = (CardView) itemLayoutView.findViewById(R.id.card_view);
         }
     }

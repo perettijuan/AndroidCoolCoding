@@ -1,10 +1,6 @@
 package com.jpp.androidchallenge.ui.fragment;
 
 import android.app.Dialog;
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
@@ -16,16 +12,19 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jpp.androidchallenge.R;
+import com.jpp.androidchallenge.background.AddTaskExecutor;
+import com.jpp.androidchallenge.background.IBackgroundExecutionListener;
+import com.jpp.androidchallenge.model.Task;
 import com.jpp.androidchallenge.model.TaskColor;
-import com.jpp.androidchallenge.provider.AndroidChallengeContract;
 import com.jpp.androidchallenge.ui.adapter.ColorSelectionSpinnerAdapter;
 
 /**
  * DialogFragment used to show the add task UI to the user.
  */
-public class AddTaskDialogFragment extends DialogFragment implements View.OnClickListener {
+public class AddTaskDialogFragment extends DialogFragment implements View.OnClickListener, IBackgroundExecutionListener {
 
 
     public static final String TAG = AddTaskDialogFragment.class.getName();
@@ -121,45 +120,28 @@ public class AddTaskDialogFragment extends DialogFragment implements View.OnClic
         int id = v.getId();
         if (id == txtSubmitnewTask.getId()) {
             TaskColor color = (TaskColor) spColorSelection.getSelectedItem();
-            if(color != null) {
+            if (color != null) {
                 mTaskColorIdentifier = color.getIdentifier();
                 mTaskText = etNewTask.getText().toString();
                 pgLoading.setVisibility(View.VISIBLE);
-                AddTaskExecutor executor = new AddTaskExecutor();
-                executor.execute(this);
+                Task task = Task.newInstance(mTaskText, mTaskColorIdentifier);
+                AddTaskExecutor executor = new AddTaskExecutor(getActivity(), this);
+                executor.execute(task);
             }
         }
     }
 
-
-    /**
-     * AsyncTask used to store the new task in the database in a background thread.
-     */
-    private static class AddTaskExecutor extends AsyncTask<AddTaskDialogFragment, Void, AddTaskDialogFragment> {
-
-
-        @Override
-        protected AddTaskDialogFragment doInBackground(AddTaskDialogFragment... params) {
-            AddTaskDialogFragment client = params[0];
-            if (client != null) {
-                Context clientParent = client.getActivity();
-                if (clientParent != null) {
-                    ContentResolver resolver = clientParent.getContentResolver();
-                    ContentValues values = new ContentValues();
-                    values.put(AndroidChallengeContract.Tasks.TASK_COLOR_IDENTIFIER, client.mTaskColorIdentifier);
-                    values.put(AndroidChallengeContract.Tasks.TASK_DEFINITION, client.mTaskText);
-                    resolver.insert(AndroidChallengeContract.Tasks.CONTENT_URI, values);
-                }
-            }
-            return client;
-        }
-
-        @Override
-        protected void onPostExecute(AddTaskDialogFragment addTaskDialogFragment) {
-            if (addTaskDialogFragment != null) {
-                addTaskDialogFragment.dismiss();
-            }
-        }
+    @Override
+    public void onSuccess() {
+        dismiss();
     }
+
+    @Override
+    public void onError() {
+        Toast.makeText(getActivity(), R.string.error_inserting_task, Toast.LENGTH_LONG).show();
+        dismiss();
+    }
+
+
 }
 

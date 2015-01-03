@@ -34,4 +34,19 @@ public class Task {
         return task;
     }
 
+
+    /**
+     * Creates a new instance of Task with the given data.
+     *
+     * @param taskBody        - the task body text.
+     * @param colorIdentifier - the identifier of the Color
+     * @return - the newly created instance.
+     */
+    public static Task newInstance(String taskBody, int colorIdentifier) {
+        Task task = new Task();
+        task.mTask = taskBody;
+        TaskColor color = TaskColor.getFromIdentifier(colorIdentifier);
+        task.mTaskColor = color;
+        return task;
+    }
 }

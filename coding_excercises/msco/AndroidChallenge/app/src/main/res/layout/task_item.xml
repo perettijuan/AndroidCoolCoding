@@ -8,14 +8,26 @@
     card_view:cardCornerRadius="@dimen/card_view_corner_radius"
     android:layout_margin="@dimen/card_view_corner_margin">
 
-
-    <com.jpp.androidchallenge.ui.extention.RobotoTextView
-        android:id="@+id/txt_task"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@android:style/TextAppearance.Medium"
-        android:text="Color"
-        android:layout_margin="@dimen/card_view_padding" />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_remove"
+            android:layout_width="@dimen/ic_remove"
+            android:layout_height="@dimen/ic_remove"
+            android:src="@drawable/ic_remove"
+            android:layout_alignParentRight="true"/>
+
+        <com.jpp.androidchallenge.ui.extention.RobotoTextView
+            android:id="@+id/txt_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@android:style/TextAppearance.Medium"
+            android:text="Color"
+            android:layout_toLeftOf="@+id/iv_remove"
+            android:layout_margin="@dimen/card_view_padding" />
+    </RelativeLayout>
 
 
 </android.support.v7.widget.CardView>
