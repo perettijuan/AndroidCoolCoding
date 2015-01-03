@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jpp.androidchallenge.R;
+import com.jpp.androidchallenge.background.DeleteTaskExecutor;
 import com.jpp.androidchallenge.model.Task;
 import com.jpp.androidchallenge.model.TaskColor;
 
@@ -17,7 +18,6 @@ import com.jpp.androidchallenge.model.TaskColor;
  * An Adapter backed by a Cursor that contains and shows the information of the tasks in the local storage.
  */
 public class TasksAdapter extends CursorRecyclerViewAdapter<TasksAdapter.TasksViewHolder> {
-
 
 
     public TasksAdapter(Context context, Cursor cursor) {
@@ -35,11 +35,12 @@ public class TasksAdapter extends CursorRecyclerViewAdapter<TasksAdapter.TasksVi
     public void onBindViewHolder(TasksViewHolder viewHolder, Cursor cursor) {
         Task itemTask = Task.fromCursor(cursor);
         TaskColor color = itemTask.getTaskColor();
-        if(color != TaskColor.NONE) {
+        if (color != TaskColor.NONE) {
             viewHolder.cardView.setCardBackgroundColor(mContext.getResources().getColor(color.getBackgroundColor()));
             viewHolder.txtTask.setTextColor(mContext.getResources().getColor(color.getTextColor()));
         }
         viewHolder.txtTask.setText(itemTask.getTask());
+        viewHolder.ivRemove.setOnClickListener(new DeleteIconListener(mContext, itemTask));
     }
 
 
@@ -47,11 +48,31 @@ public class TasksAdapter extends CursorRecyclerViewAdapter<TasksAdapter.TasksVi
 
         private final TextView txtTask;
         private CardView cardView;
+        private View ivRemove;
 
         public TasksViewHolder(View itemLayoutView) {
             super(itemLayoutView);
             txtTask = (TextView) itemLayoutView.findViewById(R.id.txt_task);
             cardView = (CardView) itemLayoutView.findViewById(R.id.card_view);
+            ivRemove = itemLayoutView.findViewById(R.id.iv_remove);
+        }
+    }
+
+
+    private static class DeleteIconListener implements View.OnClickListener {
+
+        private final Task mTask;
+        private final Context mContext;
+
+        DeleteIconListener(Context context, Task task) {
+            mTask = task;
+            mContext = context;
+        }
+
+        @Override
+        public void onClick(View v) {
+            DeleteTaskExecutor executor = new DeleteTaskExecutor(mContext, null);
+            executor.execute(mTask);
         }
     }
 }

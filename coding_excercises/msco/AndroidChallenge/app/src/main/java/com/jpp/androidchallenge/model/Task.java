@@ -12,6 +12,7 @@ public class Task {
 
     private TaskColor mTaskColor;
     private String mTask;
+    private int mId;
 
 
     public TaskColor getTaskColor() {
@@ -22,6 +23,9 @@ public class Task {
         return mTask;
     }
 
+    public int getId() {
+        return mId;
+    }
 
     /**
      * Creates a Task instance from a given cursor.
@@ -31,6 +35,7 @@ public class Task {
         task.mTask = cursor.getString(cursor.getColumnIndex(AndroidChallengeContract.Tasks.TASK_DEFINITION));
         int colorIdentifier = cursor.getInt(cursor.getColumnIndex(AndroidChallengeContract.Tasks.TASK_COLOR_IDENTIFIER));
         task.mTaskColor = TaskColor.getFromIdentifier(colorIdentifier);
+        task.mId = cursor.getInt(cursor.getColumnIndex(AndroidChallengeContract.Tasks._ID));
         return task;
     }
 
