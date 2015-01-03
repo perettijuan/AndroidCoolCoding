@@ -11,7 +11,7 @@ import com.jpp.androidchallenge.R;
 import com.jpp.androidchallenge.model.TaskColor;
 
 /**
- * Created by jperett on 02/01/2015.
+ * Custom adapter used to show the items for selecting tasks colors.
  */
 public class ColorSelectionSpinnerAdapter extends BaseAdapter {
 
@@ -25,16 +25,12 @@ public class ColorSelectionSpinnerAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         // plus 1 to show the none selection
-        return TaskColor.values().length + 1;
+        return TaskColor.values().length;
     }
 
     @Override
     public Object getItem(int position) {
-        if (position == 0) {
-            return null;
-        } else {
-            return TaskColor.values()[position - 1];
-        }
+        return TaskColor.values()[position];
     }
 
     @Override
@@ -45,7 +41,7 @@ public class ColorSelectionSpinnerAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
-        if(convertView == null) {
+        if (convertView == null) {
             convertView = INFLATER.inflate(R.layout.spinner_selection_item, parent, false);
             holder = new ViewHolder();
             holder.txtColorSelection = (TextView) convertView.findViewById(R.id.txt_color_selection);
@@ -55,19 +51,18 @@ public class ColorSelectionSpinnerAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        if(position == 0) {
-            holder.txtColorSelection.setText(R.string.color_none);
+        TaskColor color = (TaskColor) getItem(position);
+        holder.txtColorSelection.setText(color.getTextIdentifier());
+
+        if (color.getIdentifier() == TaskColor.NONE.getIdentifier()) {
             holder.viewColorSelectionCircle.setVisibility(View.INVISIBLE);
         } else {
-            TaskColor color = (TaskColor) getItem(position);
-            holder.txtColorSelection.setText(color.getTextIdentifier());
             holder.viewColorSelectionCircle.setBackgroundResource(color.getSample());
             holder.viewColorSelectionCircle.setVisibility(View.VISIBLE);
         }
 
         return convertView;
     }
-
 
 
     private class ViewHolder {

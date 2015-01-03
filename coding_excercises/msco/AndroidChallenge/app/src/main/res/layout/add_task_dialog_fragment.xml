@@ -6,6 +6,32 @@
     android:animateLayoutChanges="true"
     android:padding="@dimen/add_task_padding">
 
+    <com.jpp.androidchallenge.ui.extention.RobotoTextView
+        android:id="@+id/txt_new_task_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@android:style/TextAppearance.Large"
+        android:text="@string/new_task_title"
+        android:textColor="@android:color/black" />
+
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pg_loading"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="6dp"
+        android:visibility="gone"/>
+
+    <View
+        android:id="@+id/new_task_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"
+        android:layout_below="@+id/txt_new_task_title"
+        android:layout_marginTop="6dp" />
 
     <com.jpp.androidchallenge.ui.extention.RobotoTextView
         android:id="@+id/txt_color_selection"
@@ -14,6 +40,7 @@
         style="@android:style/TextAppearance.Small"
         android:text="@string/new_task_color"
         android:textColor="@android:color/black"
+        android:layout_below="@+id/new_task_divider"
         android:layout_marginTop="6dp" />
 
     <Spinner
@@ -39,7 +66,7 @@
         android:layout_below="@+id/txt_new_task_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:lines="6"
+        android:lines="4"
         android:gravity="top|left"
         android:padding="@dimen/add_task_corner"
         android:background="@drawable/add_task_edit_text_background"
@@ -55,6 +82,8 @@
         android:text="@string/submit_new_task"
         android:textColor="@drawable/submit_new_task_selector"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="6dp"/>
+        android:layout_marginTop="6dp"
+        android:enabled="false"/>
+
 
 </RelativeLayout>
