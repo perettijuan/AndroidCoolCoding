@@ -211,17 +211,20 @@ public class TasksAdapter extends CursorRecyclerViewAdapter<TasksAdapter.TasksVi
                 case MotionEvent.ACTION_UP:
                     if (Math.abs(deltaX) < viewSwipeHorizontalThreshold) {
                         rootView.animate().translationX(originalX).translationY(originalY).alpha(1).start();
-                        if (Math.abs(deltaY) < viewSwipeHorizontalThreshold)
+                        if (Math.abs(deltaY) < viewSwipeHorizontalThreshold) {
                             rootView.performClick();
-                    } else if (deltaX < 0)
+                        }
+                    } else {
                         onSwipe(rootView, holder.getPosition(), holder);
+                    }
                     break;
                 case MotionEvent.ACTION_CANCEL:
                     if (Math.abs(deltaX) < viewSwipeHorizontalThreshold
                             || Math.abs(deltaY) < viewSwipeVerticalThreshold)
                         rootView.animate().translationX(originalX).translationY(originalY).alpha(1).start();
-                    else if (deltaX < 0)
+                    else {
                         onSwipe(rootView, holder.getPosition(), holder);
+                    }
                     break;
                 case MotionEvent.ACTION_POINTER_DOWN:
                     break;
