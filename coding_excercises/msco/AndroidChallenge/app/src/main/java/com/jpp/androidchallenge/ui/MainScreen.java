@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.jpp.androidchallenge.R;
 import com.jpp.androidchallenge.ui.extention.FloatingActionButton;
-import com.jpp.androidchallenge.ui.fragment.AddTaskDialogFragment;
+import com.jpp.androidchallenge.ui.fragment.AddTaskFragment;
 import com.jpp.androidchallenge.ui.fragment.TasksFragment;
 
 
@@ -49,8 +49,7 @@ public class MainScreen extends ActionBarActivity {
         btnAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddTaskDialogFragment dialog = AddTaskDialogFragment.newInstance();
-                dialog.show(getSupportFragmentManager(), AddTaskDialogFragment.TAG);
+                addNewTaskFragment();
             }
         });
     }
@@ -64,6 +63,17 @@ public class MainScreen extends ActionBarActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.main_fragment_container, fr, TasksFragment.TAG);
         transaction.commit();
+    }
+
+
+    private void addNewTaskFragment() {
+        AddTaskFragment fr = AddTaskFragment.newInstance();
+        FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
+        tr.add(R.id.main_fragment_container, fr, AddTaskFragment.TAG);
+        tr.setCustomAnimations(R.anim.down_top, 0, 0, R.anim.top_down);
+        tr.show(fr);
+        tr.addToBackStack(null);
+        tr.commit();
     }
 
 

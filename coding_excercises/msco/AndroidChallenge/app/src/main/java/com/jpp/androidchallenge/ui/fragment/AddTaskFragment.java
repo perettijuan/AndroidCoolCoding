@@ -1,14 +1,13 @@
 package com.jpp.androidchallenge.ui.fragment;
 
-import android.app.Dialog;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -19,15 +18,16 @@ import com.jpp.androidchallenge.background.AddTaskExecutor;
 import com.jpp.androidchallenge.background.IBackgroundExecutionListener;
 import com.jpp.androidchallenge.model.Task;
 import com.jpp.androidchallenge.model.TaskColor;
+import com.jpp.androidchallenge.ui.MainScreen;
 import com.jpp.androidchallenge.ui.adapter.ColorSelectionSpinnerAdapter;
 
 /**
- * DialogFragment used to show the add task UI to the user.
+ * Created by jperett on 04/01/2015.
  */
-public class AddTaskDialogFragment extends DialogFragment implements View.OnClickListener, IBackgroundExecutionListener {
+public class AddTaskFragment extends Fragment implements View.OnClickListener, IBackgroundExecutionListener {
 
 
-    public static final String TAG = AddTaskDialogFragment.class.getName();
+    public static final String TAG = AddTaskFragment.class.getName();
 
     private ColorSelectionSpinnerAdapter mSpinnerAdapter;
     private EditText etNewTask;
@@ -38,35 +38,13 @@ public class AddTaskDialogFragment extends DialogFragment implements View.OnClic
     private String mTaskText;
     private int mTaskColorIdentifier;
 
-    /**
-     * Class constructor
-     */
-    public AddTaskDialogFragment() {
+    public AddTaskFragment() {
 
     }
 
-
-    /**
-     * Factory method for fragment creation.
-     *
-     * @return - the newly created instance.
-     */
-    public static AddTaskDialogFragment newInstance() {
-        AddTaskDialogFragment newInstance = new AddTaskDialogFragment();
+    public static AddTaskFragment newInstance() {
+        AddTaskFragment newInstance = new AddTaskFragment();
         return newInstance;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle arg0) {
-        super.onActivityCreated(arg0);
-        getDialog().getWindow().getAttributes().windowAnimations = R.style.DialogAnimationTopDown;
-    }
-
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Dialog dialog = super.onCreateDialog(savedInstanceState);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        return dialog;
     }
 
 
@@ -133,15 +111,17 @@ public class AddTaskDialogFragment extends DialogFragment implements View.OnClic
 
     @Override
     public void onSuccess() {
-        dismiss();
+        removeFragment();
     }
 
     @Override
     public void onError() {
         Toast.makeText(getActivity(), R.string.error_inserting_task, Toast.LENGTH_LONG).show();
-        dismiss();
+        removeFragment();
     }
 
 
+    private void removeFragment() {
+      getFragmentManager().popBackStack();
+    }
 }
-
