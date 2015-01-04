@@ -1,8 +1,10 @@
 package com.jpp.androidchallenge.ui.adapter;
 
 import android.animation.Animator;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Build;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +20,7 @@ import com.jpp.androidchallenge.R;
 import com.jpp.androidchallenge.background.DeleteTaskExecutor;
 import com.jpp.androidchallenge.model.Task;
 import com.jpp.androidchallenge.model.TaskColor;
+import com.jpp.androidchallenge.util.Utils;
 
 /**
  * An Adapter backed by a Cursor that contains and shows the information of the tasks in the local storage.
@@ -34,7 +37,9 @@ public class TasksAdapter extends CursorRecyclerViewAdapter<TasksAdapter.TasksVi
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_item, parent, false);
         TasksAdapter.TasksViewHolder holder = new TasksViewHolder(itemView);
         // add elements to handle view swipe.
-        handleSwiping(itemView, holder);
+        if(Utils.isRunningOnIceCreamSandwitch()) {
+            handleSwiping(itemView, holder);
+        }
         return holder;
     }
 
@@ -52,6 +57,9 @@ public class TasksAdapter extends CursorRecyclerViewAdapter<TasksAdapter.TasksVi
     }
 
 
+    /**
+     * ViewHolder class required by the RecyclerView framework.
+     */
     public static class TasksViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView txtTask;
@@ -73,6 +81,9 @@ public class TasksAdapter extends CursorRecyclerViewAdapter<TasksAdapter.TasksVi
     }
 
 
+    /**
+     * OnClickListener used to detect clicks on the delete option.
+     */
     private static class DeleteIconListener implements View.OnClickListener {
 
         private final Task mTask;
@@ -90,19 +101,34 @@ public class TasksAdapter extends CursorRecyclerViewAdapter<TasksAdapter.TasksVi
     }
 
 
+    /**
+     * Method that executes the task deletion on a background thread.
+     */
     private static void deleteTask(Context context, Task task) {
         DeleteTaskExecutor executor = new DeleteTaskExecutor(context, null);
         executor.execute(task);
     }
 
 
+    /**
+     * This method is used to create the structure needed to handle the swipes. This is an adaptation
+     * from a swipe method used in a ListView. Note that probably is not performing as well as espected.
+     * Some fine tunning is needed since it is the first time I ever used it.
+     *
+     * @param rootView
+     * @param holder
+     */
     private void handleSwiping(View rootView, RecyclerView.ViewHolder holder) {
         GestureDetectorCompat gestureDetector = new GestureDetectorCompat(rootView.getContext(), new FlingDetector(rootView, holder));
         rootView.setOnTouchListener(new SwipeTouchListener(rootView, holder, gestureDetector));
     }
 
 
-    static private void onSwipe(final View rootView, final int position, final RecyclerView.ViewHolder holder) {
+    /**
+     * Starts an animation and the delete process when performing a swipe.
+     */
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    private static void onSwipe(final View rootView, final int position, final RecyclerView.ViewHolder holder) {
         ViewPropertyAnimator animator;
         animator = rootView.animate().translationX(-rootView.getWidth());
         animator.setListener(new Animator.AnimatorListener() {

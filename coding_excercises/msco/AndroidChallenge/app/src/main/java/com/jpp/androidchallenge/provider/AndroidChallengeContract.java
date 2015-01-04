@@ -4,7 +4,7 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 
 /**
- * Contract that defines the structure of the storage layer.
+ * The contract defined by the application to handle all the storage data.
  */
 public class AndroidChallengeContract {
 
@@ -37,6 +37,7 @@ public class AndroidChallengeContract {
     public static class Tasks implements TaskColumns, BaseColumns {
 
 
+        // The URI used to identify actions related to Task
         public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(Tables.TASK).build();
 
         public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.androidchallenge.tasks";

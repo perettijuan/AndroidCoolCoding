@@ -9,7 +9,10 @@ import android.net.Uri;
 import android.util.Log;
 
 /**
- * ContentProvider used to manage the storage layer
+ * A ContentProvider used to manage the access to the database.
+ * Note that all methods notify to any interested client by calling ContentResolver.notifyChange().
+ * This means that any client that registers a ContentObserver for a given Uri will be
+ * automatically notified when changes are made over that Uri.
  */
 public class AndroidChallengeProvider extends ContentProvider {
 

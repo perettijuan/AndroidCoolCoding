@@ -6,7 +6,7 @@ import com.jpp.androidchallenge.model.Task;
 import com.jpp.androidchallenge.provider.AndroidChallengeContract;
 
 /**
- * Created by jperett on 03/01/2015.
+ * A BackgroundTaskExecutor that will delete a Task from the local storage.
  */
 public class DeleteTaskExecutor extends BackgroundTaskExecutor<Task> {
 

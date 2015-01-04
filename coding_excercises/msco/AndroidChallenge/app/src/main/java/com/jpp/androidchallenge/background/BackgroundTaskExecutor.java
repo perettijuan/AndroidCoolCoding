@@ -6,16 +6,30 @@ import android.os.AsyncTask;
 
 import java.lang.ref.WeakReference;
 
-
+/**
+ * Abstract class used to define a signature for all the classes that need to
+ * execute a background operation (in a different thread that the caller thread).
+ * It will execute the task in a background thread and will notify to any registered
+ * client on the caller thread.
+ *
+ * @param <T> - the type of data to process in the operation.
+ */
 public abstract class BackgroundTaskExecutor<T> {
 
     static final int RESULT_OK = 1;
     static final int RESULT_ERROR = 2;
 
     protected ContentResolver mContentResolver;
+    // Use a weak reference since this can be an Activity or Fragment
     private WeakReference<IBackgroundExecutionListener> mListenerReference;
 
 
+    /**
+     * Class constructor.
+     *
+     * @param context  - a reference to a context
+     * @param listener - if this parameter is not null, then it will receive all notifications.
+     */
     public BackgroundTaskExecutor(Context context, IBackgroundExecutionListener listener) {
         if (listener != null) {
             mListenerReference = new WeakReference<IBackgroundExecutionListener>(listener);
@@ -24,6 +38,11 @@ public abstract class BackgroundTaskExecutor<T> {
         mContentResolver = context.getContentResolver();
     }
 
+    /**
+     * Method called to actually execute the background operation.
+     *
+     * @param params - the type of data to process.
+     */
     public void execute(T... params) {
         BackgroundExecutor executor = new BackgroundExecutor();
         executor.execute(params);

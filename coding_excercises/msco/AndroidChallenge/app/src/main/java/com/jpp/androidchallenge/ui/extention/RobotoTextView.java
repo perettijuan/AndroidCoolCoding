@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
- * A TextView extention used to show a specific type of style (Roboto).
+ * A TextView implementation used to show a specific type of style (Roboto).
  */
 @SuppressLint("NewApi")
 public class RobotoTextView extends TextView {

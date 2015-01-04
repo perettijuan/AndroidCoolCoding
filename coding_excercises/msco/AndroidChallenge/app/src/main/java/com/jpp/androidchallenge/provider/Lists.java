@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * From
+ * Utility extracted from Android Developers Site:
+ * https://developer.android.com/samples/BasicSyncAdapter/src/com.example.android.common/db/SelectionBuilder.html
  */
 public class Lists {
 

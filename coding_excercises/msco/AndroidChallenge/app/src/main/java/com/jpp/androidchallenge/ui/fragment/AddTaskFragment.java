@@ -20,7 +20,7 @@ import com.jpp.androidchallenge.provider.StorageManager;
 import com.jpp.androidchallenge.ui.adapter.ColorSelectionSpinnerAdapter;
 
 /**
- * Created by jperett on 04/01/2015.
+ * Fragment used to show the option of adding a new task to the user.
  */
 public class AddTaskFragment extends Fragment implements View.OnClickListener {
 

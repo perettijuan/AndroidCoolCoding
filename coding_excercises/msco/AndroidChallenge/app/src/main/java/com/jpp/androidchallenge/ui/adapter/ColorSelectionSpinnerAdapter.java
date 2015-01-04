@@ -24,7 +24,6 @@ public class ColorSelectionSpinnerAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        // plus 1 to show the none selection
         return TaskColor.values().length;
     }
 

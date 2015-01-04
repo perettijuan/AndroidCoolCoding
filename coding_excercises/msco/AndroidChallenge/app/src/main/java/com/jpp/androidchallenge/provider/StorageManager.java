@@ -5,12 +5,12 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 /**
- * Wrapper around the OS storage framework.
+ * Wrapper around the OS shared preferences framework.
  */
 public class StorageManager {
 
 
-    private static final String PREFERENCES_NAME = "PulsePref";
+    private static final String PREFERENCES_NAME = "AndroidChallenge";
 
 
     /**

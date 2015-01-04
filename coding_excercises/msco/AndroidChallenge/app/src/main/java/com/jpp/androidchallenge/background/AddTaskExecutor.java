@@ -8,7 +8,7 @@ import com.jpp.androidchallenge.model.TaskColor;
 import com.jpp.androidchallenge.provider.AndroidChallengeContract;
 
 /**
- * Created by jperett on 03/01/2015.
+ * A BackgroundTaskExecutor that will add a new task to the data base.
  */
 public class AddTaskExecutor extends BackgroundTaskExecutor<Task> {
 
