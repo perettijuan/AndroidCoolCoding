@@ -10,7 +10,7 @@
     <string name="color_blue">Blue</string>
     <string name="color_purple">Purple</string>
 
-    <string name="new_task_title">NEW TASK</string>
+    <string name="new_task_title">New Task</string>
     <string name="submit_new_task">SUBMIT</string>
     <string name="new_task_color">Color:</string>
     <string name="new_task_hint">Task:</string>

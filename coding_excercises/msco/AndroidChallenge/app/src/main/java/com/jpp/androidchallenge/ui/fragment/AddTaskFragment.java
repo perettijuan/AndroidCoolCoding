@@ -2,7 +2,6 @@ package com.jpp.androidchallenge.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -11,20 +10,18 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jpp.androidchallenge.R;
 import com.jpp.androidchallenge.background.AddTaskExecutor;
 import com.jpp.androidchallenge.background.IBackgroundExecutionListener;
 import com.jpp.androidchallenge.model.Task;
 import com.jpp.androidchallenge.model.TaskColor;
-import com.jpp.androidchallenge.ui.MainScreen;
 import com.jpp.androidchallenge.ui.adapter.ColorSelectionSpinnerAdapter;
 
 /**
  * Created by jperett on 04/01/2015.
  */
-public class AddTaskFragment extends Fragment implements View.OnClickListener, IBackgroundExecutionListener {
+public class AddTaskFragment extends Fragment implements View.OnClickListener {
 
 
     public static final String TAG = AddTaskFragment.class.getName();
@@ -37,13 +34,15 @@ public class AddTaskFragment extends Fragment implements View.OnClickListener, I
 
     private String mTaskText;
     private int mTaskColorIdentifier;
+    private IBackgroundExecutionListener mBackgroundExecutionListener;
 
     public AddTaskFragment() {
 
     }
 
-    public static AddTaskFragment newInstance() {
+    public static AddTaskFragment newInstance(IBackgroundExecutionListener listener) {
         AddTaskFragment newInstance = new AddTaskFragment();
+        newInstance.mBackgroundExecutionListener = listener;
         return newInstance;
     }
 
@@ -103,25 +102,11 @@ public class AddTaskFragment extends Fragment implements View.OnClickListener, I
                 mTaskText = etNewTask.getText().toString();
                 pgLoading.setVisibility(View.VISIBLE);
                 Task task = Task.newInstance(mTaskText, mTaskColorIdentifier);
-                AddTaskExecutor executor = new AddTaskExecutor(getActivity(), this);
+                AddTaskExecutor executor = new AddTaskExecutor(getActivity(), mBackgroundExecutionListener);
                 executor.execute(task);
             }
         }
     }
 
-    @Override
-    public void onSuccess() {
-        removeFragment();
-    }
 
-    @Override
-    public void onError() {
-        Toast.makeText(getActivity(), R.string.error_inserting_task, Toast.LENGTH_LONG).show();
-        removeFragment();
-    }
-
-
-    private void removeFragment() {
-      getFragmentManager().popBackStack();
-    }
 }
