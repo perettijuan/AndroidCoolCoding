@@ -27,8 +27,9 @@ public class MainScreen extends ActionBarActivity implements IBackgroundExecutio
 
 
     private enum Section {
-        TASKS, NEW_TASK;
+        TASKS, NEW_TASK,;
     }
+
 
     private FloatingActionButton btnAddTask;
     private Toolbar mainToolbar;
@@ -40,11 +41,9 @@ public class MainScreen extends ActionBarActivity implements IBackgroundExecutio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen);
 
+        addBtnAddTask();
         mainToolbar = (Toolbar) findViewById(R.id.main_toolbar);
         mainToolbar.setTitle(R.string.app_name);
-
-        addBtnAddTask();
-
         addTasksFragment();
     }
 
@@ -56,7 +55,7 @@ public class MainScreen extends ActionBarActivity implements IBackgroundExecutio
         btnAddTask = new FloatingActionButton.Builder(this)
                 .withDrawable(getResources().getDrawable(R.drawable.ic_edit_fab))
                 .withButtonColor(getResources().getColor(R.color.add_task_background))
-                .withGravity(Gravity.BOTTOM | Gravity.RIGHT)
+                .withGravity(Gravity.BOTTOM | Gravity.END)
                 .withMargins(0, 0, 15, 15)
                 .withButtonSize(70)
                 .create();
