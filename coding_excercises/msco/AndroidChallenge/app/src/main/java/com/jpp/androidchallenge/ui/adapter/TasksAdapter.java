@@ -41,20 +41,27 @@ public class TasksAdapter extends CursorRecyclerViewAdapter<TasksAdapter.TasksVi
         }
         viewHolder.txtTask.setText(itemTask.getTask());
         viewHolder.ivRemove.setOnClickListener(new DeleteIconListener(mContext, itemTask));
+        viewHolder.mTask = itemTask;
     }
 
 
     public static class TasksViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView txtTask;
-        private CardView cardView;
-        private View ivRemove;
+        private final CardView cardView;
+        private final View ivRemove;
+        private Task mTask;
 
         public TasksViewHolder(View itemLayoutView) {
             super(itemLayoutView);
             txtTask = (TextView) itemLayoutView.findViewById(R.id.txt_task);
             cardView = (CardView) itemLayoutView.findViewById(R.id.card_view);
             ivRemove = itemLayoutView.findViewById(R.id.iv_remove);
+        }
+
+
+        public Task getItemTask() {
+            return mTask;
         }
     }
 

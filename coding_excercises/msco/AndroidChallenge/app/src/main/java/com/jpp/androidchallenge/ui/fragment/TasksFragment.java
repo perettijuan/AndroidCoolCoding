@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +16,7 @@ import android.view.ViewGroup;
 import com.jpp.androidchallenge.R;
 import com.jpp.androidchallenge.provider.AndroidChallengeContract;
 import com.jpp.androidchallenge.ui.adapter.TasksAdapter;
+import com.jpp.androidchallenge.ui.extention.FlipDownItemAnimator;
 
 /**
  * A Fragment used to show the list of tasks that the user has in the application.
@@ -26,6 +26,11 @@ public class TasksFragment extends Fragment implements LoaderManager.LoaderCallb
     public static final String TAG = TasksFragment.class.getName();
 
     private static final int LOADER_ID = 1;
+
+
+    public interface OnScrollStateChangedListener {
+
+    }
 
     private TasksAdapter mAdapter;
     private RecyclerView rvTasks;
@@ -53,7 +58,7 @@ public class TasksFragment extends Fragment implements LoaderManager.LoaderCallb
         View fView = inflater.inflate(R.layout.tasks_fragment, container, false);
         rvTasks = (RecyclerView) fView.findViewById(R.id.rv_tasks);
         rvTasks.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvTasks.setItemAnimator(new DefaultItemAnimator());
+        rvTasks.setItemAnimator(new FlipDownItemAnimator());
         pgLoadingTasks = fView.findViewById(R.id.pg_loading_tasks);
         txtEmptyTasks = fView.findViewById(R.id.txt_empty_tasks);
         return fView;
