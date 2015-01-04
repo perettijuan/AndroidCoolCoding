@@ -15,4 +15,6 @@
     <dimen name="card_view_padding">6dp</dimen>
 
     <dimen name="ic_remove">20dp</dimen>
+
+    <dimen name="vertical_swipe_threshold">10dp</dimen>
 </resources>
