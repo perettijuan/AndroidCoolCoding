@@ -13,7 +13,8 @@
     <string name="new_task_title">New Task</string>
     <string name="submit_new_task">SUBMIT</string>
     <string name="new_task_color">Color:</string>
-    <string name="new_task_hint">Task:</string>
+    <string name="new_task">Task:</string>
+    <string name="new_task_hint">Enter your new task text to save it</string>
 
     <string name="error_inserting_task">Unable to store task.</string>
 

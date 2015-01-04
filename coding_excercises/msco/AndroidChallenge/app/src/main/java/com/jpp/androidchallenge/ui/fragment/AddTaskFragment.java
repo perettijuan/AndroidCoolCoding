@@ -16,6 +16,7 @@ import com.jpp.androidchallenge.background.AddTaskExecutor;
 import com.jpp.androidchallenge.background.IBackgroundExecutionListener;
 import com.jpp.androidchallenge.model.Task;
 import com.jpp.androidchallenge.model.TaskColor;
+import com.jpp.androidchallenge.provider.StorageManager;
 import com.jpp.androidchallenge.ui.adapter.ColorSelectionSpinnerAdapter;
 
 /**
@@ -25,6 +26,8 @@ public class AddTaskFragment extends Fragment implements View.OnClickListener {
 
 
     public static final String TAG = AddTaskFragment.class.getName();
+
+    private static final String LAST_COLOR_KEY = "last_color_key";
 
     private ColorSelectionSpinnerAdapter mSpinnerAdapter;
     private EditText etNewTask;
@@ -59,6 +62,7 @@ public class AddTaskFragment extends Fragment implements View.OnClickListener {
         pgLoading = fView.findViewById(R.id.pg_loading);
 
         setNewTaskWatcher();
+        setLastColorSelected();
 
         return fView;
     }
@@ -96,17 +100,38 @@ public class AddTaskFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         int id = v.getId();
         if (id == txtSubmitnewTask.getId()) {
-            TaskColor color = (TaskColor) spColorSelection.getSelectedItem();
-            if (color != null) {
-                mTaskColorIdentifier = color.getIdentifier();
-                mTaskText = etNewTask.getText().toString();
-                pgLoading.setVisibility(View.VISIBLE);
-                Task task = Task.newInstance(mTaskText, mTaskColorIdentifier);
-                AddTaskExecutor executor = new AddTaskExecutor(getActivity(), mBackgroundExecutionListener);
-                executor.execute(task);
-            }
+            saveTask();
         }
     }
 
+    private void saveTask() {
+        TaskColor color = (TaskColor) spColorSelection.getSelectedItem();
+        if (color != null) {
+            mTaskColorIdentifier = color.getIdentifier();
+            mTaskText = etNewTask.getText().toString();
+            pgLoading.setVisibility(View.VISIBLE);
+
+            saveLastColorSelected(color);
+
+            Task task = Task.newInstance(mTaskText, mTaskColorIdentifier);
+            AddTaskExecutor executor = new AddTaskExecutor(getActivity(), mBackgroundExecutionListener);
+            executor.execute(task);
+        }
+    }
+
+
+    private void saveLastColorSelected(TaskColor color) {
+        int colorId = color.getIdentifier();
+        StorageManager.putInt(getActivity(), LAST_COLOR_KEY, colorId);
+    }
+
+
+    private void setLastColorSelected() {
+        int lastColor = StorageManager.getInt(getActivity(), LAST_COLOR_KEY);
+        if (lastColor == -1) {
+            lastColor = TaskColor.NONE.getIdentifier();
+        }
+        spColorSelection.setSelection(lastColor);
+    }
 
 }
