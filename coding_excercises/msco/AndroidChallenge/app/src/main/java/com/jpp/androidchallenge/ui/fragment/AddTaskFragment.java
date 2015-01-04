@@ -1,33 +1,33 @@
 package com.jpp.androidchallenge.ui.fragment;
 
-import android.app.Dialog;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jpp.androidchallenge.R;
 import com.jpp.androidchallenge.background.AddTaskExecutor;
 import com.jpp.androidchallenge.background.IBackgroundExecutionListener;
 import com.jpp.androidchallenge.model.Task;
 import com.jpp.androidchallenge.model.TaskColor;
+import com.jpp.androidchallenge.provider.StorageManager;
 import com.jpp.androidchallenge.ui.adapter.ColorSelectionSpinnerAdapter;
 
 /**
- * DialogFragment used to show the add task UI to the user.
+ * Created by jperett on 04/01/2015.
  */
-public class AddTaskDialogFragment extends DialogFragment implements View.OnClickListener, IBackgroundExecutionListener {
+public class AddTaskFragment extends Fragment implements View.OnClickListener {
 
 
-    public static final String TAG = AddTaskDialogFragment.class.getName();
+    public static final String TAG = AddTaskFragment.class.getName();
+
+    private static final String LAST_COLOR_KEY = "last_color_key";
 
     private ColorSelectionSpinnerAdapter mSpinnerAdapter;
     private EditText etNewTask;
@@ -37,36 +37,16 @@ public class AddTaskDialogFragment extends DialogFragment implements View.OnClic
 
     private String mTaskText;
     private int mTaskColorIdentifier;
+    private IBackgroundExecutionListener mBackgroundExecutionListener;
 
-    /**
-     * Class constructor
-     */
-    public AddTaskDialogFragment() {
+    public AddTaskFragment() {
 
     }
 
-
-    /**
-     * Factory method for fragment creation.
-     *
-     * @return - the newly created instance.
-     */
-    public static AddTaskDialogFragment newInstance() {
-        AddTaskDialogFragment newInstance = new AddTaskDialogFragment();
+    public static AddTaskFragment newInstance(IBackgroundExecutionListener listener) {
+        AddTaskFragment newInstance = new AddTaskFragment();
+        newInstance.mBackgroundExecutionListener = listener;
         return newInstance;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle arg0) {
-        super.onActivityCreated(arg0);
-        getDialog().getWindow().getAttributes().windowAnimations = R.style.DialogAnimationTopDown;
-    }
-
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Dialog dialog = super.onCreateDialog(savedInstanceState);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        return dialog;
     }
 
 
@@ -82,6 +62,7 @@ public class AddTaskDialogFragment extends DialogFragment implements View.OnClic
         pgLoading = fView.findViewById(R.id.pg_loading);
 
         setNewTaskWatcher();
+        setLastColorSelected();
 
         return fView;
     }
@@ -119,29 +100,38 @@ public class AddTaskDialogFragment extends DialogFragment implements View.OnClic
     public void onClick(View v) {
         int id = v.getId();
         if (id == txtSubmitnewTask.getId()) {
-            TaskColor color = (TaskColor) spColorSelection.getSelectedItem();
-            if (color != null) {
-                mTaskColorIdentifier = color.getIdentifier();
-                mTaskText = etNewTask.getText().toString();
-                pgLoading.setVisibility(View.VISIBLE);
-                Task task = Task.newInstance(mTaskText, mTaskColorIdentifier);
-                AddTaskExecutor executor = new AddTaskExecutor(getActivity(), this);
-                executor.execute(task);
-            }
+            saveTask();
         }
     }
 
-    @Override
-    public void onSuccess() {
-        dismiss();
+    private void saveTask() {
+        TaskColor color = (TaskColor) spColorSelection.getSelectedItem();
+        if (color != null) {
+            mTaskColorIdentifier = color.getIdentifier();
+            mTaskText = etNewTask.getText().toString();
+            pgLoading.setVisibility(View.VISIBLE);
+
+            saveLastColorSelected(color);
+
+            Task task = Task.newInstance(mTaskText, mTaskColorIdentifier);
+            AddTaskExecutor executor = new AddTaskExecutor(getActivity(), mBackgroundExecutionListener);
+            executor.execute(task);
+        }
     }
 
-    @Override
-    public void onError() {
-        Toast.makeText(getActivity(), R.string.error_inserting_task, Toast.LENGTH_LONG).show();
-        dismiss();
+
+    private void saveLastColorSelected(TaskColor color) {
+        int colorId = color.getIdentifier();
+        StorageManager.putInt(getActivity(), LAST_COLOR_KEY, colorId);
     }
 
+
+    private void setLastColorSelected() {
+        int lastColor = StorageManager.getInt(getActivity(), LAST_COLOR_KEY);
+        if (lastColor == -1) {
+            lastColor = TaskColor.NONE.getIdentifier();
+        }
+        spColorSelection.setSelection(lastColor);
+    }
 
 }
-
