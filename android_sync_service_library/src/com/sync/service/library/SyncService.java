@@ -121,7 +121,7 @@ public abstract class SyncService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        IServiceRequest request = intent.getExtras().getParcelable(SyncConstants.EXTRA_SERVICE_REQUEST_ID);
+        IServiceRequest request = (IServiceRequest) intent.getExtras().getSerializable(SyncConstants.EXTRA_SERVICE_REQUEST_ID);
 
         if (request.canRunInParallel()) {
             /*
@@ -165,7 +165,7 @@ public abstract class SyncService extends Service {
         registerReceiver();
 
         // Extract the IServiceRequest to know what executor use
-        IServiceRequest serviceRequest = intent.getParcelableExtra(SyncConstants.EXTRA_SERVICE_REQUEST_ID);
+        IServiceRequest serviceRequest = (IServiceRequest) intent.getSerializableExtra(SyncConstants.EXTRA_SERVICE_REQUEST_ID);
         // Extract the ResultReceiver that will be used to notify
         ResultReceiver resultReceiver = intent.getParcelableExtra(SyncConstants.EXTRA_STATUS_RECEIVER);
         // Extract any extra data that comes in the Intent
@@ -200,7 +200,7 @@ public abstract class SyncService extends Service {
                 		extras = new Bundle();
                 	}
                     extras.putSerializable(SyncConstants.EXTRA_SERVICE_EXCEPTION, e);
-                    extras.putParcelable(SyncConstants.EXTRA_SERVICE_REQUEST_ID, serviceRequest);
+                    extras.putSerializable(SyncConstants.EXTRA_SERVICE_REQUEST_ID, serviceRequest);
                     resultReceiver.send(SyncStatus.STATUS_ERROR.getValue(), extras);
                     resultReceiver = null;
                 }
@@ -209,7 +209,7 @@ public abstract class SyncService extends Service {
             if (extras == null) {
                 extras = new Bundle();
             }
-            extras.putParcelable(SyncConstants.EXTRA_SERVICE_REQUEST_ID, serviceRequest);
+            extras.putSerializable(SyncConstants.EXTRA_SERVICE_REQUEST_ID, serviceRequest);
 
             if (resultReceiver != null) {
                 resultReceiver.send(SyncStatus.STATUS_FINISHED.getValue(), extras);

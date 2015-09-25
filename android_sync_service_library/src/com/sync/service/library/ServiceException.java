@@ -32,6 +32,10 @@ public class ServiceException extends Exception {
         super(ex);
         mMessage = message;
     }
+    
+    public IServiceException getError() {
+    	return mMessage;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -1,5 +1,7 @@
 package com.sync.service.library;
 
+import java.io.Serializable;
+
 import android.annotation.SuppressLint;
 import android.os.Parcelable;
 
@@ -13,7 +15,7 @@ import android.os.Parcelable;
  * 
  */
 @SuppressLint("ParcelCreator")
-public interface IServiceRequest extends Parcelable {
+public interface IServiceRequest extends Serializable {
 
 
     /**

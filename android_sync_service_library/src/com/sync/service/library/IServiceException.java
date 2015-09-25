@@ -16,5 +16,7 @@ public interface IServiceException {
 	 * @return - the String for the exception
 	 */
 	public String getExceptionMsge();
+	
+	public int getExceptionCode();
 
 }
