@@ -1,8 +1,0 @@
-<resources>
-
-    <string name="app_name">My First Wearable</string>
-    
-    <string name="hello_square">Hello Square</string>
-    <string name="hello_round">Hello Round</string>
-
-</resources>
