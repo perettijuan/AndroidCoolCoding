@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:padding="@dimen/main_screen_padding">
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_tasks"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <com.jpp.androidchallenge.ui.extention.RobotoTextView
+        android:id="@+id/txt_empty_tasks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        style="@android:style/TextAppearance.Large"
+        android:text="@string/empty_tasks"
+        android:gravity="center_horizontal"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pg_loading_tasks"
+        android:layout_centerInParent="true" />
+
+
+</RelativeLayout>

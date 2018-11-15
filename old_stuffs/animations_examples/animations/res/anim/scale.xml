@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scale xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="300"
+    android:fillAfter="true"
+    android:fromXScale="0.0"
+    android:fromYScale="0.0"
+    android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+    android:pivotX="50%"
+    android:pivotY="50%"
+    android:toXScale="1.0"
+    android:toYScale="1.0" />
+<!--
+This will set the pivot point to the centre of the animated view. Note how the pivot point coordinates are specified in percent. There are three different ways to specify the pivot point.
+50%   is the centre of the animated view (relative to view).
+50%p   is the centre of the view’s parent (relative to parent).
+50   is 50 pixels from the top/left of the animated view (absolute).
+-->

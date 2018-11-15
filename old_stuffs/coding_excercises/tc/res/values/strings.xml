@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="app_name">TC Coding Exercise</string>
+    <string name="tenth_character_request">10th character</string>
+    <string name="every_tenth_character_request">Every 10th character</string>
+    <string name="word_counter">Word Count</string>
+    <string name="processing">Processing&#8230;</string>
+    <string name="execute">Execute</string>
+    <string name="generic_error">Oops, something went wrong.</string>
+
+</resources>
