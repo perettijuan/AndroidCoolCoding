@@ -1,0 +1,11 @@
+####################################################################################################
+#################################### A NOTE ABOUT CONFIGURATION ####################################
+####################################################################################################
+
+Nov, 15 - 2018
+
+I had a really really hard time configuring this project to use Android Jetpack (androidx).
+After struggling with many possible configurations, I realized that configuring gradle.properties
+the way it is now helps me to use Jetpack.
+Also, it seems that the navigation library version 1.0.0-alpha07 works with appCompatVersion 1.0.0.
+I couldn't make it compile with the up-to-date version (1.0.2).
