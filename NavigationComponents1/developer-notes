@@ -1,11 +1,21 @@
+
+Nov, 15 - 2018
 ####################################################################################################
 #################################### A NOTE ABOUT CONFIGURATION ####################################
 ####################################################################################################
-
-Nov, 15 - 2018
 
 I had a really really hard time configuring this project to use Android Jetpack (androidx).
 After struggling with many possible configurations, I realized that configuring gradle.properties
 the way it is now helps me to use Jetpack.
 Also, it seems that the navigation library version 1.0.0-alpha07 works with appCompatVersion 1.0.0.
 I couldn't make it compile with the up-to-date version (1.0.2).
+
+
+Nov, 15 - 2018
+####################################################################################################
+#################################### A NOTE ABOUT NAV DRAWER #######################################
+####################################################################################################
+
+How do I open an item from the navigation drawer? This is awesome and tricky at the same time.
+The key is in the name used in the xml file that defines the navigation. The android:id attribute
+used to identify a Fragment, needs to be the same that the android:id in the menu definition file.
