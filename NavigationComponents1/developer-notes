@@ -1,3 +1,5 @@
+SOURCE ====> https://proandroiddev.com/navigation-architecture-component-for-the-rest-of-us-faafa890e5
+
 
 Nov, 15 - 2018
 ####################################################################################################
@@ -19,3 +21,13 @@ Nov, 15 - 2018
 How do I open an item from the navigation drawer? This is awesome and tricky at the same time.
 The key is in the name used in the xml file that defines the navigation. The android:id attribute
 used to identify a Fragment, needs to be the same that the android:id in the menu definition file.
+
+
+Nov, 16 - 2018
+####################################################################################################
+########################### A NOTE ABOUT SHARED ELEMENT TRANSITIONS ################################
+####################################################################################################
+
+Even thought I followed the (very short) explanation in the official documentation on how to perform
+shared element transitions, I couldn't make it work. This is the link I followed:
+https://developer.android.com/topic/libraries/architecture/navigation/navigation-implementing#shared-element
