@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="horizontal">
 
 
-  <TextView
-    android:id="@+id/movie_detail_name"
+  <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="name" />
-</LinearLayout>
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+      android:id="@+id/movie_detail_name"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="name" />
+
+    <TextView
+      android:id="@+id/secondview"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="nameejknasldiajsbhdoiahsoidphaop sudhoiuahsdpoihnd;soicfo;sadihvop;aisdhf;oasdnjfop ;iasdhjp;oashjdo;fihjasdp;ofhj asp;doifhjp;osadihfoas;d;dksa;osadjfno;asdhjn;lknsadlhsdofuhs" />
+  </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>

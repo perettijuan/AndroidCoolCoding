@@ -1,6 +1,7 @@
 package com.jpp.navigationcomponents.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -10,6 +11,10 @@ import androidx.navigation.ui.NavigationUI.*
 import com.jpp.navigationcomponents.R
 
 import kotlinx.android.synthetic.main.activity_main.*
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.ViewCompat.setActivated
+import androidx.core.view.ViewCompat.setActivated
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        lockAppBarClosed()
 
         setupNavigation()
     }
@@ -57,5 +63,24 @@ class MainActivity : AppCompatActivity() {
          * updated when the destination changes.
          */
         setupWithNavController(navigationView, navController)
+    }
+
+
+    private fun lockAppBarClosed() {
+        appBarLayout.setExpanded(false, false)
+        appBarLayout.isActivated = false
+        val lp = appBarLayout.layoutParams as CoordinatorLayout.LayoutParams
+        lp.height = resources.getDimension(R.dimen.actionBarSize).toInt()
+        collapsingImage.visibility = View.GONE
+        collapsing_toolbar.isTitleEnabled = false
+    }
+
+    fun unlockAppBarOpen() {
+        appBarLayout.setExpanded(true, false)
+        appBarLayout.isActivated = true
+        val lp = appBarLayout.layoutParams as CoordinatorLayout.LayoutParams
+        lp.height = resources.getDimension(R.dimen.toolbar_expand_height).toInt()
+        collapsingImage.visibility = View.VISIBLE
+        collapsing_toolbar.isTitleEnabled = true
     }
 }

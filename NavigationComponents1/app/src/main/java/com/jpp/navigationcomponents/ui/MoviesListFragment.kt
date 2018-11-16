@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jpp.navigationcomponents.R
 import com.jpp.navigationcomponents.domain.Movie
 import com.jpp.navigationcomponents.domain.MoviesManager
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.movies_list_fragment.*
 
 class MoviesListFragment : Fragment() {
@@ -32,9 +33,9 @@ class MoviesListFragment : Fragment() {
         return inflater.inflate(R.layout.movies_list_fragment, container, false)
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupRecyclerView()
 
         moviesAdapter.updateMovies(MoviesManager.getMovieList())

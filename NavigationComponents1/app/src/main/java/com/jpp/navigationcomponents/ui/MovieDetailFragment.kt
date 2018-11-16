@@ -22,6 +22,8 @@ class MovieDetailFragment : Fragment() {
         sharedElementEnterTransition = ChangeBounds().apply {
             enterTransition = transition
         }
+
+        (activity as MainActivity).unlockAppBarOpen()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -38,4 +40,6 @@ class MovieDetailFragment : Fragment() {
 
         movie_detail_name.text = movie?.name
     }
+
+
 }
