@@ -31,3 +31,19 @@ Nov, 16 - 2018
 Even thought I followed the (very short) explanation in the official documentation on how to perform
 shared element transitions, I couldn't make it work. This is the link I followed:
 https://developer.android.com/topic/libraries/architecture/navigation/navigation-implementing#shared-element
+
+Nov, 17 - 2018
+####################################################################################################
+############################### A NOTE ABOUT COLLAPSING TOOLBAR ####################################
+####################################################################################################
+
+This one was tricky too. I order to implement this I ended up doing something that I'm not entirely
+happy with: the CollapsingToolbarLayout element is located in the hosting Activity layout (activity_main.xml).
+Whenever a new Fragment is attached to the hosting Activity, the Fragment itself takes care of
+enabling/disabling this view configuration accessing a public method in the Activity.
+I don't like this approach because I don't like that the Fragments are aware of some behavior in the
+Activity.
+I have an idea to avoid this, but requires more time and effort and I'll try it directly in MoviesPreview:
+we can have a ViewModel that controls this behavior itself. So, for instance, the ViewModel that shows the
+content of the initial Fragment communicates with the ViewModel that controls the behavior of the Activity
+and enables/disables the collapsing toolbar when enters to the details screen.
