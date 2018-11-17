@@ -1,0 +1,25 @@
+android_sync_service_library
+This is a library used to execute background operations in a very simple way. It's based on the IntentService implementation of the Android SDK, with the singularity of allowing multiple requests to run in parallel. As the IntentService implementation, this Service spreads a new thread (as many as requested for every independent request) and executes the task in that thread. Once that the work is done, the client is notifyed using a ResultReceiver that is passed as parameter in the request. I will add an example of usage in some future. 
+TODO: refactor the SyncService architecture to allow a more flexible communication between the background thread/s and the UI thread
+
+
+
+
+animation_examples
+Contains several examples of animations that can be used in the Android framework. These animations are based in the animations framework previous to Honeycomb release. 
+TODO 1 : review the animations framework provided by the 4.x release and the usage of the NineOlds library. 
+TODO 2 :add examples for animations and transition framework introduced in Lollipop releases.
+
+
+
+
+patterns
+This folder contains several examples of patterns that can be applied in the development of new Android applications. It's oriented to show some helpful examples that allowed me to develop some of my work. 
+MVP pattern example: Model View Presenter example pattern - this pattern is used to assign responsibilities properly between the View that is shown to the user, a Presenter that takes care of the logic used for showing the view and the Model that represents the business logic. 
+Observer Pattern: an implementation of the worldwide known Gang of Four's Observer Pattern
+
+
+
+
+wearables
+Contains examples of wearables applications
