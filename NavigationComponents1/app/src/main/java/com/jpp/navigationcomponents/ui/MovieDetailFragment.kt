@@ -5,25 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.transition.ChangeBounds
-import androidx.transition.TransitionInflater
 import com.jpp.navigationcomponents.R
 import com.jpp.navigationcomponents.domain.MoviesManager
+import com.jpp.navigationcomponents.ui.MovieDetailFragmentArgs.fromBundle
 import kotlinx.android.synthetic.main.fragment_movie_detail.*
 
 class MovieDetailFragment : Fragment() {
 
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        val transition = TransitionInflater.from(this.activity).inflateTransition(android.R.transition.move)
-
-        sharedElementEnterTransition = ChangeBounds().apply {
-            enterTransition = transition
-        }
-
-        (activity as MainActivity).unlockAppBarOpen()
+        (activity as MainActivity).unlockApp()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -35,11 +26,9 @@ class MovieDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val movieId = arguments?.getInt("movie_id") ?: 1
+        val movieId = fromBundle(arguments).movieId
         val movie = MoviesManager.getMovie(movieId)
 
         movie_detail_name.text = movie?.name
     }
-
-
 }

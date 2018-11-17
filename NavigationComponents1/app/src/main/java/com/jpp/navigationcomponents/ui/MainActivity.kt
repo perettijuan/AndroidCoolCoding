@@ -1,19 +1,16 @@
 package com.jpp.navigationcomponents.ui
 
+
+import android.animation.ValueAnimator
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-
-
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.GravityCompat
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.NavigationUI.*
 import com.jpp.navigationcomponents.R
-
 import kotlinx.android.synthetic.main.activity_main.*
-import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.view.ViewCompat.setActivated
-import androidx.core.view.ViewCompat.setActivated
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        lockAppBarClosed()
+        lockAppBar()
 
         setupNavigation()
     }
@@ -66,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun lockAppBarClosed() {
+    fun lockAppBar() {
         appBarLayout.setExpanded(false, false)
         appBarLayout.isActivated = false
         val lp = appBarLayout.layoutParams as CoordinatorLayout.LayoutParams
@@ -75,11 +72,27 @@ class MainActivity : AppCompatActivity() {
         collapsing_toolbar.isTitleEnabled = false
     }
 
-    fun unlockAppBarOpen() {
+    /**
+     * Unlock the AppBarLayout with an animation.
+     * The idea is that the Fragments that are shown by this Activity, takes the responsibility
+     * of enabling/disabling the scrolling behavior of the CollapsingToolbarLayout that is
+     * hosted in this Activity.
+     */
+    fun unlockApp() {
         appBarLayout.setExpanded(true, false)
         appBarLayout.isActivated = true
-        val lp = appBarLayout.layoutParams as CoordinatorLayout.LayoutParams
-        lp.height = resources.getDimension(R.dimen.toolbar_expand_height).toInt()
+
+
+        val valueAnimator = ValueAnimator.ofInt(appBarLayout.measuredHeight, resources.getDimension(R.dimen.toolbar_expand_height).toInt())
+        valueAnimator.addUpdateListener {
+            val newHeight = it.animatedValue as Int
+            val lp = appBarLayout.layoutParams as CoordinatorLayout.LayoutParams
+            lp.height = newHeight
+            appBarLayout.layoutParams = lp
+        }
+        valueAnimator.duration = 300
+        valueAnimator.start()
+
         collapsingImage.visibility = View.VISIBLE
         collapsing_toolbar.isTitleEnabled = true
     }

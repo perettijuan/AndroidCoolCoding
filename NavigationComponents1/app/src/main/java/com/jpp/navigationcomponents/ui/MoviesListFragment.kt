@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,18 +13,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jpp.navigationcomponents.R
 import com.jpp.navigationcomponents.domain.Movie
 import com.jpp.navigationcomponents.domain.MoviesManager
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.movies_list_fragment.*
 
 class MoviesListFragment : Fragment() {
 
     private val moviesAdapter by lazy {
-        MoviesAdapter { movie, textView ->
-            val extras = FragmentNavigatorExtras(textView to "secondTransitionName")
-            val bundle = Bundle()
-            bundle.putInt("movie_id", movie.id)
-            findNavController().navigate(R.id.movieDetailFragment, bundle, null, extras)
+        MoviesAdapter { movie ->
+            val navDirections = MoviesListFragmentDirections.actionMoviesListFragmentToMovieDetailFragment(movie.id)
+            findNavController().navigate(navDirections)
         }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        (activity as MainActivity).lockAppBar()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -53,7 +53,7 @@ class MoviesListFragment : Fragment() {
     }
 
 
-    class MoviesAdapter(private var movieList: List<Movie> = emptyList(), private val clickListener: (Movie, TextView) -> Unit) : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
+    class MoviesAdapter(private var movieList: List<Movie> = emptyList(), private val clickListener: (Movie) -> Unit) : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.movie_list_item, parent, false))
 
@@ -72,10 +72,10 @@ class MoviesListFragment : Fragment() {
 
         class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
 
-            fun bindMovie(movie: Movie, clickListener: (Movie, TextView) -> Unit) {
+            fun bindMovie(movie: Movie, clickListener: (Movie) -> Unit) {
                 itemView.findViewById<TextView>(R.id.movie_name).text = movie.name
                 itemView.setOnClickListener {
-                    clickListener(movie, itemView.findViewById(R.id.movie_name))
+                    clickListener(movie)
                 }
             }
 

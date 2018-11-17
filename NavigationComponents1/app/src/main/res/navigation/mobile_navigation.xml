@@ -13,7 +13,11 @@
 
     <action
       android:id="@+id/action_moviesListFragment_to_movieDetailFragment"
-      app:destination="@id/movieDetailFragment" />
+      app:destination="@id/movieDetailFragment"
+      app:enterAnim="@anim/enter_slide_down"
+      app:exitAnim="@anim/exit_slide_down"
+      app:popEnterAnim="@anim/pop_enter_slide_up"
+      app:popExitAnim="@anim/pop_exit_slide_up" />
 
   </fragment>
 
@@ -22,8 +26,9 @@
     android:name="com.jpp.navigationcomponents.ui.MovieDetailFragment"
     android:label="MovieDetailFragment"
     tools:layout="@layout/fragment_movie_detail">
-
-
+    <argument
+      android:name="movieId"
+      app:argType="integer" />
   </fragment>
 
   <fragment
@@ -31,6 +36,4 @@
     android:name="com.jpp.navigationcomponents.ui.SearchFragment"
     android:label="SearchFragment"
     tools:layout="@layout/fragment_search"/>
-
-
 </navigation>
