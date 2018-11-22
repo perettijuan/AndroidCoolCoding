@@ -9,12 +9,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jpp.architecturecomponents.R
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.main_activity_layout.*
+import javax.inject.Inject
 
 /**
  * This is a very simple application that will, in time, show a list of items. The main goal
@@ -37,8 +40,11 @@ import kotlinx.android.synthetic.main.main_activity_layout.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainActivityViewModel
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity_layout)
 
@@ -51,7 +57,7 @@ class MainActivity : AppCompatActivity() {
          * From Google samples:
          * Re-created activities receive the same MyViewModel instance created by the first activity.
          */
-        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java).apply {
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainActivityViewModel::class.java).apply {
             bindViewState().observe(this@MainActivity, Observer { activityState ->
                 renderState(activityState)
             })

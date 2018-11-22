@@ -8,6 +8,7 @@ import com.jpp.architecturecomponents.domain.GetItemsUseCase
 import kotlinx.coroutines.*
 
 import kotlinx.coroutines.android.Main
+import javax.inject.Inject
 
 /**
  * ViewModel for the MainActivity.
@@ -32,7 +33,7 @@ import kotlinx.coroutines.android.Main
  * to the context - what ends up in cancelling any work that is being executed in the background
  * coroutine.
  */
-class MainActivityViewModel : ViewModel() {
+class MainActivityViewModel @Inject constructor(private val useCase: GetItemsUseCase): ViewModel() {
 
     /*
      * This Job represents the work that it is being done in the
@@ -68,11 +69,6 @@ class MainActivityViewModel : ViewModel() {
      * This LiveData object represents the current state of the MainActivity at any given time.
      */
     private val viewState by lazy { MutableLiveData<MainActivityViewState>().apply { value = MainActivityViewState.Loading } }
-
-    /*
-     * The use case executed.
-     */
-    private val useCase = GetItemsUseCase()
 
     /*
      * Reduces the state to ensure that we don't show duplicated states.
