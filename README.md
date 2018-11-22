@@ -3,9 +3,13 @@
 A repository to test some concepts and ideas
 
 <h2>NavigationComponents1</h2>
-<p>A demo of <a href="https://developer.android.com/topic/libraries/architecture/navigation/">Navigation Component Architecture</a> </br>
-A demo of <a href="https://developer.android.com/topic/libraries/architecture/viewmodel/">View Models</a> 
+<p>A demo of <a href="https://developer.android.com/topic/libraries/architecture/navigation/">Navigation Component Architecture</a>
+</p>
+
+<h2>ArchitectureComponents</h2>
+<p>A demo of <a href="https://developer.android.com/topic/libraries/architecture/viewmodel/">View Models</a> 
 and <a href="https://developer.android.com/topic/libraries/architecture/livedata/">Live Data</a> </br>
 </p>
+
 <h2>old_stuffs</h2>
 Contains old stuffs that I did in another life.
