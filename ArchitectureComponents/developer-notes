@@ -6,3 +6,14 @@ When you use Android's Architecture Components ViewModel with Kotlin Coroutines,
 the CoroutineScope is killed if you cancel the Job that gives live to your scope. Usually, the best
 place to cancel the Job and, therefore, cancel the work being executed is the onCleared() method
 of the ViewModel since it is the method called when the ViewModel is destroyed.
+
+Nov, 22 - 2018
+####################################################################################################
+############################## A NOTE ABOUT DAGGER AND VIEWMODELS ##################################
+####################################################################################################
+One of the things that I was struggling with when I decided to use ViewModels was how to use it with
+Dagger. Well, thanks to the new AndroidInjection implementation in Dagger 2.11 (and above) this is
+pretty simple. The entire work to inject ViewModels can be found in this
+commit:8e0a0d088e2bfe75b65543e515cabc1704e258f6
+Also, to follow a good example on how to add sub-modules that are particular to each Fragment:
+https://proandroiddev.com/exploring-the-new-dagger-android-module-9eb6075f1a46
