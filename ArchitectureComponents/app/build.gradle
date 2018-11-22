@@ -23,9 +23,15 @@ android {
 dependencies {
     def appCompatVersion = '1.0.0'
     def constraintLayoutVersion = '1.1.3'
+    def kotlinCoroutines = '0.27.0-eap13'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // Kotlin std library
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Kotlin coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutines"
 
     // AppCompat
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
