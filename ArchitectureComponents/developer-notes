@@ -1,0 +1,8 @@
+Nov, 22 - 2018
+####################################################################################################
+############################ A NOTE ABOUT VIEW MODEL AND COROUTINES ################################
+####################################################################################################
+When you use Android's Architecture Components ViewModel with Kotlin Coroutines, you can assume that
+the CoroutineScope is killed if you cancel the Job that gives live to your scope. Usually, the best
+place to cancel the Job and, therefore, cancel the work being executed is the onCleared() method
+of the ViewModel since it is the method called when the ViewModel is destroyed.
