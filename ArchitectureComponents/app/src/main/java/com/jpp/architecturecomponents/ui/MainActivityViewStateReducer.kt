@@ -20,7 +20,7 @@ class MainActivityViewStateReducer {
              */
             is MainActivityViewState.Items -> {
                 if (previousState is MainActivityViewState.Items) {
-                    MainActivityViewState.Items(changes.items.toMutableList().minus(previousState.items))
+                    MainActivityViewState.Items(previousState.items.toMutableList().apply { addAll(changes.items) })
                 } else {
                     MainActivityViewState.Items(changes.items)
                 }

@@ -1,5 +1,7 @@
 package com.jpp.architecturecomponents.domain
 
+import android.os.Looper
+
 /**
  * This is the unique use case that the application has: simulates that retrieves a series of
  * DomainItems from an external resource (an API).
@@ -10,6 +12,10 @@ package com.jpp.architecturecomponents.domain
  */
 class GetItemsUseCase {
     operator fun invoke(bottom: Int, top: Int): List<DomainItem> {
+        if (Looper.myLooper() == Looper.getMainLooper()) {
+            throw RuntimeException("Running on UI thread")
+        }
+
         Thread.sleep(2000)
         val listOfItems = mutableListOf<DomainItem>()
         for (i in bottom..top) {
