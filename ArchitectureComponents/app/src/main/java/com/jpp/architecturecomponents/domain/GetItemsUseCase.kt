@@ -1,6 +1,7 @@
 package com.jpp.architecturecomponents.domain
 
 import android.os.Looper
+import javax.inject.Inject
 
 /**
  * This is the unique use case that the application has: simulates that retrieves a series of
@@ -10,7 +11,7 @@ import android.os.Looper
  *
  * This class knows nothing about threading
  */
-class GetItemsUseCase {
+class GetItemsUseCase @Inject constructor() {
     operator fun invoke(bottom: Int, top: Int): List<DomainItem> {
         if (Looper.myLooper() == Looper.getMainLooper()) {
             throw RuntimeException("Running on UI thread")

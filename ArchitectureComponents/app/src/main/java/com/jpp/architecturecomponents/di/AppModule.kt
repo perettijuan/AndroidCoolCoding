@@ -13,8 +13,4 @@ class AppModule {
     @Provides
     @Singleton
     fun provideApplication(app: ApplicationImpl): Context = app
-
-    @Provides
-    @Singleton
-    fun providesUseCase(): GetItemsUseCase = GetItemsUseCase()
 }
