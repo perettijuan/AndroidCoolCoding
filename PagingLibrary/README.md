@@ -1,5 +1,5 @@
 <h2>Paging Library demo and exploration</h2>
-<p> This project contains a demo of the <a href="https://developer.android.com/topic/libraries/architecture/paging//">Paging Library.</a> 
+<p> This project contains a demo of the <a href="https://developer.android.com/topic/libraries/architecture/paging/">Paging Library.</a> 
 The goal is to understand the basic behavior and have an example of implementation to use in other projects.
 </p>
 
