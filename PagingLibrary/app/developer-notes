@@ -1,0 +1,29 @@
+SOURCE ====> https://proandroiddev.com/8-steps-to-implement-paging-library-in-android-d02500f7fffe
+
+
+Dec, 1st - 2018
+####################################################################################################
+############################# CLEAN ARCHITECTURE AND PAGING LIBRARY ################################
+####################################################################################################
+The biggest question here is: where does the UseCase/Interactor is executed?
+It doesn't seems to be a clear answer to that question, but my reasoning is that the responsibility
+lies in the DataSource (MoviesDataSource for this example). I know that this might break the design
+rules, since we have a DataSource that executes a UseCase and it should be the other way around, the
+UseCase exercises the DS to get the info. But, from my perspective, the entire Paging Library is
+a component that belongs to the UI layer, because it is an implementation detail of the Android
+platform.
+Under that assumption, the DataSource in PagingLibrary is the one that knows which page is required,
+what needs to happen when there are no more pages and, more importantly, is the one that communicates
+the results to the screen component that is showing the list. It is for this assumption that I
+think that the DataSource should play the role of the Controller (Presenter, ViewModel or whatever
+you want to call it) and execute the UseCase when a new page is required.
+
+
+Dec, 1st - 2018
+####################################################################################################
+################################# COROUTINES AND PAGING LIBRARY ####################################
+####################################################################################################
+Even thought it would be nice to have a DataSource flavor that works with a coroutine Scope, in order
+to be able to cancel the execution when the scope is cancelled, it doesn't makes sense to take the
+effort to adapt the library to work with Corountines since it already provides a way to execute the
+work in a worker thread, avoiding the heavy work of multi-threading.
