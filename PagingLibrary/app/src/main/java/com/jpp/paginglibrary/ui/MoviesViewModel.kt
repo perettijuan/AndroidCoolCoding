@@ -9,6 +9,10 @@ import androidx.paging.PagedList
 import com.jpp.paginglibrary.datalayer.Movie
 import java.util.concurrent.Executors
 
+/**
+ * A simple ViewModel implementation for the Activity.
+ * The heavy lifting to fetch the movies is done by the loading page.
+ */
 class MoviesViewModel : ViewModel() {
 
 
@@ -16,6 +20,12 @@ class MoviesViewModel : ViewModel() {
 
     private val pagedList by lazy {
         val factory = MoviesDataSourceFactory()
+
+
+        /*
+         * Map the internal state of the MoviesDataSource to a LiveData that the
+         * UI can understand.
+         */
         viewState = Transformations.switchMap(factory.mutableLiveData) {
             it.loadingWhenPages
         }

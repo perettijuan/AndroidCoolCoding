@@ -4,6 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.jpp.paginglibrary.datalayer.Movie
 
+/**
+ * Responsible for creating the DataSource instance needed and notifying
+ * when it is ready.
+ */
 class MoviesDataSourceFactory : DataSource.Factory<Int, Movie>() {
 
     val mutableLiveData by lazy { MutableLiveData<MoviesDataSource>() }
