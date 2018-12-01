@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         collapsing_toolbar.isTitleEnabled = false
     }
 
-    /**
+    /**DiffUtil
      * Unlock the AppBarLayout with an animation.
      * The idea is that the Fragments that are shown by this Activity, takes the responsibility
      * of enabling/disabling the scrolling behavior of the CollapsingToolbarLayout that is
