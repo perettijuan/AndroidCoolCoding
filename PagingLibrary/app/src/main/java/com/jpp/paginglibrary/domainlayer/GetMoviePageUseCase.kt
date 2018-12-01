@@ -10,7 +10,7 @@ import com.jpp.paginglibrary.datalayer.MoviesRepository
 class GetMoviePageUseCase(private val repository: MoviesRepository = MoviesRepository()) {
 
 
-    fun execute(page: Int): MoviesUseCaseResponse? {
+    fun execute(page: Int): MoviesUseCaseResponse {
         return repository.getNowPlayingMoviePage(page)?.let {
             MoviesUseCaseResponse.Success(it)
         } ?: MoviesUseCaseResponse.Error
