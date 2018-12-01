@@ -9,6 +9,7 @@ import kotlinx.coroutines.*
 
 import kotlinx.coroutines.android.Main
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 /**
  * ViewModel for the MainActivity.
@@ -25,15 +26,16 @@ import javax.inject.Inject
  *    to achieve immutability) using the exposed LiveData object.
  *
  * Coroutines + multithreading
- * This ViewModel is a coroutine scoped component (check https://medium.com/@elizarov/structured-concurrency-722d765aa952 for
- * more information).
+ * This ViewModel is a CoroutineScope (check https://medium.com/@elizarov/structured-concurrency-722d765aa952 for
+ * more information), meaning that all the code that is executed within a coroutine, will use the context
+ * provided by this scope.
  * The scope in which the code falls back is the UI scope, meaning that all the
  * work that needs to be executed in the background needs to explicitly use a different Dispatcher.
  * When the ViewModel is cleared, the context is killed - by cancelling the Job that gives live
  * to the context - what ends up in cancelling any work that is being executed in the background
  * coroutine.
  */
-class MainActivityViewModel @Inject constructor(private val useCase: GetItemsUseCase): ViewModel() {
+class MainActivityViewModel @Inject constructor(private val useCase: GetItemsUseCase): ViewModel(), CoroutineScope {
 
     /*
      * This Job represents the work that it is being done in the
@@ -57,7 +59,8 @@ class MainActivityViewModel @Inject constructor(private val useCase: GetItemsUse
      *
      * What is the plus (+) operator? -> https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-coroutine-context/plus.html
      */
-    private val scope: CoroutineScope = CoroutineScope(currentJob + Dispatchers.Main)
+     override val coroutineContext: CoroutineContext
+        get() = currentJob + Dispatchers.Main
 
     /*
      * The mapper that maps domain objects into UI objects.
@@ -86,7 +89,7 @@ class MainActivityViewModel @Inject constructor(private val useCase: GetItemsUse
      * asynchronously to the LiveData provided by [bindViewState].
      */
     fun onIntent(mainIntent: MainActivityIntent) {
-        scope.launch {
+        launch {
             when (mainIntent) {
                 MainActivityIntent.LoadMoreItems -> viewState.value = withContext(Dispatchers.Default) { loadMoreItems() }
             }
@@ -117,7 +120,7 @@ class MainActivityViewModel @Inject constructor(private val useCase: GetItemsUse
      */
     override fun onCleared() {
         currentJob.cancel()
-        Log.d("ViewModel", "Scope is active " + (scope.isActive))
+        Log.d("ViewModel", "Scope is active $isActive")
         super.onCleared()
     }
 }
