@@ -3,7 +3,7 @@ package com.jpp.paginglibrary.ui
 import android.os.Looper
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
-import com.jpp.paginglibrary.datalayer.Movie
+import com.jpp.paginglibrary.datalayer.DataMovie
 import com.jpp.paginglibrary.domainlayer.GetMoviePageUseCase
 import com.jpp.paginglibrary.domainlayer.MoviesUseCaseResponse
 import java.lang.RuntimeException
@@ -13,7 +13,7 @@ import java.lang.RuntimeException
  * It seams reasonable that the UseCase is executed in here, instead
  * of being executed by the ViewModel.
  */
-class MoviesDataSource : PageKeyedDataSource<Int, Movie>() {
+class MoviesDataSourceD : PageKeyedDataSource<Int, DataMovie>() {
 
 
     private val useCase by lazy { GetMoviePageUseCase() }
@@ -26,7 +26,7 @@ class MoviesDataSource : PageKeyedDataSource<Int, Movie>() {
      * We are fetching the first page data from the api
      * and passing it via the callback method to the UI.
      */
-    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Movie>) {
+    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, DataMovie>) {
         if (Looper.myLooper() == Looper.getMainLooper()) {
             throw RuntimeException("Executing on UI thread baby")
         }
@@ -53,7 +53,7 @@ class MoviesDataSource : PageKeyedDataSource<Int, Movie>() {
     * and passing it via the callback method to the UI.
     * The "params.key" variable will have the updated value.
     */
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, DataMovie>) {
 
         if (Looper.myLooper() == Looper.getMainLooper()) {
             throw RuntimeException("Executing on UI thread baby")
@@ -74,7 +74,7 @@ class MoviesDataSource : PageKeyedDataSource<Int, Movie>() {
         }
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, DataMovie>) {
         //no-op
     }
 

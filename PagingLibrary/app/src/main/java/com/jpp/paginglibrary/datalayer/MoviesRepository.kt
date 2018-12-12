@@ -6,5 +6,5 @@ package com.jpp.paginglibrary.datalayer
  * declare this as a class.
  */
 class MoviesRepository(private val apiWrapper: TheMovieDBApiWrapper = TheMovieDBApiWrapper()) {
-    fun getNowPlayingMoviePage(page: Int): MoviePage?  = apiWrapper.getNowPlaying(page)
+    fun getNowPlayingMoviePage(page: Int): DataMoviePage?  = apiWrapper.getNowPlaying(page)
 }

@@ -1,8 +1,8 @@
 package com.jpp.paginglibrary.domainlayer
 
-import com.jpp.paginglibrary.datalayer.MoviePage
+import com.jpp.paginglibrary.datalayer.DataMoviePage
 
 sealed class MoviesUseCaseResponse {
     object Error : MoviesUseCaseResponse()
-    data class Success(val moviePage: MoviePage) : MoviesUseCaseResponse()
+    data class Success(val moviePage: DataMoviePage) : MoviesUseCaseResponse()
 }

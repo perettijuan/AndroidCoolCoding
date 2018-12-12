@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jpp.paginglibrary.R
-import com.jpp.paginglibrary.datalayer.Movie
+import com.jpp.paginglibrary.datalayer.DataMovie
 import kotlinx.android.synthetic.main.main_activity_layout.*
 import kotlinx.android.synthetic.main.movie_list_item.view.*
 
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = MoviesAdapter()
 
-        viewModel.getMovieList().observe(this, Observer<PagedList<Movie>> {
+        viewModel.getMovieList().observe(this, Observer<PagedList<DataMovie>> {
             adapter.submitList(it)
         })
 
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         moviesList.adapter = adapter
     }
 
-    class MoviesAdapter : PagedListAdapter<Movie, MoviesAdapter.ViewHolder>(MovieDiffCallback()) {
+    class MoviesAdapter : PagedListAdapter<DataMovie, MoviesAdapter.ViewHolder>(MovieDiffCallback()) {
 
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.movie_list_item, parent, false))
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
         class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
 
-            fun bindMovie(movie: Movie) {
+            fun bindMovie(movie: DataMovie) {
                 itemView.movieTitle.text = movie.title
                 itemView.movieOverview.text = movie.overview
             }
@@ -71,13 +71,13 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    class MovieDiffCallback : DiffUtil.ItemCallback<Movie>() {
+    class MovieDiffCallback : DiffUtil.ItemCallback<DataMovie>() {
 
-        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+        override fun areItemsTheSame(oldItem: DataMovie, newItem: DataMovie): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+        override fun areContentsTheSame(oldItem: DataMovie, newItem: DataMovie): Boolean {
             return oldItem.id == newItem.id
         }
     }

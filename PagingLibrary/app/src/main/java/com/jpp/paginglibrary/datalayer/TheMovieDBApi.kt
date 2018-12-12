@@ -10,5 +10,5 @@ interface TheMovieDBApi {
     fun getNowPlaying(@Query("page") page: Int,
                       @Query("api_key") api_key: String,
                       @Query("language") language: String? = null,
-                      @Query("region") region: String? = null): Call<MoviePage>
+                      @Query("region") region: String? = null): Call<DataMoviePage>
 }

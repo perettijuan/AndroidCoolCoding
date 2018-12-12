@@ -28,7 +28,7 @@ class TheMovieDBApiWrapper {
     /**
      * Retrieves the provided [page] of movies currently playing on theaters.
      */
-    fun getNowPlaying(page: Int): MoviePage? =
+    fun getNowPlaying(page: Int): DataMoviePage? =
         tryCatchOrReturnNull { API.getNowPlaying(page, "eddf6980a6d7dadd72386f55f94ab571").execute().body() }
 
 

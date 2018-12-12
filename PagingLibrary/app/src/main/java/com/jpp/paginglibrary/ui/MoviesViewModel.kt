@@ -1,12 +1,11 @@
 package com.jpp.paginglibrary.ui
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.jpp.paginglibrary.datalayer.Movie
+import com.jpp.paginglibrary.datalayer.DataMovie
 import java.util.concurrent.Executors
 
 /**
@@ -43,5 +42,5 @@ class MoviesViewModel : ViewModel() {
 
 
     fun getViewState(): LiveData<MoviesViewState> = viewState
-    fun getMovieList(): LiveData<PagedList<Movie>> = pagedList
+    fun getMovieList(): LiveData<PagedList<DataMovie>> = pagedList
 }
