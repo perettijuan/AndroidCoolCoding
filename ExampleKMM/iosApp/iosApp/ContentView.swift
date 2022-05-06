@@ -8,16 +8,20 @@ struct ContentView: View {
     
     
     func load() {
-        api.executeApi { result, error in
-            if let result = result {
-                self.greet = result
-            } else if let error = error {
-                greet = "Error: \(error)"
+        api.state.watch { apiResult in
+            if let result = apiResult {
+                self.greet = result.message
             }
+        }
+        
+        api.flowMe(count: 3, succeed: true) {_,_ in 
+            
         }
     }
 
 	var body: some View {
+        
+        
         Text(greet).onAppear() {
             load()
         }

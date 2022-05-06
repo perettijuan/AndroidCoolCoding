@@ -25,14 +25,17 @@ class MainActivity : AppCompatActivity() {
         tv.text = greet()
 
         mainScope.launch {
-            kotlin.runCatching {
-                api.executeApi()
-            }.onSuccess { result ->
-                tv.text = result
-            }.onFailure {
-                tv.text = "Something failed"
+            api.state.collect { value ->
+                tv.text = value.message
             }
         }
-
+        mainScope.launch {
+            try {
+                api.flowMe(count = 3, succeed = false)
+            } catch (e: Throwable) {
+                // TODO this should happen in a Presenter
+                tv.text = "OOps"
+            }
+        }
     }
 }
