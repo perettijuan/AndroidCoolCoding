@@ -3,10 +3,16 @@ package com.jpp.myfirstkmm.android
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.badoo.reaktive.disposable.CompositeDisposable
+import com.badoo.reaktive.disposable.Disposable
+import com.badoo.reaktive.scheduler.ioScheduler
+import com.badoo.reaktive.scheduler.mainScheduler
+import com.badoo.reaktive.single.SingleObserver
+import com.badoo.reaktive.single.observeOn
+import com.badoo.reaktive.single.subscribeOn
 import com.jpp.myfirstkmm.Greeting
 import com.jpp.myfirstkmm.api.Api
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
+import com.jpp.myfirstkmm.api.ApiImpl
 
 fun greet(): String {
     return Greeting().greeting()
@@ -14,8 +20,9 @@ fun greet(): String {
 
 class MainActivity : AppCompatActivity() {
 
-    private val mainScope = MainScope()
-    private val api = Api()
+    private var disposables = CompositeDisposable()
+
+    private val api = ApiImpl()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,15 +31,22 @@ class MainActivity : AppCompatActivity() {
         val tv: TextView = findViewById(R.id.text_view)
         tv.text = greet()
 
-        mainScope.launch {
-            kotlin.runCatching {
-                api.executeApi()
-            }.onSuccess { result ->
-                tv.text = result
-            }.onFailure {
-                tv.text = "Something failed"
-            }
-        }
+        api.flowMe(3, true)
+            .subscribeOn(ioScheduler) // Switching to a background thread is necessary
+            .observeOn(mainScheduler)
+            .subscribe(object : SingleObserver<Api.Result> {
+                override fun onError(error: Throwable) {
+                    tv.text = "Something failed"
+                }
 
+                override fun onSubscribe(disposable: Disposable) {
+                    disposables.add(disposable)
+                }
+
+                override fun onSuccess(value: Api.Result) {
+                    tv.text = value.message
+                }
+
+            })
     }
 }

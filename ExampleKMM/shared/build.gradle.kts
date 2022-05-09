@@ -24,9 +24,13 @@ kotlin {
     
     sourceSets {
         val ktorVersion = "2.0.1"
+        val reaktiveVersion = "1.2.1"
         val commonMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
+                implementation("com.badoo.reaktive:reaktive:$reaktiveVersion")
+                // This one is needed for Ktor. Check https://github.com/badoo/Reaktive
+                implementation("com.badoo.reaktive:coroutines-interop:$reaktiveVersion")
             }
         }
         val commonTest by getting {
