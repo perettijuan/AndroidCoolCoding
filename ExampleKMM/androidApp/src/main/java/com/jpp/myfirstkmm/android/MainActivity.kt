@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.jpp.myfirstkmm.Greeting
 import com.jpp.myfirstkmm.api.Api
+import com.jpp.myfirstkmm.api.ApiImpl
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
@@ -15,7 +16,7 @@ fun greet(): String {
 class MainActivity : AppCompatActivity() {
 
     private val mainScope = MainScope()
-    private val api = Api()
+    private val api = ApiImpl()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,9 +32,10 @@ class MainActivity : AppCompatActivity() {
         }
         mainScope.launch {
             try {
-                api.flowMe(count = 3, succeed = false)
+                api.flowMe(count = 3, succeed = true)
             } catch (e: Throwable) {
                 // TODO this should happen in a Presenter
+                    e.printStackTrace()
                 tv.text = "OOps"
             }
         }

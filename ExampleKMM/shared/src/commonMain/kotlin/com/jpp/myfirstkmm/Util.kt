@@ -1,26 +1,29 @@
 package com.jpp.myfirstkmm
 
-import io.ktor.utils.io.core.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 
-fun <T> Flow<T>.asCommonFlow(): CommonFlow<T> = CommonFlow(this)
-class CommonFlow<T>(private val origin: Flow<T>) : Flow<T> by origin {
-    fun watch(block: (T) -> Unit): Closeable {
-        val job = Job()
+fun <T> Flow<T>.collectMe(
+    onEach: (T) -> Unit,
+    onCompletion: (cause: Throwable?) -> Unit
+): Cancellable {
+    val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
-        onEach {
-            block(it)
-        }.launchIn(CoroutineScope(Dispatchers.Main + job))
-
-        return object : Closeable {
-            override fun close() {
-                job.cancel()
+    scope.launch {
+        try {
+            collect {
+                onEach(it)
             }
+
+            onCompletion(null)
+        } catch (e: Throwable) {
+            onCompletion(e)
+        }
+    }
+
+    return object : Cancellable {
+        override fun cancel() {
+            scope.cancel()
         }
     }
 }
