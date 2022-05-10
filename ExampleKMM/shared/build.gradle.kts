@@ -1,3 +1,5 @@
+
+
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
@@ -25,12 +27,13 @@ kotlin {
     sourceSets {
         val ktorVersion = "2.0.1"
         val reaktiveVersion = "1.2.1"
+        val reaktiveIosVersion = "1.2.0"
         val commonMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("com.badoo.reaktive:reaktive:$reaktiveVersion")
                 // This one is needed for Ktor. Check https://github.com/badoo/Reaktive
-                implementation("com.badoo.reaktive:coroutines-interop:$reaktiveVersion")
+                implementation("com.badoo.reaktive:coroutines-interop:$reaktiveVersion-nmtc")
             }
         }
         val commonTest by getting {
@@ -44,8 +47,16 @@ kotlin {
             }
         }
         val androidTest by getting
-        val iosX64Main by getting
-        val iosArm64Main by getting
+        val iosX64Main by getting {
+            dependencies {
+                implementation("com.badoo.reaktive:reaktive-iossim:$reaktiveIosVersion")
+            }
+        }
+        val iosArm64Main by getting {
+            dependencies {
+                implementation("com.badoo.reaktive:reaktive-ios64:$reaktiveIosVersion")
+            }
+        }
         val iosSimulatorArm64Main by getting
         val iosMain by creating {
             dependsOn(commonMain)

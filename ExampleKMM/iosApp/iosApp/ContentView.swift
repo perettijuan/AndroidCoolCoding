@@ -2,19 +2,18 @@ import SwiftUI
 import shared
 
 struct ContentView: View {
-    let api = Api()
+    let api = ApiImpl()
     
     @State var greet = "Loading..."
     
     
     func load() {
-        api.executeApi { result, error in
-            if let result = result {
-                self.greet = result
-            } else if let error = error {
-                greet = "Error: \(error)"
-            }
+        print("load()")
+        let disposable = api.flowMe(count: 3, succeed: true).subscribe(isThreadLocal: true) {  result in
+            print("loaded()")
+            self.greet = result.message
         }
+//        disposable.dispose()
     }
 
 	var body: some View {

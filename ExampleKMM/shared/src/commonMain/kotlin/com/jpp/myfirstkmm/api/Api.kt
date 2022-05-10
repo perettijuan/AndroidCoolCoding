@@ -1,7 +1,9 @@
 package com.jpp.myfirstkmm.api
 
 import com.badoo.reaktive.coroutinesinterop.singleFromCoroutine
-import com.badoo.reaktive.single.Single
+import com.badoo.reaktive.scheduler.ioScheduler
+import com.badoo.reaktive.scheduler.mainScheduler
+import com.badoo.reaktive.single.*
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
@@ -13,7 +15,7 @@ interface Api {
         data class Failure(val m: String) : Result(m)
     }
 
-    fun flowMe(count: Int, succeed: Boolean): Single<Result>
+    fun flowMe(count: Int, succeed: Boolean): SingleWrapper<Result>
 }
 
 class ApiImpl : Api {
@@ -35,10 +37,16 @@ class ApiImpl : Api {
         return Api.Result.Success(pageResult)
     }
 
-    override fun flowMe(count: Int, succeed: Boolean): Single<Api.Result> {
-        return singleFromCoroutine {
-            executeApi(true, page)
-        }
+    private fun mockMe(): Api.Result {
+        return Api.Result.Success("Ktor sucks")
+    }
+
+    override fun flowMe(count: Int, succeed: Boolean): SingleWrapper<Api.Result> {
+        return singleFromFunction {
+            mockMe()
+        }.subscribeOn(ioScheduler) // Switching to a background thread is necessary
+            .observeOn(mainScheduler)
+            .wrap()
     }
 
     private companion object {
