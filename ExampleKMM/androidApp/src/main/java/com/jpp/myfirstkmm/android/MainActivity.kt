@@ -1,6 +1,8 @@
 package com.jpp.myfirstkmm.android
 
 import android.os.Bundle
+import android.os.Looper
+import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.badoo.reaktive.disposable.CompositeDisposable
@@ -13,6 +15,7 @@ import com.badoo.reaktive.single.subscribeOn
 import com.jpp.myfirstkmm.Greeting
 import com.jpp.myfirstkmm.api.Api
 import com.jpp.myfirstkmm.api.ApiImpl
+import com.jpp.myfirstkmm.api.Logger
 
 fun greet(): String {
     return Greeting().greeting()
@@ -22,7 +25,15 @@ class MainActivity : AppCompatActivity() {
 
     private var disposables = CompositeDisposable()
 
-    private val api = ApiImpl()
+    private val logger = object : Logger {
+        override fun logThread(message: String) {
+            Log.d(
+                "JPPLOG",
+                "Message is $message in current thread = ${Looper.myLooper() == Looper.getMainLooper()}"
+            )
+        }
+    }
+    private val api = ApiImpl(logger)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,9 +42,8 @@ class MainActivity : AppCompatActivity() {
         val tv: TextView = findViewById(R.id.text_view)
         tv.text = greet()
 
+        logger.logThread("flowMe")
         api.flowMe(3, true)
-            .subscribeOn(ioScheduler) // Switching to a background thread is necessary
-            .observeOn(mainScheduler)
             .subscribe(object : SingleObserver<Api.Result> {
                 override fun onError(error: Throwable) {
                     tv.text = "Something failed"
@@ -44,6 +54,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onSuccess(value: Api.Result) {
+                    logger.logThread("onSuccess")
                     tv.text = value.message
                 }
 

@@ -18,7 +18,11 @@ interface Api {
     fun flowMe(count: Int, succeed: Boolean): SingleWrapper<Result>
 }
 
-class ApiImpl : Api {
+interface Logger {
+    fun logThread(message: String)
+}
+
+class ApiImpl(private val logger: Logger) : Api {
 
     private val httpClient = HttpClient()
 
@@ -43,6 +47,7 @@ class ApiImpl : Api {
 
     override fun flowMe(count: Int, succeed: Boolean): SingleWrapper<Api.Result> {
         return singleFromFunction {
+            logger.logThread("executing mock me")
             mockMe()
         }.subscribeOn(ioScheduler) // Switching to a background thread is necessary
             .observeOn(mainScheduler)
