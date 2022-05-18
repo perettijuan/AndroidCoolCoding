@@ -2,7 +2,6 @@ package com.jpp.mvikmm.presentation
 
 import com.badoo.reaktive.disposable.CompositeDisposable
 import com.badoo.reaktive.disposable.Disposable
-import com.badoo.reaktive.observable.Observable
 import com.badoo.reaktive.observable.ObservableObserver
 import com.badoo.reaktive.observable.ObservableWrapper
 import com.badoo.reaktive.observable.wrap
@@ -13,7 +12,10 @@ import com.jpp.mvikmm.model.MessageRepository
  * Presenter implementation. It receives an instance of [MessageRepository] as input
  * representation of the model state.
  */
-class PresenterImpl(private val repository: MessageRepository) : Presenter {
+class PresenterImpl(
+    repository: MessageRepository,
+    lifecycle: MviLifecycle
+) : Presenter {
 
     private val disposables = CompositeDisposable()
 
@@ -58,15 +60,46 @@ class PresenterImpl(private val repository: MessageRepository) : Presenter {
                 }
             }
         )
+
+        lifecycle.events.subscribe(
+            object : ObservableObserver<MviLifecycle.Event> {
+                override fun onComplete() {
+                    // Do Nothing
+                }
+
+                override fun onError(error: Throwable) {
+                    // Not implemented for simplicity
+                }
+
+                override fun onSubscribe(disposable: Disposable) {
+                    disposables.add(disposable)
+                }
+
+                override fun onNext(value: MviLifecycle.Event) {
+                    when (value) {
+                        MviLifecycle.Event.ON_VIEW_CREATED -> pushInitialState()
+                        MviLifecycle.Event.ON_VIEW_UNREADY -> onUnready()
+                        else -> Unit // Ignore all other events.
+                    }
+                }
+            }
+        )
     }
 
-    override fun onReady() {
-        // This is breaking unidirectional data flow
-        repository.produceMessage()
-    }
-
-    override fun onUnready() {
+    private fun onUnready() {
         disposables.dispose()
+    }
+
+    private fun pushInitialState() {
+        /*
+         * Initial state is loading by default, even
+         * when the Presenter hasn't initiated the
+         * actions.
+         */
+        currentState = UiState(
+            loadingVisible = true,
+            content = UiState.Content(isVisible = false)
+        )
     }
 
     private fun transformModelIntoUiState(modelState: MessageRepository.State): UiState {

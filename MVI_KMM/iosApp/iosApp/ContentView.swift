@@ -8,12 +8,14 @@ struct ContentView: View {
     let presenter: Presenter
     let userIntent: UserIntent
     let disposable: ReaktiveDisposable
+    let lifeycle: MviLifecycleiOs
     
     
     init() {
+        lifeycle = MviLifecycleiOs()
         repository = MessageRepositoryImpl(dataSource: self.dataSource)
-        presenter = PresenterImpl(repository: self.repository)
-        userIntent = UserIntentImpl(repository: self.repository)
+        presenter = PresenterImpl(repository: self.repository, lifecycle: lifeycle)
+        userIntent = UserIntentImpl(repository: self.repository, lifecycle: lifeycle)
         
         disposable = self.presenter.uiState.subscribe(isThreadLocal: true) { vstate in
             if (vstate.loadingVisible) {
@@ -25,9 +27,9 @@ struct ContentView: View {
                 print(vstate.content.text)
             }
         }
+    
+        lifeycle.onCreated()
     }
-    
-    
 	
 	var body: some View {
         Button("Button title") {
@@ -35,17 +37,11 @@ struct ContentView: View {
             // about SwiftUi
             self.userIntent.onButtonPressed()
         }.onAppear() {
-            self.start()
+            self.lifeycle.onAppear()
+        }.onDisappear() {
+            self.lifeycle.onDisappear()
+            self.disposable.dispose()
         }
-    }
-    
-    func start() {
-        self.presenter.onReady()
-    }
-    
-    func clear() {
-        self.presenter.onUnready()
-        self.disposable.dispose()
     }
 }
 

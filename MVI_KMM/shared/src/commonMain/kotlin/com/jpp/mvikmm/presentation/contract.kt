@@ -1,5 +1,6 @@
 package com.jpp.mvikmm.presentation
 
+import com.badoo.reaktive.observable.Observable
 import com.badoo.reaktive.observable.ObservableWrapper
 
 /**
@@ -21,7 +22,6 @@ data class UiState(
  * the application (the Model) into presentation state (a.k.a. UiState).
  */
 interface Presenter {
-
     /**
      * Notifies every change in the state of View.
      *
@@ -30,20 +30,6 @@ interface Presenter {
      * Emits: new UiState.
      */
     val uiState: ObservableWrapper<UiState>
-
-    /**
-     * Called when the View is ready to start rendering [UiState].
-     *
-     * TODO This is breaking unidirectional data flow
-     */
-    fun onReady()
-
-    /**
-     * Called when the View is unable to rendering [UiState].
-     *
-     * TODO This is breaking unidirectional data flow
-     */
-    fun onUnready()
 }
 
 /**
@@ -57,6 +43,27 @@ interface UserIntent {
      * Called when the user has pressed a button.
      */
     fun onButtonPressed()
+}
+
+/**
+ * Represents the lifecycle of the Mvi components. Such lifecycle is always
+ * dictated by the View component of the layer since it is the one that
+ * defines the scope of the View hierarchy.
+ * This API is particularly useful for Android applications.
+ */
+interface MviLifecycle {
+
+    /**
+     * Represents each event that is detected by the lifeycle of the View.
+     */
+    enum class Event {
+        ON_VIEW_CREATED,
+        ON_VIEW_READY,
+        ON_VIEW_UNREADY,
+        ON_VIEW_DESTROYED
+    }
+
+    val events: Observable<Event>
 }
 
 

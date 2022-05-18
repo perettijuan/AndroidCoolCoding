@@ -18,20 +18,14 @@ import com.jpp.mvikmm.presentation.UserIntent
 
 class MainFragment : Fragment() {
 
-    private lateinit var presenter: Presenter
-    private lateinit var userIntent: UserIntent
+    lateinit var presenter: Presenter
+    lateinit var userIntent: UserIntent
 
     private lateinit var progressBar: ProgressBar
     private lateinit var textView: TextView
     private lateinit var button: Button
 
     private val disposables = CompositeDisposable()
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        presenter = ExampleDi.presenter
-        userIntent = ExampleDi.userIntent
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,6 +35,9 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // Inject
+        ExampleDi.inject(this)
+
         // init views
         progressBar = view.findViewById(R.id.loading)
         textView = view.findViewById(R.id.content_text)
@@ -67,16 +64,6 @@ class MainFragment : Fragment() {
                 renderUiState(value)
             }
         })
-    }
-
-    override fun onResume() {
-        super.onResume()
-        presenter.onReady()
-    }
-
-    override fun onPause() {
-        presenter.onUnready()
-        super.onPause()
     }
 
     private fun renderUiState(state: UiState) {
