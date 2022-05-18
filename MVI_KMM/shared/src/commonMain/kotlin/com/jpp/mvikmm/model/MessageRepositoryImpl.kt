@@ -18,9 +18,11 @@ class MessageRepositoryImpl(private val dataSource: MessageDataSource) : Message
         singleFromFunction {
             dataSource.nextMessage()
         }
-            .delay(1000, ioScheduler)
-            .subscribeOn(ioScheduler)
-            .observeOn(mainScheduler)
+            .delay(1000, mainScheduler)
+            .threadLocal()
+            // When this is commented out, iOS crashes
+//            .subscribeOn(ioScheduler)
+//            .observeOn(mainScheduler)
             .subscribe(object : SingleObserver<String> {
                 override fun onError(error: Throwable) {
                     _state.onNext(MessageRepository.State.FailedToLoad("Chain failed"))

@@ -1,6 +1,5 @@
 package com.jpp.mvikmm.presentation
 
-import com.badoo.reaktive.observable.Observable
 import com.badoo.reaktive.observable.ObservableWrapper
 
 /**
