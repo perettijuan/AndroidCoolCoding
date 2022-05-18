@@ -23,7 +23,13 @@ kotlin {
     }
     
     sourceSets {
-        val commonMain by getting
+        val reaktiveVersion = "1.2.1"
+        val reaktiveIosVersion = "1.2.0"
+        val commonMain by getting {
+            dependencies {
+                implementation("com.badoo.reaktive:reaktive:$reaktiveVersion")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
@@ -31,8 +37,16 @@ kotlin {
         }
         val androidMain by getting
         val androidTest by getting
-        val iosX64Main by getting
-        val iosArm64Main by getting
+        val iosX64Main by getting {
+            dependencies {
+                implementation("com.badoo.reaktive:reaktive-iossim:$reaktiveIosVersion")
+            }
+        }
+        val iosArm64Main by getting {
+            dependencies {
+                implementation("com.badoo.reaktive:reaktive-ios64:$reaktiveIosVersion")
+            }
+        }
         val iosSimulatorArm64Main by getting
         val iosMain by creating {
             dependsOn(commonMain)
