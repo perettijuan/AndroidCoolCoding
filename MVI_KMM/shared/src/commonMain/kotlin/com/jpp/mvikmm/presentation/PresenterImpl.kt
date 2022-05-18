@@ -4,6 +4,8 @@ import com.badoo.reaktive.disposable.CompositeDisposable
 import com.badoo.reaktive.disposable.Disposable
 import com.badoo.reaktive.observable.Observable
 import com.badoo.reaktive.observable.ObservableObserver
+import com.badoo.reaktive.observable.ObservableWrapper
+import com.badoo.reaktive.observable.wrap
 import com.badoo.reaktive.subject.publish.PublishSubject
 import com.jpp.mvikmm.model.MessageRepository
 
@@ -26,7 +28,7 @@ class PresenterImpl(private val repository: MessageRepository) : Presenter {
             _uiState.onNext(value)
         }
     private val _uiState = PublishSubject<UiState>()
-    override val uiState: Observable<UiState> = _uiState
+    override val uiState: ObservableWrapper<UiState> = _uiState.wrap()
 
     init {
         repository.messagesState.subscribe(

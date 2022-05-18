@@ -1,6 +1,7 @@
 package com.jpp.mvikmm.presentation
 
 import com.badoo.reaktive.observable.Observable
+import com.badoo.reaktive.observable.ObservableWrapper
 
 /**
  * Represents the state of the View at any given time. This class is a strict representation
@@ -29,7 +30,7 @@ interface Presenter {
      *
      * Emits: new UiState.
      */
-    val uiState: Observable<UiState>
+    val uiState: ObservableWrapper<UiState>
 
     /**
      * Called when the View is ready to start rendering [UiState].
