@@ -7,7 +7,7 @@ import com.badoo.reaktive.observable.ObservableWrapper
  * Represents the state of the View at any given time. This class is a strict representation
  * of the state of each component that is part of the view hierarchy.
  */
-data class UiState(
+data class ViewState(
     val loadingVisible: Boolean = false,
     val content: Content = Content()
 ) {
@@ -29,7 +29,7 @@ interface Presenter {
      *
      * Emits: new UiState.
      */
-    val uiState: ObservableWrapper<UiState>
+    val viewState: ObservableWrapper<ViewState>
 }
 
 /**

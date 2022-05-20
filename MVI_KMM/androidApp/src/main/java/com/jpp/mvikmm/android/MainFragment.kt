@@ -1,6 +1,5 @@
 package com.jpp.mvikmm.android
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,7 @@ import com.badoo.reaktive.disposable.CompositeDisposable
 import com.badoo.reaktive.disposable.Disposable
 import com.badoo.reaktive.observable.ObservableObserver
 import com.jpp.mvikmm.presentation.Presenter
-import com.jpp.mvikmm.presentation.UiState
+import com.jpp.mvikmm.presentation.ViewState
 import com.jpp.mvikmm.presentation.UserIntent
 
 class MainFragment : Fragment() {
@@ -47,7 +46,7 @@ class MainFragment : Fragment() {
         }
 
         // bind states
-        presenter.uiState.subscribe(object : ObservableObserver<UiState> {
+        presenter.viewState.subscribe(object : ObservableObserver<ViewState> {
             override fun onComplete() {
                 TODO("Not yet implemented")
             }
@@ -60,13 +59,13 @@ class MainFragment : Fragment() {
                 disposables.add(disposable)
             }
 
-            override fun onNext(value: UiState) {
+            override fun onNext(value: ViewState) {
                 renderUiState(value)
             }
         })
     }
 
-    private fun renderUiState(state: UiState) {
+    private fun renderUiState(state: ViewState) {
         progressBar.setVisible(state.loadingVisible)
         textView.text = state.content.text
         textView.setVisible(state.content.isVisible)

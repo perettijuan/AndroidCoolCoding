@@ -13,7 +13,7 @@ import com.jpp.mvikmm.model.MessageRepository
  * representation of the model state.
  */
 class PresenterImpl(
-    repository: MessageRepository,
+    private val repository: MessageRepository,
     lifecycle: MviLifecycle
 ) : Presenter {
 
@@ -24,43 +24,15 @@ class PresenterImpl(
      * must build the new state of the build based on a combination
      * of the model state and the existing view state.
      */
-    private var currentState: UiState = UiState()
+    private var mCurrentState: ViewState = ViewState()
         set(value) {
             field = value
             _uiState.onNext(value)
         }
-    private val _uiState = PublishSubject<UiState>()
-    override val uiState: ObservableWrapper<UiState> = _uiState.wrap()
+    private val _uiState = PublishSubject<ViewState>()
+    override val viewState: ObservableWrapper<ViewState> = _uiState.wrap()
 
     init {
-        repository.messagesState.subscribe(
-            object : ObservableObserver<MessageRepository.State> {
-                override fun onComplete() {
-                    // Do nothing
-                }
-
-                override fun onError(error: Throwable) {
-                    val newContent = currentState.content.copy(
-                        isVisible = true,
-                        text = "Something went wrong"
-                    )
-                    val newState = currentState.copy(
-                        loadingVisible = false,
-                        content = newContent
-                    )
-                    currentState = newState
-                }
-
-                override fun onSubscribe(disposable: Disposable) {
-                    disposables.add(disposable)
-                }
-
-                override fun onNext(value: MessageRepository.State) {
-                    currentState = transformModelIntoUiState(value)
-                }
-            }
-        )
-
         lifecycle.events.subscribe(
             object : ObservableObserver<MviLifecycle.Event> {
                 override fun onComplete() {
@@ -91,33 +63,62 @@ class PresenterImpl(
     }
 
     private fun pushInitialState() {
+        repository.messagesState.subscribe(
+            object : ObservableObserver<MessageRepository.State> {
+                override fun onComplete() {
+                    // Do nothing
+                }
+
+                override fun onError(error: Throwable) {
+                    val newContent = mCurrentState.content.copy(
+                        isVisible = true,
+                        text = "Something went wrong"
+                    )
+                    val newState = mCurrentState.copy(
+                        loadingVisible = false,
+                        content = newContent
+                    )
+                    mCurrentState = newState
+                }
+
+                override fun onSubscribe(disposable: Disposable) {
+                    disposables.add(disposable)
+                }
+
+                override fun onNext(value: MessageRepository.State) {
+                    mCurrentState = transformModelIntoUiState(value)
+                }
+            }
+        )
+
+
         /*
          * Initial state is loading by default, even
          * when the Presenter hasn't initiated the
          * actions.
          */
-        currentState = UiState(
+        mCurrentState = ViewState(
             loadingVisible = true,
-            content = UiState.Content(isVisible = false)
+            content = ViewState.Content(isVisible = false)
         )
     }
 
-    private fun transformModelIntoUiState(modelState: MessageRepository.State): UiState {
+    private fun transformModelIntoUiState(modelState: MessageRepository.State): ViewState {
         return when (modelState) {
-            is MessageRepository.State.Loading -> UiState(
+            is MessageRepository.State.Loading -> ViewState(
                 loadingVisible = true,
-                content = UiState.Content(isVisible = false)
+                content = ViewState.Content(isVisible = false)
             )
-            is MessageRepository.State.Loaded -> UiState(
+            is MessageRepository.State.Loaded -> ViewState(
                 loadingVisible = false,
-                content = UiState.Content(
+                content = ViewState.Content(
                     isVisible = true,
                     text = modelState.message.text
                 )
             )
-            is MessageRepository.State.FailedToLoad -> UiState(
+            is MessageRepository.State.FailedToLoad -> ViewState(
                 loadingVisible = false,
-                content = UiState.Content(
+                content = ViewState.Content(
                     isVisible = true,
                     text = "Something went wrong, we failed to load the message"
                 )
