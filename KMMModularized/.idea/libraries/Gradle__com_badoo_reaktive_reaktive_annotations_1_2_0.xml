@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.badoo.reaktive:reaktive-annotations:1.2.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badoo.reaktive/reaktive-annotations/1.2.0/6406cba2593444820bf6eb9283287f6532cf6114/reaktive-annotations-metadata-1.2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badoo.reaktive/reaktive-annotations/1.2.0/dc643052926a4ca53b2b349e0b0f1abf88c29d92/reaktive-annotations-1.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

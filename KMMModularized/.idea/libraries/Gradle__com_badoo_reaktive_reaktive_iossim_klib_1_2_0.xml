@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.badoo.reaktive:reaktive-iossim:klib:1.2.0" type="kotlin.native">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badoo.reaktive/reaktive-iossim/1.2.0/f5194de783cbded5d8a842c3c8e0e69b10d0a639/reaktive.klib!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badoo.reaktive/reaktive-iossim/1.2.0/d237d0980923300957ac0540f5907f5403aba71/reaktive-iossim-1.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

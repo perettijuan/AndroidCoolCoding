@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/KMM_Modularized.iml" filepath="$PROJECT_DIR$/.idea/modules/KMM_Modularized.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/androidApp/KMM_Modularized.androidApp.iml" filepath="$PROJECT_DIR$/.idea/modules/androidApp/KMM_Modularized.androidApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.iml" filepath="$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.androidAndroidTestRelease.iml" filepath="$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.androidAndroidTestRelease.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.androidTestFixtures.iml" filepath="$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.androidTestFixtures.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.androidTestFixturesDebug.iml" filepath="$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.androidTestFixturesDebug.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.androidTestFixturesRelease.iml" filepath="$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.androidTestFixturesRelease.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.commonMain.iml" filepath="$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.commonMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.commonTest.iml" filepath="$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.commonTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.iosArm64Main.iml" filepath="$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.iosArm64Main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.iosArm64Test.iml" filepath="$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.iosArm64Test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.iosMain.iml" filepath="$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.iosMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.iosSimulatorArm64Main.iml" filepath="$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.iosSimulatorArm64Main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.iosSimulatorArm64Test.iml" filepath="$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.iosSimulatorArm64Test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.iosTest.iml" filepath="$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.iosTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.iosX64Main.iml" filepath="$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.iosX64Main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.iosX64Test.iml" filepath="$PROJECT_DIR$/.idea/modules/businesslogic/KMM_Modularized.businesslogic.iosX64Test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.iml" filepath="$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.androidAndroidTestRelease.iml" filepath="$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.androidAndroidTestRelease.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.androidTestFixtures.iml" filepath="$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.androidTestFixtures.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.androidTestFixturesDebug.iml" filepath="$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.androidTestFixturesDebug.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.androidTestFixturesRelease.iml" filepath="$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.androidTestFixturesRelease.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.commonMain.iml" filepath="$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.commonMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.commonTest.iml" filepath="$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.commonTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.iosArm64Main.iml" filepath="$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.iosArm64Main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.iosArm64Test.iml" filepath="$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.iosArm64Test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.iosMain.iml" filepath="$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.iosMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.iosSimulatorArm64Main.iml" filepath="$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.iosSimulatorArm64Main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.iosSimulatorArm64Test.iml" filepath="$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.iosSimulatorArm64Test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.iosTest.iml" filepath="$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.iosTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.iosX64Main.iml" filepath="$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.iosX64Main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.iosX64Test.iml" filepath="$PROJECT_DIR$/.idea/modules/presentation/KMM_Modularized.presentation.iosX64Test.iml" />
+    </modules>
+  </component>
+</project>

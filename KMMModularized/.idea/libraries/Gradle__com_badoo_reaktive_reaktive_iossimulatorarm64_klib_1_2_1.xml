@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.badoo.reaktive:reaktive-iossimulatorarm64:klib:1.2.1" type="kotlin.native">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badoo.reaktive/reaktive-iossimulatorarm64/1.2.1/bfab08062cc39eaf73037f3606fc00ce737e0842/reaktive.klib!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badoo.reaktive/reaktive-iossimulatorarm64/1.2.1/515108e309d981956f5731d8c20997a77acad762/reaktive-iossimulatorarm64-1.2.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

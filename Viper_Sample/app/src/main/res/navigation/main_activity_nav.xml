@@ -6,13 +6,13 @@
 
   <fragment
     android:id="@+id/movieListFragment"
-    android:name="com.example.vipersample.MovieListFragment" >
+    android:name="com.example.vipersample.viewlayer.list.MovieListFragment" >
     <action
       android:id="@+id/action_movieListFragment_to_movieDetailsFragment"
       app:destination="@id/movieDetailsFragment" />
   </fragment>
   <fragment
     android:id="@+id/movieDetailsFragment"
-    android:name="com.example.vipersample.MovieDetailsFragment"
+    android:name="com.example.vipersample.viewlayer.detail.MovieDetailsFragment"
     android:label="MovieDetailsFragment" />
 </navigation>

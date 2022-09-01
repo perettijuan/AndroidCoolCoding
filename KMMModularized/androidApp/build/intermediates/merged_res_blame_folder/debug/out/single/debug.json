@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/juanpabloperetti/Work/Personal/AndroidCoolCoding/KMMModularized/androidApp/build/intermediates/merged_res/debug/layout_activity_main.xml.flat",
+        "source": "/Users/juanpabloperetti/Work/Personal/AndroidCoolCoding/KMMModularized/androidApp/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/juanpabloperetti/Work/Personal/AndroidCoolCoding/KMMModularized/androidApp/build/intermediates/merged_res/debug/layout_main_fragment.xml.flat",
+        "source": "/Users/juanpabloperetti/Work/Personal/AndroidCoolCoding/KMMModularized/androidApp/src/main/res/layout/main_fragment.xml"
+    }
+]

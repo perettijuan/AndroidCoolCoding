@@ -1,0 +1,6 @@
+framework module businesslogic {
+  umbrella header "placeholder.h"
+
+  export *
+  module * { export * }
+}

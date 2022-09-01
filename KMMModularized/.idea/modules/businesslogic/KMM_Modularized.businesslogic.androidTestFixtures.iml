@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":businesslogic:androidTestFixtures" external.linked.project.path="$MODULE_DIR$/../../../businesslogic" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="KMM_Modularized" external.system.module.type="sourceSet" external.system.module.version="1.0" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="kotlin-language" name="Kotlin">
+      <configuration version="4" platform="Common (experimental) " allPlatforms="JVM [1.8]/Native []/Native [general]" useProjectSettings="false" isTestModule="false" externalProjectId=":businesslogic" isHmppProject="true" pureKotlinSourceFolders="$MODULE_DIR$/../../../businesslogic/src/androidDebug/kotlin;/Users/juanpabloperetti/Work/Personal/AndroidCoolCoding/KMMModularized/businesslogic/src/debug/kotlin;/Users/juanpabloperetti/Work/Personal/AndroidCoolCoding/KMMModularized/businesslogic/src/debug/java;/Users/juanpabloperetti/Work/Personal/AndroidCoolCoding/KMMModularized/businesslogic/src/androidDebugAndroidTest/kotlin;/Users/juanpabloperetti/Work/Personal/AndroidCoolCoding/KMMModularized/businesslogic/src/androidDebugUnitTest/kotlin;/Users/juanpabloperetti/Work/Personal/AndroidCoolCoding/KMMModularized/businesslogic/src/androidRelease/kotlin;/Users/juanpabloperetti/Work/Personal/AndroidCoolCoding/KMMModularized/businesslogic/src/release/kotlin;/Users/juanpabloperetti/Work/Personal/AndroidCoolCoding/KMMModularized/businesslogic/src/release/java;/Users/juanpabloperetti/Work/Personal/AndroidCoolCoding/KMMModularized/businesslogic/src/androidReleaseUnitTest/kotlin;/Users/juanpabloperetti/Work/Personal/AndroidCoolCoding/KMMModularized/businesslogic/src/iosArm64Main/kotlin;/Users/juanpabloperetti/Work/Personal/AndroidCoolCoding/KMMModularized/businesslogic/src/iosArm64Main/kotlin;/Users/juanpabloperetti/Work/Personal/AndroidCoolCoding/KMMModularized/businesslogic/src/iosSimulatorArm64Main/kotlin;/Users/juanpabloperetti/Work/Personal/AndroidCoolCoding/KMMModularized/businesslogic/src/iosSimulatorArm64Main/kotlin;/Users/juanpabloperetti/Work/Personal/AndroidCoolCoding/KMMModularized/businesslogic/src/iosX64Main/kotlin;/Users/juanpabloperetti/Work/Personal/AndroidCoolCoding/KMMModularized/businesslogic/src/iosX64Main/kotlin">
+        <newMppModelJpsModuleKind>SOURCE_SET_HOLDER</newMppModelJpsModuleKind>
+        <compilerSettings />
+        <compilerArguments>
+          <option name="languageVersion" value="1.5" />
+          <option name="apiVersion" value="1.5" />
+          <option name="pluginOptions">
+            <array />
+          </option>
+          <option name="pluginClasspaths">
+            <array>
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-scripting-jvm/1.5.30/5012215b272c8a86cb452f07e41a7d96cec1a967/kotlin-scripting-jvm-1.5.30.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-scripting-common/1.5.30/f8206da8223a577331f54ad8771a7290eb6e8b0a/kotlin-scripting-common-1.5.30.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm/1.5.0/d8cebccdcddd029022aa8646a5a953ff88b13ac8/kotlinx-coroutines-core-jvm-1.5.0.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.5.0/65fbc439df2e4aad1f3769762d54534f1b564090/kotlin-stdlib-jdk8-1.5.0.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.5.0/f61904618ea7be07a66e0545ffe8dc2c70a19b77/kotlin-stdlib-jdk7-1.5.0.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.5.30/d68efdea04955974ac1020f8f66ef8176bfbce1f/kotlin-stdlib-1.5.30.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.5.30/649ffab7767038323fec0cc41e2d7b0a8f65a378/kotlin-stdlib-common-1.5.30.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-script-runtime/1.5.30/10697ab20bfd2f1b23baa91306950c36c4e89a8d/kotlin-script-runtime-1.5.30.jar" />
+            </array>
+          </option>
+          <option name="multiPlatform" value="true" />
+        </compilerArguments>
+      </configuration>
+    </facet>
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="SELECTED_BUILD_VARIANT" value="debug" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
+        <afterSyncTasks>
+          <task>generateDebugSources</task>
+        </afterSyncTasks>
+        <option name="ALLOW_USER_CONFIGURATION" value="false" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/androidMain/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../businesslogic/src/main/res;file://$MODULE_DIR$/../../../businesslogic/src/androidMain/res;file://$MODULE_DIR$/../../../businesslogic/src/debug/res;file://$MODULE_DIR$/../../../businesslogic/src/androidDebug/res;file://$MODULE_DIR$/../../../businesslogic/build/generated/res/rs/debug;file://$MODULE_DIR$/../../../businesslogic/build/generated/res/resValues/debug" />
+        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../businesslogic/src/androidTest/res;file://$MODULE_DIR$/../../../businesslogic/src/androidAndroidTest/res;file://$MODULE_DIR$/../../../businesslogic/src/androidTestDebug/res;file://$MODULE_DIR$/../../../businesslogic/src/androidAndroidTestDebug/res;file://$MODULE_DIR$/../../../businesslogic/build/generated/res/rs/androidTest/debug;file://$MODULE_DIR$/../../../businesslogic/build/generated/res/resValues/androidTest/debug" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
+        <option name="PROJECT_TYPE" value="1" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../businesslogic/src/androidTestFixtures/kotlin" />
+    <content url="file://$MODULE_DIR$/../../../businesslogic/src/androidTestFixtures/resources" />
+    <content url="file://$MODULE_DIR$/../../../businesslogic/src/testFixtures/java" />
+    <content url="file://$MODULE_DIR$/../../../businesslogic/src/testFixtures/kotlin" />
+    <content url="file://$MODULE_DIR$/../../../businesslogic/src/testFixtures/resources" />
+    <orderEntry type="jdk" jdkName="Android API 31 Platform" jdkType="Android SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="KMM_Modularized.businesslogic.commonMain" />
+    <orderEntry type="library" name="Gradle: com.badoo.reaktive:reaktive:1.2.1" level="project" />
+    <orderEntry type="module-library">
+      <library name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.5.30">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.5.30/649ffab7767038323fec0cc41e2d7b0a8f65a378/kotlin-stdlib-common-1.5.30.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.5.30/a625b883d02fa915dcfee82d28ea11f4db048a97/kotlin-stdlib-common-1.5.30-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>
