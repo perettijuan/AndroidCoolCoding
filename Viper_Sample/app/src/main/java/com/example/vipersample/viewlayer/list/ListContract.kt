@@ -1,5 +1,6 @@
 package com.example.vipersample.viewlayer.list
 
+import androidx.navigation.NavController
 import com.example.vipersample.datalayer.Movie
 import com.example.vipersample.datalayer.MoviePage
 import com.example.vipersample.util.Try
@@ -23,7 +24,14 @@ interface ListContract {
         suspend fun getMovies(): Try<MoviePage>
     }
 
+    // TODO TBD one repo per Entity or one repo per VIPER?
+    interface Repository {
+        suspend fun getMovies(): MoviePage?
+    }
+
     interface Router {
+        fun bind(newNavController: NavController)
+        fun unBind()
         fun openMovieDetail(item: MovieItem)
     }
 

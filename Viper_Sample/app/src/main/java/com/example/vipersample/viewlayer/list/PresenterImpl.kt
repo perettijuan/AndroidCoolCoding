@@ -6,12 +6,12 @@ import kotlinx.coroutines.*
 
 class PresenterImpl(
     private val interactor: ListContract.Interactor,
-    private val ioDispatcher: CoroutineDispatcher
+    private val router: ListContract.Router
 ) : ListContract.Presenter {
 
     private var viewInstance: ListContract.View? = null
 
-    // TBD is this the best way to have a scope? Probably not.
+    // TODO is this the best way to have a scope? Probably not.
     private var coroutineScope: CoroutineScope? = null
 
     override fun bindView(view: ListContract.View) {
@@ -28,18 +28,22 @@ class PresenterImpl(
     override fun onViewCreated() {
         coroutineScope?.launch {
             viewInstance?.showLoading()
-            val response = withContext(ioDispatcher) {
+
+            val response = withContext(Dispatchers.IO) {
                 interactor.getMovies()
             }
-            when (response) {
-                is Try.Success -> viewInstance?.showMovies(response.value.results.map { movie -> movie.toItem() })
-                is Try.Failure -> viewInstance?.showErrorMessage("Something went wrong")
+
+            withContext(Dispatchers.Main) {
+                when (response) {
+                    is Try.Success -> viewInstance?.showMovies(response.value.results.map { movie -> movie.toItem() })
+                    is Try.Failure -> viewInstance?.showErrorMessage("Something went wrong")
+                }
             }
         }
     }
 
     override fun onMovieSelected(item: ListContract.MovieItem) {
-        TODO("Not yet implemented")
+        router.openMovieDetail(item)
     }
 
 

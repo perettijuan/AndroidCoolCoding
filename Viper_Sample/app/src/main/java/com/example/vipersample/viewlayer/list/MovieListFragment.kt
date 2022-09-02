@@ -1,25 +1,19 @@
 package com.example.vipersample.viewlayer.list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.vipersample.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.vipersample.databinding.MovieListFragmentBinding
-import com.example.vipersample.viewlayer.list.InteractorImpl
-import com.example.vipersample.viewlayer.list.ListContract
-import com.example.vipersample.viewlayer.list.PresenterImpl
-import kotlinx.coroutines.Dispatchers
 
-class MovieListFragment : Fragment(), ListContract.View  {
+class MovieListFragment : Fragment(), ListContract.View {
 
     private var viewBinding: MovieListFragmentBinding? = null
-    private val presenter = PresenterImpl(
-        InteractorImpl(), Dispatchers.IO
-    )
+    private val router = RouterImpl()
+    private val presenter = PresenterImpl(InteractorImpl(RepositoryImpl()), router)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,11 +26,13 @@ class MovieListFragment : Fragment(), ListContract.View  {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        router.bind(findNavController())
         presenter.bindView(this)
     }
 
     override fun onDestroyView() {
         viewBinding = null
+        router.unBind()
         presenter.unBindView()
         super.onDestroyView()
     }
@@ -47,19 +43,31 @@ class MovieListFragment : Fragment(), ListContract.View  {
     }
 
     override fun showLoading() {
-        Log.d("MovieListFragment", "showLoading")
+        viewBinding?.movieList?.visibility = View.INVISIBLE
+        viewBinding?.errorMessage?.visibility = View.INVISIBLE
+        viewBinding?.loadingMovies?.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        Log.d("MovieListFragment", "hideLoading")
+        viewBinding?.loadingMovies?.visibility = View.INVISIBLE
     }
 
     override fun showMovies(movieList: List<ListContract.MovieItem>) {
-        Log.d("MovieListFragment", "showMovies")
+        viewBinding?.movieList?.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = MoviesAdapter { item -> presenter.onMovieSelected(item) }.apply {
+                setItems(movieList)
+            }
+        }
+        viewBinding?.errorMessage?.visibility = View.INVISIBLE
+        viewBinding?.loadingMovies?.visibility = View.INVISIBLE
+        viewBinding?.movieList?.visibility = View.VISIBLE
     }
 
     override fun showErrorMessage(message: String) {
-        Log.d("MovieListFragment", "showErrorMessage")
+        viewBinding?.movieList?.visibility = View.INVISIBLE
+        viewBinding?.loadingMovies?.visibility = View.INVISIBLE
+        viewBinding?.errorMessage?.visibility = View.VISIBLE
+        viewBinding?.errorMessage?.text = message
     }
-
 }
