@@ -8,12 +8,19 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movielist.databinding.MovieListFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ListFragment : Fragment(), ListContract.View {
 
     private var viewBinding: MovieListFragmentBinding? = null
-    private val router = ListInjector.providerRouter()
-    private val presenter = ListInjector.providePresenter()
+
+    @Inject
+    lateinit var router: ListContract.Router
+
+    @Inject
+    lateinit var presenter: ListContract.Presenter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,11 +42,6 @@ class ListFragment : Fragment(), ListContract.View {
         router.unBind()
         presenter.unBindView()
         super.onDestroyView()
-    }
-
-    override fun onDestroy() {
-        ListInjector.onDestroy()
-        super.onDestroy()
     }
 
     override fun onResume() {

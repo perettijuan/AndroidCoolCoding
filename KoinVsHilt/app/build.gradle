@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -33,6 +35,9 @@ android {
     buildFeatures {
         viewBinding true
     }
+    kapt {
+        correctErrorTypes true
+    }
 }
 
 dependencies {
@@ -48,4 +53,7 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:${androidx.recyclerview}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutines.version}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutines.version}"
+
+    implementation "com.google.dagger:hilt-android:${androidx.hilt}"
+    kapt "com.google.dagger:hilt-compiler:${androidx.hilt}"
 }

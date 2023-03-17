@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.movielist.databinding.MovieDetailFragmentBinding
-import com.example.movielist.presentation.list.ListInjector
 
 class DetailFragment : Fragment(), DetailContract.View {
 
@@ -39,7 +38,7 @@ class DetailFragment : Fragment(), DetailContract.View {
     }
 
     override fun onDestroy() {
-        ListInjector.onDestroy()
+        DetailInjector.onDestroy()
         super.onDestroy()
     }
 
