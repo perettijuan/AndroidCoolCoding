@@ -23,6 +23,7 @@ internal class ListFragment : Fragment(), ListContract.View, AndroidScopeCompone
     // This is not entirely clear. In order to use scope,
     // we need to implement AndroidScopeComponent
     override val scope: Scope by fragmentScope()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // This is actually very interesting. All dependencies
