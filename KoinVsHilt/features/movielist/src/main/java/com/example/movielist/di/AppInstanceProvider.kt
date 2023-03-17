@@ -1,9 +1,9 @@
 package com.example.movielist.di
 
-import com.example.movielist.list.data.MoviesApi
-import com.example.movielist.list.data.MoviesApiImpl
-import com.example.movielist.list.domain.MoviesRepository
-import com.example.movielist.list.domain.MoviesRepositoryImpl
+import com.example.movielist.data.MoviesApi
+import com.example.movielist.data.MoviesApiImpl
+import com.example.movielist.domain.MoviesRepository
+import com.example.movielist.domain.MoviesRepositoryImpl
 import com.jpp.core.networking.HttpClientProvider
 import com.jpp.core.networking.HttpClientProviderImpl
 

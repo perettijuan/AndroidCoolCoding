@@ -1,4 +1,4 @@
-package com.example.movielist.list.presentation
+package com.example.movielist.presentation.list
 
 import com.example.movielist.di.AppInstanceProvider
 

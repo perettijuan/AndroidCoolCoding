@@ -6,5 +6,9 @@
 
   <fragment
     android:id="@+id/movieListFlow"
-    android:name="com.example.movielist.list.presentation.ListFragment" />
+    android:name="com.example.movielist.presentation.list.ListFragment" />
+  <fragment
+    android:id="@+id/detailFragment"
+    android:name="com.example.movielist.presentation.detail.DetailFragment"
+    android:label="DetailFragment" />
 </navigation>

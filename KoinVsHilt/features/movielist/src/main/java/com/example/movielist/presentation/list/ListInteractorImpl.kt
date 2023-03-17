@@ -1,6 +1,6 @@
-package com.example.movielist.list.presentation
+package com.example.movielist.presentation.list
 
-import com.example.movielist.list.domain.MoviesRepository
+import com.example.movielist.domain.MoviesRepository
 import com.jpp.core.networking.MoviePage
 import com.jpp.core.utils.Try
 

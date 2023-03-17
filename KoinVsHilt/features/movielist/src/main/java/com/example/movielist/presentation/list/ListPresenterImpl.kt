@@ -1,4 +1,4 @@
-package com.example.movielist.list.presentation
+package com.example.movielist.presentation.list
 
 import com.jpp.core.networking.Movie
 import com.jpp.core.utils.Try

@@ -1,6 +1,8 @@
-package com.example.movielist.list.presentation
+package com.example.movielist.presentation.list
 
 import androidx.navigation.NavController
+import com.example.movielist.R
+import com.example.movielist.presentation.detail.DetailInjector
 
 // Fragment scoped
 class ListRouterImpl : ListContract.Router {
@@ -17,7 +19,7 @@ class ListRouterImpl : ListContract.Router {
     }
 
     override fun openMovieDetail(item: ListContract.MovieItem) {
-        // TODO JPP
-        // navController?.navigate(R.id.movieDetailsFragment)
+        DetailInjector.selectedMovieId = item.id
+        navController?.navigate(R.id.detailFragment)
     }
 }

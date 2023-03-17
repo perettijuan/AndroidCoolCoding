@@ -36,3 +36,13 @@ data class MoviePage(
     @SerialName("total_results")
     val total_results: Int
 )
+
+@Serializable
+data class MovieDetail(
+    @SerialName("id")
+    val id: Double,
+    @SerialName("title")
+    val title: String,
+    @SerialName("overview")
+    val overview: String
+)
