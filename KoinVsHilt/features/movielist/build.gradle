@@ -38,9 +38,6 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:${androidx.navigation_ktx}"
     implementation "androidx.navigation:navigation-ui-ktx:${androidx.navigation_ktx}"
     implementation "androidx.recyclerview:recyclerview:${androidx.recyclerview}"
-    implementation "androidx.core:core-splashscreen:${androidx.splashscreen}"
-    implementation "androidx.lifecycle:lifecycle-process:${androidx.lifecycle}"
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:${androidx.swiperefreshlayout}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutines.version}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutines.version}"
 }

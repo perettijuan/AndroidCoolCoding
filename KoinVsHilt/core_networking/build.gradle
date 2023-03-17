@@ -1,20 +1,18 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 }
 
 android {
-    namespace 'com.jpp.koinvshilt'
+    namespace 'com.jpp.core.networking'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.jpp.koinvshilt"
         minSdk 24
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -33,16 +31,14 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':features:movielist')
-    implementation project(path: ':features:toprated')
-
     implementation "androidx.core:core-ktx:${androidx.core_ktx}"
     implementation "androidx.appcompat:appcompat:${androidx.appcompat}"
-    implementation "com.google.android.material:material:${androidv.material}"
-    implementation "androidx.constraintlayout:constraintlayout:${androidx.constraintlayout}"
-    implementation "androidx.navigation:navigation-fragment-ktx:${androidx.navigation_ktx}"
-    implementation "androidx.navigation:navigation-ui-ktx:${androidx.navigation_ktx}"
-    implementation "androidx.recyclerview:recyclerview:${androidx.recyclerview}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutines.version}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutines.version}"
+
+    // Ktor
+    implementation "io.ktor:ktor-client-android:${ktor.version}"
+    implementation "io.ktor:ktor-client-serialization:${ktor.version}"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:${ktor.version}"
+    implementation 'io.ktor:ktor-client-logging-jvm:2.2.2'
 }
