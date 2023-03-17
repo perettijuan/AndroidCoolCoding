@@ -8,13 +8,28 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jpp.toprated.databinding.MovieListFragmentBinding
+import com.jpp.toprated.di.TopRatedModule
+import org.koin.android.ext.android.inject
+import org.koin.android.scope.AndroidScopeComponent
+import org.koin.androidx.scope.fragmentScope
+import org.koin.core.scope.Scope
 
-class ListFragment : Fragment(), ListContract.View {
+class ListFragment : Fragment(), ListContract.View, AndroidScopeComponent {
 
     private var viewBinding: MovieListFragmentBinding? = null
+    private val router: ListContract.Router by inject()
+    private val presenter: ListContract.Presenter by inject()
 
-    private val router = ListInjector.providerRouter()
-    private val presenter = ListInjector.providePresenter()
+    // This is not entirely clear. In order to use scope,
+    // we need to implement AndroidScopeComponent
+    override val scope: Scope by fragmentScope()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // This is actually very interesting. All dependencies
+        // can be internal with this approach.
+        TopRatedModule.init()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,11 +56,6 @@ class ListFragment : Fragment(), ListContract.View {
     override fun onResume() {
         super.onResume()
         presenter.onViewCreated()
-    }
-
-    override fun onDestroy() {
-        ListInjector.onDestroy()
-        super.onDestroy()
     }
 
     override fun showLoading() {

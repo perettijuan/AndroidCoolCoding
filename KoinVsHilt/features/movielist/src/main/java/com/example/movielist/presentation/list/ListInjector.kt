@@ -11,5 +11,4 @@ internal val movieListInstances: Module = module {
         factory<ListContract.Interactor> { ListInteractorImpl(repository = get()) }
         factory<ListContract.Presenter> { ListPresenterImpl(interactor = get(), router = get()) }
     }
-
 }

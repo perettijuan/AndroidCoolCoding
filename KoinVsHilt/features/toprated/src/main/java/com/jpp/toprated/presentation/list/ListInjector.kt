@@ -1,40 +1,14 @@
 package com.jpp.toprated.presentation.list
 
-import com.jpp.toprated.di.ModuleInstanceProvider
-
+import org.koin.core.module.Module
+import org.koin.dsl.module
 
 // Fragment Scoped
-object ListInjector {
-
-    private var presenter: ListContract.Presenter? = null
-    private var router: ListContract.Router? = null
-    private var interactor: ListContract.Interactor? = null
-
-    fun providePresenter(): ListContract.Presenter {
-        return ListPresenterImpl(providesInteractor(), providerRouter())
-    }
-
-    fun providerRouter(): ListContract.Router {
-        var safeRouter = router
-        if (safeRouter == null) {
-            safeRouter = ListRouterImpl()
-            router = safeRouter
-        }
-        return safeRouter
-    }
-
-    fun providesInteractor(): ListContract.Interactor {
-        var safeInteractor = interactor
-        if (safeInteractor == null) {
-            safeInteractor = ListInteractorImpl(ModuleInstanceProvider.getMoviesRepository())
-            interactor = safeInteractor
-        }
-        return safeInteractor
-    }
-
-    fun onDestroy() {
-        presenter = null
-        router = null
-        interactor = null
+internal val movieListInstances: Module = module {
+    scope<ListFragment> {
+        // Router needs to be shared between the Fragment and the Presenter
+        scoped<ListContract.Router> { ListRouterImpl() }
+        factory<ListContract.Interactor> { ListInteractorImpl(repository = get()) }
+        factory<ListContract.Presenter> { ListPresenterImpl(interactor = get(), router = get()) }
     }
 }
