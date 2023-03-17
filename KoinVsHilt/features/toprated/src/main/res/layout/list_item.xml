@@ -4,22 +4,11 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
-  <androidx.appcompat.widget.AppCompatButton
-    android:id="@+id/movieList"
+  <TextView
+    android:id="@+id/movieName"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Movie list"
-    app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
-
-  <androidx.appcompat.widget.AppCompatButton
-    android:id="@+id/topRated"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Top rated"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/movieList" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

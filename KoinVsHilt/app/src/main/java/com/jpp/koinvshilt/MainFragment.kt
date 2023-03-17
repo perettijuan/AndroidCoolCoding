@@ -26,6 +26,9 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         viewBinding?.movieList?.setOnClickListener {
             findNavController().navigate(com.example.movielist.R.id.movielist_graph)
         }
+        viewBinding?.topRated?.setOnClickListener {
+            findNavController().navigate(com.jpp.toprated.R.id.toprated_graph)
+        }
     }
 
     override fun onDestroyView() {
