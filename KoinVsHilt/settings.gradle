@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "KoinVsHilt"
 include ':app'
+include ':features'
+include ':features:movielist'
