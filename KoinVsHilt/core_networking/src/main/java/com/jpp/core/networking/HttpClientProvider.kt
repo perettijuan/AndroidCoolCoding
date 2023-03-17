@@ -15,6 +15,10 @@ interface HttpClientProvider {
 
 class HttpClientProviderImpl : HttpClientProvider {
 
+    init {
+        Log.d("JPPLOG", "Init")
+    }
+
     override fun provide(): HttpClient {
         return HttpClient(Android) {
             followRedirects = false

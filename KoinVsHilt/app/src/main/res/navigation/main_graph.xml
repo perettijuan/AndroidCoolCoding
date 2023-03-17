@@ -5,6 +5,8 @@
   app:startDestination="@id/mainFragment">
 
   <include app:graph="@navigation/movielist_graph" />
+  <include app:graph="@navigation/toprated_graph" />
+
   <fragment
     android:id="@+id/mainFragment"
     android:name="com.jpp.koinvshilt.MainFragment" />
