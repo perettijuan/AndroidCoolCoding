@@ -13,7 +13,7 @@ interface HttpClientProvider {
     fun provide(): HttpClient
 }
 
-class HttpClientProviderImpl : HttpClientProvider {
+internal class HttpClientProviderImpl : HttpClientProvider {
 
     override fun provide(): HttpClient {
         return HttpClient(Android) {
