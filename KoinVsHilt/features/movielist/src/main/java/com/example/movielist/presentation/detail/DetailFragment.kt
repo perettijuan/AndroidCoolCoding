@@ -8,12 +8,19 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.movielist.databinding.MovieDetailFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class DetailFragment : Fragment(), DetailContract.View {
 
     private var viewBinding: MovieDetailFragmentBinding? = null
-    private val router = DetailInjector.providerRouter()
-    private val presenter = DetailInjector.providePresenter()
+
+    @Inject
+    lateinit var router: DetailContract.Router
+
+    @Inject
+    lateinit var presenter: DetailContract.Presenter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,14 +44,9 @@ class DetailFragment : Fragment(), DetailContract.View {
         super.onDestroyView()
     }
 
-    override fun onDestroy() {
-        DetailInjector.onDestroy()
-        super.onDestroy()
-    }
-
     override fun onResume() {
         super.onResume()
-        val id = DetailInjector.selectedMovieId ?: return
+        val id = DetailParam.selectedMovieId ?: return
         presenter.onViewCreated(id)
     }
 

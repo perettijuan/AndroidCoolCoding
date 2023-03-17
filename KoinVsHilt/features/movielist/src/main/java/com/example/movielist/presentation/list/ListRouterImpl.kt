@@ -2,7 +2,7 @@ package com.example.movielist.presentation.list
 
 import androidx.navigation.NavController
 import com.example.movielist.R
-import com.example.movielist.presentation.detail.DetailInjector
+import com.example.movielist.presentation.detail.DetailParam
 
 // Fragment scoped
 class ListRouterImpl : ListContract.Router {
@@ -19,7 +19,7 @@ class ListRouterImpl : ListContract.Router {
     }
 
     override fun openMovieDetail(item: ListContract.MovieItem) {
-        DetailInjector.selectedMovieId = item.id
+        DetailParam.selectedMovieId = item.id
         navController?.navigate(R.id.detailFragment)
     }
 }

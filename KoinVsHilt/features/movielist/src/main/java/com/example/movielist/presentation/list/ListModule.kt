@@ -1,6 +1,6 @@
 package com.example.movielist.presentation.list
 
-import com.example.movielist.di.AppInstanceProvider
+import com.example.movielist.domain.MoviesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,9 +22,8 @@ class ListModule {
 
     @FragmentScoped
     @Provides
-    fun providesInteractor(): ListContract.Interactor {
-        // TODO inject repository
-        return ListInteractorImpl(AppInstanceProvider.getMoviesRepository())
+    fun providesInteractor(moviesRepository: MoviesRepository): ListContract.Interactor {
+        return ListInteractorImpl(moviesRepository)
     }
 
     @FragmentScoped
