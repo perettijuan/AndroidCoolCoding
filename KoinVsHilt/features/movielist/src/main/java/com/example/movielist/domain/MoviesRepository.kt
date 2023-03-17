@@ -1,5 +1,6 @@
 package com.example.movielist.domain
 
+import android.util.Log
 import com.example.movielist.data.MoviesApi
 import com.jpp.core.networking.MovieDetail
 import com.jpp.core.networking.MoviePage
@@ -11,6 +12,10 @@ interface MoviesRepository {
 }
 
 class MoviesRepositoryImpl(private val api: MoviesApi) : MoviesRepository {
+
+    init {
+        Log.d("JPPLOG", "Init Repo")
+    }
 
     override suspend fun getMovies(): MoviePage? {
         /*

@@ -16,7 +16,7 @@ interface HttpClientProvider {
 internal class HttpClientProviderImpl : HttpClientProvider {
 
     init {
-        Log.d("JPPLOG", "Init")
+        Log.d("JPPLOG", "Init HttpClient")
     }
 
     override fun provide(): HttpClient {
