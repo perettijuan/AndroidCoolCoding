@@ -2,9 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:id="@+id/movielist_graph"
-  app:startDestination="@id/movieListFragment">
+  app:startDestination="@id/movieListFlow">
 
   <fragment
-    android:id="@+id/movieListFragment"
-    android:name="com.example.movielist.presentation.MovieListFragment" />
+    android:id="@+id/movieListFlow"
+    android:name="com.example.movielist.list.presentation.ListFragment" />
 </navigation>

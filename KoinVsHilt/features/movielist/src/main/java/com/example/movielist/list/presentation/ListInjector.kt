@@ -1,22 +1,22 @@
-package com.example.movielist.presentation
+package com.example.movielist.list.presentation
 
 import com.example.movielist.di.AppInstanceProvider
 
 // Fragment Scoped
-object MovieListInjector {
+object ListInjector {
 
     private var presenter: ListContract.Presenter? = null
     private var router: ListContract.Router? = null
     private var interactor: ListContract.Interactor? = null
 
     fun providePresenter(): ListContract.Presenter {
-        return PresenterImpl(providesInteractor(), providerRouter())
+        return ListPresenterImpl(providesInteractor(), providerRouter())
     }
 
     fun providerRouter(): ListContract.Router {
         var safeRouter = router
         if (safeRouter == null) {
-            safeRouter = RouterImpl()
+            safeRouter = ListRouterImpl()
             router = safeRouter
         }
         return safeRouter
@@ -25,7 +25,7 @@ object MovieListInjector {
     fun providesInteractor(): ListContract.Interactor {
         var safeInteractor = interactor
         if (safeInteractor == null) {
-            safeInteractor = InteractorImpl(AppInstanceProvider.getMoviesRepository())
+            safeInteractor = ListInteractorImpl(AppInstanceProvider.getMoviesRepository())
             interactor = safeInteractor
         }
         return safeInteractor

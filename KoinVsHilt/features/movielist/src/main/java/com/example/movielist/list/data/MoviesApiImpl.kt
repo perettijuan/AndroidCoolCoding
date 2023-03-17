@@ -1,4 +1,4 @@
-package com.example.movielist.data
+package com.example.movielist.list.data
 
 import com.jpp.core.networking.HttpClientProvider
 import com.jpp.core.networking.MoviePage

@@ -1,6 +1,6 @@
-package com.example.movielist.domain
+package com.example.movielist.list.domain
 
-import com.example.movielist.data.MoviesApi
+import com.example.movielist.list.data.MoviesApi
 import com.jpp.core.networking.MoviePage
 
 // Singleton

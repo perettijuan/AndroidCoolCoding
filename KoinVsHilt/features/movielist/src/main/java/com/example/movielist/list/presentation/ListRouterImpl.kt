@@ -1,8 +1,9 @@
-package com.example.movielist.presentation
+package com.example.movielist.list.presentation
 
 import androidx.navigation.NavController
 
-class RouterImpl : ListContract.Router {
+// Fragment scoped
+class ListRouterImpl : ListContract.Router {
 
     private var navController: NavController? = null
 

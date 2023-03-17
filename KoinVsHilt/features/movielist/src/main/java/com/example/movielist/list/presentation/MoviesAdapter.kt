@@ -1,4 +1,4 @@
-package com.example.movielist.presentation
+package com.example.movielist.list.presentation
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

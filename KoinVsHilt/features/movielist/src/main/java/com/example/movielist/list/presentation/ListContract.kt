@@ -1,4 +1,4 @@
-package com.example.movielist.presentation
+package com.example.movielist.list.presentation
 
 import androidx.navigation.NavController
 import com.jpp.core.networking.MoviePage

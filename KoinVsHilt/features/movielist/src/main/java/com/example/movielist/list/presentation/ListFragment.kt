@@ -1,4 +1,4 @@
-package com.example.movielist.presentation
+package com.example.movielist.list.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,11 +9,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movielist.databinding.MovieListFragmentBinding
 
-class MovieListFragment : Fragment(), ListContract.View {
+class ListFragment : Fragment(), ListContract.View {
 
     private var viewBinding: MovieListFragmentBinding? = null
-    private val router = MovieListInjector.providerRouter()
-    private val presenter = MovieListInjector.providePresenter()
+    private val router = ListInjector.providerRouter()
+    private val presenter = ListInjector.providePresenter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +35,11 @@ class MovieListFragment : Fragment(), ListContract.View {
         router.unBind()
         presenter.unBindView()
         super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        ListInjector.onDestroy()
+        super.onDestroy()
     }
 
     override fun onResume() {

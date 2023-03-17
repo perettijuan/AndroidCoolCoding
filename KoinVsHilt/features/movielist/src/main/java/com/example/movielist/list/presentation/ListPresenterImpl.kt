@@ -1,10 +1,11 @@
-package com.example.movielist.presentation
+package com.example.movielist.list.presentation
 
 import com.jpp.core.networking.Movie
 import com.jpp.core.utils.Try
 import kotlinx.coroutines.*
 
-class PresenterImpl(
+// Fragment scoped
+class ListPresenterImpl(
     private val interactor: ListContract.Interactor,
     private val router: ListContract.Router
 ) : ListContract.Presenter {
