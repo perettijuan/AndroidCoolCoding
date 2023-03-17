@@ -11,9 +11,15 @@ import io.ktor.client.features.observer.*
 
 interface HttpClientProvider {
     fun provide(): HttpClient
+
+    companion object {
+        fun locateInstance(): HttpClientProvider {
+            return HttpClientProviderImpl()
+        }
+    }
 }
 
-class HttpClientProviderImpl : HttpClientProvider {
+internal class HttpClientProviderImpl : HttpClientProvider {
 
     init {
         Log.d("JPPLOG", "Init")

@@ -28,7 +28,7 @@ object DetailInjector {
     fun providesInteractor(): DetailContract.Interactor {
         var safeInteractor = interactor
         if (safeInteractor == null) {
-            safeInteractor = DetailInteractor(AppInstanceProvider.getMoviesRepository())
+            safeInteractor = DetailInteractor(AppInstanceProvider.provideMoviesRepository())
             interactor = safeInteractor
         }
         return safeInteractor

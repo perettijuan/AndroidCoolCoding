@@ -1,6 +1,7 @@
-package com.example.movielist.presentation.list
+package com.jpp.toprated.presentation.list
 
-import com.example.movielist.di.AppInstanceProvider
+import com.jpp.toprated.di.ModuleInstanceProvider
+
 
 // Fragment Scoped
 object ListInjector {
@@ -25,7 +26,7 @@ object ListInjector {
     fun providesInteractor(): ListContract.Interactor {
         var safeInteractor = interactor
         if (safeInteractor == null) {
-            safeInteractor = ListInteractorImpl(AppInstanceProvider.provideMoviesRepository())
+            safeInteractor = ListInteractorImpl(ModuleInstanceProvider.getMoviesRepository())
             interactor = safeInteractor
         }
         return safeInteractor

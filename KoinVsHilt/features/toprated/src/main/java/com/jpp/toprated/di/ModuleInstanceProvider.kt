@@ -1,17 +1,18 @@
-package com.example.movielist.di
+package com.jpp.toprated.di
 
-import com.example.movielist.data.MoviesApi
-import com.example.movielist.data.MoviesApiImpl
-import com.example.movielist.domain.MoviesRepository
-import com.example.movielist.domain.MoviesRepositoryImpl
 import com.jpp.core.networking.HttpClientProvider
+import com.jpp.toprated.data.MoviesApi
+import com.jpp.toprated.data.MoviesApiImpl
+import com.jpp.toprated.domain.MoviesRepository
+import com.jpp.toprated.domain.MoviesRepositoryImpl
 
-object AppInstanceProvider {
+object ModuleInstanceProvider {
+    
 
     // Using service locator pattern
     private val httpClientProvider: HttpClientProvider = HttpClientProvider.locateInstance()
     private val movieApi: MoviesApi = MoviesApiImpl(httpClientProvider)
     private val moviesRepository: MoviesRepository = MoviesRepositoryImpl(movieApi)
 
-    fun provideMoviesRepository(): MoviesRepository = moviesRepository
+    fun getMoviesRepository(): MoviesRepository = moviesRepository
 }
