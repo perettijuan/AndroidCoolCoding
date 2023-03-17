@@ -8,12 +8,27 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movielist.databinding.MovieListFragmentBinding
+import com.example.movielist.di.MovieListModule
+import org.koin.android.ext.android.inject
+import org.koin.android.scope.AndroidScopeComponent
+import org.koin.androidx.scope.fragmentScope
+import org.koin.core.scope.Scope
 
-class ListFragment : Fragment(), ListContract.View {
+internal class ListFragment : Fragment(), ListContract.View, AndroidScopeComponent {
 
     private var viewBinding: MovieListFragmentBinding? = null
-    private val router = ListInjector.providerRouter()
-    private val presenter = ListInjector.providePresenter()
+    private val router: ListContract.Router by inject()
+    private val presenter: ListContract.Presenter by inject()
+
+    // This is not entirely clear. In order to use scope,
+    // we need to implement AndroidScopeComponent
+    override val scope: Scope by fragmentScope()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // This is actually very interesting. All dependencies
+        // can be internal with this approach.
+        MovieListModule.init()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,11 +50,6 @@ class ListFragment : Fragment(), ListContract.View {
         router.unBind()
         presenter.unBindView()
         super.onDestroyView()
-    }
-
-    override fun onDestroy() {
-        ListInjector.onDestroy()
-        super.onDestroy()
     }
 
     override fun onResume() {

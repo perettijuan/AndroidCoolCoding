@@ -4,7 +4,7 @@ import androidx.navigation.NavController
 import com.jpp.core.networking.MoviePage
 import com.jpp.core.utils.Try
 
-interface ListContract {
+internal interface ListContract {
     interface View {
         fun showLoading()
         fun hideLoading()

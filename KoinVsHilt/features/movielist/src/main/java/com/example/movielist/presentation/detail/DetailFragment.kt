@@ -8,18 +8,22 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.movielist.databinding.MovieDetailFragmentBinding
-import com.example.movielist.presentation.list.ListInjector
+import org.koin.android.ext.android.inject
+import org.koin.android.scope.AndroidScopeComponent
+import org.koin.androidx.scope.fragmentScope
+import org.koin.core.scope.Scope
 
-class DetailFragment : Fragment(), DetailContract.View {
+internal class DetailFragment : Fragment(), DetailContract.View, AndroidScopeComponent {
 
     private var viewBinding: MovieDetailFragmentBinding? = null
-    private val router = DetailInjector.providerRouter()
-    private val presenter = DetailInjector.providePresenter()
+    private val router: DetailContract.Router by inject()
+    private val presenter: DetailContract.Presenter by inject()
 
+    // This is not entirely clear. In order to use scope,
+    // we need to implement AndroidScopeComponent
+    override val scope: Scope by fragmentScope()
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         viewBinding = MovieDetailFragmentBinding.inflate(inflater)
         return viewBinding?.root
@@ -36,11 +40,6 @@ class DetailFragment : Fragment(), DetailContract.View {
         router.unBind()
         presenter.unBindView()
         super.onDestroyView()
-    }
-
-    override fun onDestroy() {
-        ListInjector.onDestroy()
-        super.onDestroy()
     }
 
     override fun onResume() {

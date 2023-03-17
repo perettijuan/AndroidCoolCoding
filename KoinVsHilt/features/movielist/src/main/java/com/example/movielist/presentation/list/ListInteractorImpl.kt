@@ -5,7 +5,7 @@ import com.jpp.core.networking.MoviePage
 import com.jpp.core.utils.Try
 
 // Fragment scoped
-class ListInteractorImpl(private val repository: MoviesRepository) : ListContract.Interactor {
+internal class ListInteractorImpl(private val repository: MoviesRepository) : ListContract.Interactor {
 
     override suspend fun getMovies(): Try<MoviePage> {
         val movieList = repository.getMovies()

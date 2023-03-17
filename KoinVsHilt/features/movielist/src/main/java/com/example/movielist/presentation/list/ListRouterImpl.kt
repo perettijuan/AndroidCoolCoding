@@ -5,7 +5,7 @@ import com.example.movielist.R
 import com.example.movielist.presentation.detail.DetailInjector
 
 // Fragment scoped
-class ListRouterImpl : ListContract.Router {
+internal class ListRouterImpl : ListContract.Router {
 
     private var navController: NavController? = null
 

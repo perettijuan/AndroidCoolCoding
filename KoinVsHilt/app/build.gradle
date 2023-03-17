@@ -48,4 +48,6 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:${androidx.recyclerview}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutines.version}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutines.version}"
+
+    implementation "io.insert-koin:koin-android:${koin.version}"
 }

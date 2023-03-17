@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movielist.databinding.ListItemBinding
 
-class MoviesAdapter(private val movieSelectionListener: (ListContract.MovieItem) -> Unit) :
+internal class MoviesAdapter(private val movieSelectionListener: (ListContract.MovieItem) -> Unit) :
     RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
     private val items = mutableListOf<ListContract.MovieItem>()

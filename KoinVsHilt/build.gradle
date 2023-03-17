@@ -76,6 +76,10 @@ buildscript {
         coroutines = [
                 version: '1.6.4'
         ]
+
+        koin = [
+                version: '3.3.3'
+        ]
     }
 
     dependencies {
