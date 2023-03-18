@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movielist.databinding.MovieListFragmentBinding
 
-class ListFragment : Fragment(), ListContract.View {
+internal class ListFragment : Fragment(), ListContract.View {
 
     private var viewBinding: MovieListFragmentBinding? = null
     private val router = ListInjector.providerRouter()

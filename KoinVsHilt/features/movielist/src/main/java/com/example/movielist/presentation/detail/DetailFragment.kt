@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.movielist.databinding.MovieDetailFragmentBinding
 import com.example.movielist.presentation.list.ListInjector
 
-class DetailFragment : Fragment(), DetailContract.View {
+internal class DetailFragment : Fragment(), DetailContract.View {
 
     private var viewBinding: MovieDetailFragmentBinding? = null
     private val router = DetailInjector.providerRouter()

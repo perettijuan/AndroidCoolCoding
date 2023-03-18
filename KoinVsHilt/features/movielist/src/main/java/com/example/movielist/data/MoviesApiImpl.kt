@@ -9,7 +9,7 @@ import io.ktor.http.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
-class MoviesApiImpl(private val httpClientProvider: HttpClientProvider) : MoviesApi {
+internal class MoviesApiImpl(private val httpClientProvider: HttpClientProvider) : MoviesApi {
 
     private val client by lazy { httpClientProvider.provide() }
     private val jsonConfiguration: Json by lazy {

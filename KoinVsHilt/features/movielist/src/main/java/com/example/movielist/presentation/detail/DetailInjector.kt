@@ -3,7 +3,7 @@ package com.example.movielist.presentation.detail
 import com.example.movielist.di.AppInstanceProvider
 
 // Fragment Scoped
-object DetailInjector {
+internal object DetailInjector {
 
     // Just for simplicity
     var selectedMovieId: Double? = null

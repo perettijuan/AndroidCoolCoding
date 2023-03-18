@@ -6,7 +6,7 @@ import com.example.movielist.domain.MoviesRepository
 import com.example.movielist.domain.MoviesRepositoryImpl
 import com.jpp.core.networking.HttpClientProvider
 
-object AppInstanceProvider {
+internal object AppInstanceProvider {
 
     // Using service locator pattern
     private val httpClientProvider: HttpClientProvider = HttpClientProvider.locateInstance()
