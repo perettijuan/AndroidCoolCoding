@@ -1,6 +1,7 @@
 package com.example.movielist.presentation.detail
 
 import com.example.movielist.domain.MoviesRepository
+import com.example.movielist.domain.NetworkRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,7 +29,10 @@ internal class DetailModule {
 
     @FragmentScoped
     @Provides
-    fun providesInteractor(repository: MoviesRepository): DetailContract.Interactor {
-        return DetailInteractor(repository)
+    fun providesInteractor(
+        repository: MoviesRepository,
+        networkRepository: NetworkRepository
+    ): DetailContract.Interactor {
+        return DetailInteractor(repository, networkRepository)
     }
 }

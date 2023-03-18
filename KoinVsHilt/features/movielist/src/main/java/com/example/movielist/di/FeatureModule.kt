@@ -4,6 +4,9 @@ import com.example.movielist.data.MoviesApi
 import com.example.movielist.data.MoviesApiImpl
 import com.example.movielist.domain.MoviesRepository
 import com.example.movielist.domain.MoviesRepositoryImpl
+import com.example.movielist.domain.NetworkRepository
+import com.example.movielist.domain.NetworkRepositoryImpl
+import com.example.movielist.network.NetworkManager
 import com.jpp.core.networking.HttpClientProvider
 import dagger.Module
 import dagger.Provides
@@ -20,5 +23,11 @@ internal class FeatureModule {
     fun provideMoviesRepository(httpClientProvider: HttpClientProvider): MoviesRepository {
         val movieApi: MoviesApi = MoviesApiImpl(httpClientProvider)
         return MoviesRepositoryImpl(movieApi)
+    }
+
+    @Singleton
+    @Provides
+    fun providesNetworkRepository(networkManager: NetworkManager): NetworkRepository {
+        return NetworkRepositoryImpl(networkManager)
     }
 }
