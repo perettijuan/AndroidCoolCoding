@@ -11,12 +11,6 @@ import io.ktor.client.features.observer.*
 
 interface HttpClientProvider {
     fun provide(): HttpClient
-
-    companion object {
-        fun locateInstance(): HttpClientProvider {
-            return HttpClientProviderImpl()
-        }
-    }
 }
 
 internal class HttpClientProviderImpl : HttpClientProvider {
