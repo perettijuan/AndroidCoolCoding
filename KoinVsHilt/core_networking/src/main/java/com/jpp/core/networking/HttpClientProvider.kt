@@ -13,6 +13,10 @@ interface HttpClientProvider {
     fun provide(): HttpClient
 
     companion object {
+        /**
+         * This applies service locator pattern to find an instance of an
+         * object.
+         */
         fun locateInstance(): HttpClientProvider {
             return HttpClientProviderImpl()
         }

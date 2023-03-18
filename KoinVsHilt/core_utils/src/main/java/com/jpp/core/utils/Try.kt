@@ -12,6 +12,7 @@ sealed class Try<out T> {
      */
     sealed class FailureCause {
         object Unknown : FailureCause()
+        object NotConnected : FailureCause()
     }
 
     /**

@@ -1,6 +1,6 @@
 package com.example.movielist.presentation.detail
 
-import com.example.movielist.di.AppInstanceProvider
+import com.example.movielist.di.ModuleInstanceProvider
 
 // Fragment Scoped
 internal object DetailInjector {
@@ -28,7 +28,10 @@ internal object DetailInjector {
     fun providesInteractor(): DetailContract.Interactor {
         var safeInteractor = interactor
         if (safeInteractor == null) {
-            safeInteractor = DetailInteractor(AppInstanceProvider.provideMoviesRepository())
+            safeInteractor = DetailInteractor(
+                ModuleInstanceProvider.provideMoviesRepository(),
+                ModuleInstanceProvider.provideNetworkRepository()
+            )
             interactor = safeInteractor
         }
         return safeInteractor

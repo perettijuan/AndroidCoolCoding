@@ -1,6 +1,6 @@
 package com.example.movielist.presentation.list
 
-import com.example.movielist.di.AppInstanceProvider
+import com.example.movielist.di.ModuleInstanceProvider
 
 // Fragment Scoped
 internal object ListInjector {
@@ -25,7 +25,7 @@ internal object ListInjector {
     fun providesInteractor(): ListContract.Interactor {
         var safeInteractor = interactor
         if (safeInteractor == null) {
-            safeInteractor = ListInteractorImpl(AppInstanceProvider.provideMoviesRepository())
+            safeInteractor = ListInteractorImpl(ModuleInstanceProvider.provideMoviesRepository())
             interactor = safeInteractor
         }
         return safeInteractor
