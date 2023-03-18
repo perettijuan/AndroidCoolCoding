@@ -5,7 +5,7 @@ import com.jpp.core.utils.Try
 import kotlinx.coroutines.*
 
 // Fragment scoped
-class DetailPresenter(
+internal class DetailPresenter(
     private val interactor: DetailContract.Interactor,
     private val router: DetailContract.Router
 ) : DetailContract.Presenter {

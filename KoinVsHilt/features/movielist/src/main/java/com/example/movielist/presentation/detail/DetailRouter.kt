@@ -3,7 +3,7 @@ package com.example.movielist.presentation.detail
 import androidx.navigation.NavController
 
 // Fragment scoped
-class DetailRouter : DetailContract.Router {
+internal class DetailRouter : DetailContract.Router {
 
     private var navController: NavController? = null
 

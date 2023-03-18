@@ -13,7 +13,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class FeatureModule {
+internal class FeatureModule {
 
     @Singleton
     @Provides

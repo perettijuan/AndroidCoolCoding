@@ -4,7 +4,7 @@ import androidx.navigation.NavController
 import com.jpp.core.networking.MovieDetail
 import com.jpp.core.utils.Try
 
-interface DetailContract {
+internal interface DetailContract {
 
     interface View {
         fun showLoading()

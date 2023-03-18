@@ -9,7 +9,7 @@ import dagger.hilt.android.scopes.FragmentScoped
 
 @Module
 @InstallIn(FragmentComponent::class)
-class ListModule {
+internal class ListModule {
 
     @FragmentScoped
     @Provides

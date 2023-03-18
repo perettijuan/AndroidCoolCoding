@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ListFragment : Fragment(), ListContract.View {
+internal class ListFragment : Fragment(), ListContract.View {
 
     private var viewBinding: MovieListFragmentBinding? = null
 

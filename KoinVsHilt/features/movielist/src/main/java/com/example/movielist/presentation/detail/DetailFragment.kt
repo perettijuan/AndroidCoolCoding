@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class DetailFragment : Fragment(), DetailContract.View {
+internal class DetailFragment : Fragment(), DetailContract.View {
 
     private var viewBinding: MovieDetailFragmentBinding? = null
 

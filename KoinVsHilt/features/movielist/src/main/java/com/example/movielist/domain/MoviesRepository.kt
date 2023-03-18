@@ -6,12 +6,12 @@ import com.jpp.core.networking.MovieDetail
 import com.jpp.core.networking.MoviePage
 
 // Singleton
-interface MoviesRepository {
+internal interface MoviesRepository {
     suspend fun getMovies(): MoviePage?
     suspend fun getMovieDetail(id: Double): MovieDetail?
 }
 
-class MoviesRepositoryImpl(private val api: MoviesApi) : MoviesRepository {
+internal class MoviesRepositoryImpl(private val api: MoviesApi) : MoviesRepository {
 
     init {
         Log.d("JPPLOG", "Init Repo")

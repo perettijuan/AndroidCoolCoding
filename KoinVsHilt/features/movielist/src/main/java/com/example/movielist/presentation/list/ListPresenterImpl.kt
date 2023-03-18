@@ -5,7 +5,7 @@ import com.jpp.core.utils.Try
 import kotlinx.coroutines.*
 
 // Fragment scoped
-class ListPresenterImpl(
+internal class ListPresenterImpl(
     private val interactor: ListContract.Interactor,
     private val router: ListContract.Router
 ) : ListContract.Presenter {
