@@ -3,7 +3,7 @@ package com.example.movielist.presentation.list
 import com.example.movielist.di.ModuleInstanceProvider
 
 // Fragment Scoped
-internal object ListInjector {
+internal object ListProvider {
 
     private var presenter: ListContract.Presenter? = null
     private var router: ListContract.Router? = null

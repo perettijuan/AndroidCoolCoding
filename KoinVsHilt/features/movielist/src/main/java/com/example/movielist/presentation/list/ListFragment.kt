@@ -12,8 +12,8 @@ import com.example.movielist.databinding.MovieListFragmentBinding
 internal class ListFragment : Fragment(), ListContract.View {
 
     private var viewBinding: MovieListFragmentBinding? = null
-    private val router = ListInjector.providerRouter()
-    private val presenter = ListInjector.providePresenter()
+    private val router = ListProvider.providerRouter()
+    private val presenter = ListProvider.providePresenter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +38,7 @@ internal class ListFragment : Fragment(), ListContract.View {
     }
 
     override fun onDestroy() {
-        ListInjector.onDestroy()
+        ListProvider.onDestroy()
         super.onDestroy()
     }
 
