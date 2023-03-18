@@ -8,7 +8,7 @@ internal val movieDetailInstances: Module = module {
     scope<DetailFragment> {
         // Router needs to be shared between the Fragment and the Presenter
         scoped<DetailContract.Router> { DetailRouter() }
-        factory<DetailContract.Interactor> { DetailInteractor(repository = get()) }
+        factory<DetailContract.Interactor> { DetailInteractor(repository = get(), networkRepository = get()) }
         factory<DetailContract.Presenter> { DetailPresenter(interactor = get(), router = get()) }
     }
 }
