@@ -22,6 +22,54 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 
 import androidx.compose.runtime.Composable
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_background
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_error
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_errorContainer
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_onBackground
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_onError
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_onErrorContainer
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_onPrimary
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_onPrimaryContainer
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_onSecondary
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_onSecondaryContainer
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_onSurface
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_onSurfaceVariant
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_onTertiary
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_onTertiaryContainer
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_outline
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_primary
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_primaryContainer
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_secondary
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_secondaryContainer
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_surface
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_surfaceVariant
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_tertiary
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_dark_tertiaryContainer
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_background
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_error
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_errorContainer
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_onBackground
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_onError
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_onErrorContainer
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_onPrimary
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_onPrimaryContainer
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_onSecondary
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_onSecondaryContainer
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_onSurface
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_onSurfaceVariant
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_onTertiary
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_onTertiaryContainer
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_outline
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_primary
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_primaryContainer
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_secondary
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_secondaryContainer
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_surface
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_surfaceVariant
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_tertiary
+import com.jpp.jetpack.basiclayout.ui.theme.md_theme_light_tertiaryContainer
+import com.jpp.jetpack.basiclayout.ui.theme.shapes
+import com.jpp.jetpack.basiclayout.ui.theme.typography
 
 private val LightColors = lightColorScheme(
     primary = md_theme_light_primary,

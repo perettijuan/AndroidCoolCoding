@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.codelab.basiclayouts.ui.theme
+package com.jpp.jetpack.basiclayout.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
