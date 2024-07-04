@@ -1,4 +1,4 @@
-package com.jpp.usercentricschallenge
+package com.jpp.usercentricschallenge.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
