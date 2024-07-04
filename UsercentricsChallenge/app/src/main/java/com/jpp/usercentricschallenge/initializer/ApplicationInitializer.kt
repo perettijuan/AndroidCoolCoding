@@ -1,9 +1,7 @@
 package com.jpp.usercentricschallenge.initializer
 
 import android.content.Context
-import android.util.Log
 import androidx.startup.Initializer
-import com.jpp.usercentricschallenge.LOG_TAG
 import com.jpp.usercentricschallenge.di.ApplicationCoroutineScopeQualifier
 import com.jpp.usercentricschallenge.extras.OnScreenActivityProvider
 import com.usercentrics.sdk.Usercentrics
@@ -39,15 +37,6 @@ class ApplicationInitializer : Initializer<Unit> {
                 Usercentrics.initialize(context, options)
             }
         }
-
-        Usercentrics.isReady(
-            onSuccess = { status ->
-                Log.d(LOG_TAG, "Usercentrics is ready: $status")
-            },
-            onFailure = { error ->
-                Log.d(LOG_TAG, "Usercentrics failed: $error")
-            },
-        )
     }
 
     override fun dependencies(): List<Class<out Initializer<*>>> = listOf()
