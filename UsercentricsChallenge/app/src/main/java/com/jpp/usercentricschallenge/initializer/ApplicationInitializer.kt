@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.startup.Initializer
 import com.jpp.usercentricschallenge.LOG_TAG
 import com.jpp.usercentricschallenge.di.ApplicationCoroutineScopeQualifier
+import com.jpp.usercentricschallenge.extras.OnScreenActivityProvider
 import com.usercentrics.sdk.Usercentrics
 import com.usercentrics.sdk.UsercentricsOptions
 import dagger.hilt.EntryPoint
@@ -25,8 +26,12 @@ class ApplicationInitializer : Initializer<Unit> {
     @ApplicationCoroutineScopeQualifier
     lateinit var appScope: CoroutineScope
 
+    @Inject
+    lateinit var onScreenActivityProvider: OnScreenActivityProvider
+
     override fun create(context: Context) {
         InitializerEntryPoint.resolve(context).inject(this)
+        onScreenActivityProvider.initialize(context)
 
         appScope.launch {
             withContext(Dispatchers.IO) {

@@ -1,5 +1,7 @@
 package com.jpp.usercentricschallenge.di
 
+import com.jpp.usercentricschallenge.extras.OnScreenActivityProvider
+import com.jpp.usercentricschallenge.extras.OnScreenActivityProviderImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,4 +23,8 @@ class ApplicationHiltModule {
     @Provides
     @ApplicationCoroutineScopeQualifier
     fun provideApplicationScope(): CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+
+    @Singleton
+    @Provides
+    fun providesOnScreenActivityProvider(): OnScreenActivityProvider = OnScreenActivityProviderImpl()
 }
