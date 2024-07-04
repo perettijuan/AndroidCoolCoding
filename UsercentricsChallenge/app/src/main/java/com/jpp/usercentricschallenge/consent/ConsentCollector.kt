@@ -11,5 +11,5 @@ interface ConsentCollector {
      */
     suspend fun canCollect(): Boolean
 
-    suspend fun collect(): Int
+    suspend fun collect(): Double
 }

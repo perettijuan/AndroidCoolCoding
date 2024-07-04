@@ -28,7 +28,7 @@ class HomeScreenViewModel
         fun collectConsent() {
             viewModelScope.launch {
                 val cost = consentCollector.collect()
-                _state.value = HomeViewState(cost = cost)
+                _state.value = _state.value.copy(cost = cost)
             }
         }
     }

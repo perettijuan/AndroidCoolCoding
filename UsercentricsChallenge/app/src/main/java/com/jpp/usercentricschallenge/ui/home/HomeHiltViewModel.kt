@@ -2,6 +2,8 @@ package com.jpp.usercentricschallenge.ui.home
 
 import com.jpp.usercentricschallenge.consent.ConsentCollector
 import com.jpp.usercentricschallenge.consent.ConsentCollectorImpl
+import com.jpp.usercentricschallenge.consent.ConsentCostModifierFactory
+import com.jpp.usercentricschallenge.consent.ConsentCostModifierFactoryImpl
 import com.jpp.usercentricschallenge.consent.ServiceCostProvider
 import com.jpp.usercentricschallenge.consent.ServiceCostProviderImpl
 import com.jpp.usercentricschallenge.extras.OnScreenActivityProvider
@@ -20,8 +22,18 @@ class HomeHiltViewModel {
 
     @ViewModelScoped
     @Provides
+    fun providesConsentCostModifierFactory(): ConsentCostModifierFactory = ConsentCostModifierFactoryImpl()
+
+    @ViewModelScoped
+    @Provides
     fun providesConsentCollector(
         onScreenActivityProvider: OnScreenActivityProvider,
         serviceCostProvider: ServiceCostProvider,
-    ): ConsentCollector = ConsentCollectorImpl(onScreenActivityProvider, serviceCostProvider)
+        consentCostModifierFactory: ConsentCostModifierFactory,
+    ): ConsentCollector =
+        ConsentCollectorImpl(
+            onScreenActivityProvider,
+            serviceCostProvider,
+            consentCostModifierFactory,
+        )
 }
